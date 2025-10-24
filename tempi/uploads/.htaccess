@@ -1,0 +1,13 @@
+# Protect uploads directory from direct access
+# Only allow access through authorized scripts
+
+# Deny all direct access
+<FilesMatch "\.(pdf|jpg|jpeg|png|doc|docx)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Optional: Allow from specific IP (uncomment and add your IP)
+# Allow from 123.456.789.0
+
+

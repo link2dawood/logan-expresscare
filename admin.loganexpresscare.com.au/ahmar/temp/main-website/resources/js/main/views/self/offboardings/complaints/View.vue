@@ -1,0 +1,96 @@
+<template>
+    <a-drawer
+        :title="pageTitle"
+        :width="720"
+        :open="visible"
+        :body-style="{ paddingBottom: '80px' }"
+        :footer-style="{ textAlign: 'right' }"
+    >
+        <a-row :gutter="16">
+            <a-col :xs="24" :sm="24" :md="24" :lg="24">
+                <a-descriptions
+                    :labelStyle="{
+                        fontWeight: 'bold',
+                    }"
+                    :contentStyle="{
+                        marginBottom: '15px',
+                    }"
+                    :column="1"
+                    layout="vertical"
+                    size="small"
+                >
+                    <a-descriptions-item :label="$t('complaint.title')">
+                        {{ data.title }}
+                    </a-descriptions-item>
+
+                    <a-descriptions-item :label="$t('complaint.to_user_id')">
+                        {{ data.to_staff.name }}
+                    </a-descriptions-item>
+                    <a-descriptions-item :label="$t('complaint.date_time')">
+                        <span v-if="data && data.date_time">
+                            {{ formatDateTime(data.date_time) }}
+                        </span>
+                        <span v-else>-</span>
+                    </a-descriptions-item>
+                    <a-descriptions-item :label="$t('complaint.proff_of_document')">
+                        <a-col :xs="24" :sm="24" :md="15" :lg="15">
+                            <span v-if="data.proff_of_document">
+                                <a-image :width="32" :src="data.proff_of_document_url"
+                            /></span>
+                            <span v-else>-</span>
+                        </a-col>
+                    </a-descriptions-item>
+
+                    <a-descriptions-item :label="$t('complaint.description')">
+                        <div
+                            v-if="data && data.description"
+                            style="white-space: pre-wrap"
+                        >
+                            {{ data.description }}
+                        </div>
+                        <span v-else>-</span>
+                    </a-descriptions-item>
+                    <a-descriptions-item
+                        :label="$t('complaint.reply')"
+                        v-if="data && data.reply_notes"
+                    >
+                        <div
+                            v-if="data && data.reply_notes"
+                            style="white-space: pre-wrap"
+                        >
+                            {{ data.reply_notes }}
+                        </div>
+                        <span v-else>-</span>
+                    </a-descriptions-item>
+                </a-descriptions>
+            </a-col>
+        </a-row>
+
+        <template #footer>
+            <a-button key="back" type="primary" @click="onClose">
+                {{ $t("common.cancel") }}
+            </a-button>
+        </template>
+    </a-drawer>
+</template>
+
+<script>
+import { defineComponent } from "vue";
+import common from "../../../../../common/composable/common";
+
+export default defineComponent({
+    props: ["data", "visible", "pageTitle"],
+    setup(props, { emit }) {
+        const { formatDateTime } = common();
+
+        const onClose = () => {
+            emit("close");
+        };
+
+        return {
+            formatDateTime,
+            onClose,
+        };
+    },
+});
+</script>

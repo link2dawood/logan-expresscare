@@ -1,0 +1,61 @@
+﻿
+> build
+> node --max-old-space-size=8192 ./node_modules/vite/bin/vite.js build
+
+[36mvite v5.4.19 [32mbuilding for production...[36m[39m
+transforming...
+
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Users\Ah Mar\AppData\Roaming ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+#
+# Fatal process out of memory: Zone
+#
+----- Native stack trace -----
+
+
+
+#
+# Fatal process out of memory: Zone
+#
+----- Native stack trace -----
+
+
+
+#
+# Fatal process out of memory: Zone
+#
+----- Native stack trace -----
+
+
+
+#
+# Fatal process out of memory: Zone
+#
+----- Native stack trace -----
+
+ 1: 00007FF624147487 
+ 2: 00007FF62401CA6F 
+ 3: 00007FF625281DE6 
+ 4: 00007FF624C089A1 
+ 5: 00007FF6246EB6BB 
+ 6: 00007FF6252F0B27 
+ 7: 00007FF62532B12A 
+ 8: 00007FF625458405 
+ 9: 00007FF625459EF8 
+10: 00007FF6254589FE 
+11: 00007FF6253A413A 
+12: 00007FF6253A15E5 
+13: 00007FF62539C23A 
+14: 00007FF624B85CD4 
+15: 00007FF624B4C8B2 
+16: 00007FF624E0D7D6 
+17: 00007FF62401F7F0 
+18: 00007FF6241A8593 
+19: 00007FF625996D9B 
+20: 00007FFFAB9B7374 
+21: 00007FFFAC27CC91 RtlUserThreadStart+33

@@ -1,0 +1,2 @@
+[21-Oct-2025 14:58:27 UTC] Connection error: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+[21-Oct-2025 14:59:46 UTC] Database tables created and seeded successfully with default admin user (username: admin, password: admin123)

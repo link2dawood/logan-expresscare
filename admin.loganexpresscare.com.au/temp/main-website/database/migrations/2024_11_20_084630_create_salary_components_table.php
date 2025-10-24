@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('salary_components', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('company_id')->unsigned()->nullable()->default(null);
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name');
+            $table->string('type');
+            $table->string('value_type');
+            $table->string('monthly');
+            $table->string('semi_monthly')->nullable()->default(null);
+            $table->string('weekly')->nullable()->default(null);
+            $table->string('bi_weekly')->nullable()->default(null);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('salary_components');
+    }
+};
