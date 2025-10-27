@@ -1,0 +1,2 @@
+[27-Oct-2025 19:05:17 UTC] Database connection failed: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+[27-Oct-2025 19:05:17 UTC] Referral form error: Database connection error. Please try again later.

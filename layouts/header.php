@@ -88,14 +88,14 @@
                                 <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
                                 <li class="nav-item"><a class="nav-link" href="user-signup.php">Join Our Team</a></li>
                                 <li class="nav-item"><a class="nav-link" href="user-login.php">Check Status</a></li>
-                                <li class="nav-item highlighted-menu"><a class="nav-link" href="book-appointment.php">book appointment</a></li>
+<li class="nav-item highlighted-menu"><a class="nav-link" href="referral.php">Referral</a></li>
                             </ul>
                         </div>
                         
                         <!-- Header Btn Start -->
                         <div class="header-btn">
-                            <a href="book-appointment.php" class="btn-default">book appointment</a>
-                        </div>
+    <a href="referral.php" class="btn-default">Referral</a>
+</div>
                         <!-- Header Btn End -->
 					</div>
 					<!-- Main Menu End -->
