@@ -235,23 +235,6 @@
                         >
                             <span>{{ $t("menu.staff_onboarding") }}</span>
                         </a-menu-item>
-                        <a-menu-item
-                            v-if="
-                                permsArray.includes('referal_view') ||
-                                permsArray.includes('admin')
-                            "
-                            @click="
-                                () => {
-                                    menuSelected();
-                                    $router.push({
-                                        name: 'admin.referal.index',
-                                    });
-                                }
-                            "
-                            key="referal"
-                        >
-                            <span>{{ $t("Referral") }}</span>
-                        </a-menu-item>
                     </a-sub-menu>
                     <a-sub-menu
                         key="assets"

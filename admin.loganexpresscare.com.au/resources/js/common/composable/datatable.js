@@ -43,6 +43,7 @@ const datatable = () => {
         var hashableString = "";
         var trimString = false;
         var trimHashable = false;
+        var paramPrefix = url.includes("?") ? "&" : "?";
 
         // Filters
         if (
@@ -92,11 +93,13 @@ const datatable = () => {
             table.filterLoading = true;
         }
         if (filterString.length > 0 && trimString == true) {
-            url += `&filters=${encodeURIComponent(
+            url += `${paramPrefix}filters=${encodeURIComponent(
                 filterString.substring(0, filterString.length - 5)
             )}`;
+            paramPrefix = "&";
         } else if (filterString.length > 0 && trimString == false) {
-            url += `&filters=${encodeURIComponent(filterString)}`;
+            url += `${paramPrefix}filters=${encodeURIComponent(filterString)}`;
+            paramPrefix = "&";
         }
 
         // Extra Filters
@@ -108,7 +111,8 @@ const datatable = () => {
         ) {
             forOwn(tableUrl.value.extraFilters, (value, key) => {
                 if (value != undefined && value != "") {
-                    url += `&${key}=${value}`;
+                    url += `${paramPrefix}${key}=${value}`;
+                    paramPrefix = "&";
 
                     // May be Hashable
                     if (includes(hashable.value, key)) {
@@ -125,13 +129,15 @@ const datatable = () => {
                 table.sorter.order == "ascend" || table.sorter.order == "asc"
                     ? "asc"
                     : "desc";
-            url += `&order=${table.sorter.field} ${sortOrder}`;
+            url += `${paramPrefix}order=${table.sorter.field} ${sortOrder}`;
+            paramPrefix = "&";
         } else {
-            url += "&order=id desc";
+            url += `${paramPrefix}order=id desc`;
+            paramPrefix = "&";
         }
 
         // Offset and Limit
-        url += `&offset=${offset}&limit=${limit}`;
+        url += `${paramPrefix}offset=${offset}${paramPrefix}limit=${limit}`;
 
         // Hashable
         if (trimHashable) {

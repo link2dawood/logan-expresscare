@@ -1,7 +1,7 @@
 <template>
     <AdminPageHeader>
         <template #header>
-            <a-page-header :title="$t(`menu.referrals`)" class="p-0" />
+            <a-page-header :title="$t(`referral`)" class="p-0" />
         </template>
         <template #breadcrumb>
             <a-breadcrumb separator="-" style="font-size: 12px">
@@ -11,7 +11,7 @@
                     </router-link>
                 </a-breadcrumb-item>
                 <a-breadcrumb-item>
-                    {{ $t(`menu.referrals`) }}
+                    {{ $t(`referral`) }}
                 </a-breadcrumb-item>
             </a-breadcrumb>
         </template>
@@ -134,9 +134,9 @@ import { onMounted, ref, computed, reactive } from "vue";
 import {
     DeleteOutlined,
 } from "@ant-design/icons-vue";
-import crud from "../../../../common/composable/crud";
-import common from "../../../../common/composable/common";
-import AdminPageHeader from "../../../../common/layouts/AdminPageHeader.vue";
+import crud from "../../../common/composable/crud";
+import common from "../../../common/composable/common";
+import AdminPageHeader from "../../../common/layouts/AdminPageHeader.vue";
 import { useI18n } from "vue-i18n";
 import { Modal } from "ant-design-vue";
 import { ExclamationCircleOutlined } from "@ant-design/icons-vue";
@@ -157,6 +157,7 @@ export default {
             currentPage,
             table,
             fetch,
+            tableUrl,
         } = crud();
         const { permsArray, formatDateTime } = common();
 
@@ -219,10 +220,9 @@ export default {
 
         const reFetchDatatable = () => {
             currentPage.value = 1;
+            tableUrl.value.filters.status = filters.status;
             fetch({
                 page: 1,
-                limit: 10,
-                status: filters.status,
             });
         };
 
@@ -236,11 +236,10 @@ export default {
             pager.pageSize = pagination.pageSize;
             table.pagination = pager;
             table.sorter = sorter;
+            currentPage.value = pagination.current;
 
             fetch({
                 page: pagination.current,
-                limit: pagination.pageSize,
-                status: filters.status,
             });
         };
 
@@ -248,15 +247,15 @@ export default {
             Modal.confirm({
                 title: t("common.delete") + "?",
                 icon: createVNode(ExclamationCircleOutlined),
-                content: t("common.delete_message"),
+                content: t("referral.delete_message"),
                 onOk() {
                     return axiosAdmin
                         .delete(`${crudUrl.value}/${id}`)
                         .then((successResponse) => {
-                            fetch({ page: currentPage.value, limit: 10, status: filters.status });
+                            fetch({ page: currentPage.value });
                             notification.success({
                                 message: t("common.success"),
-                                description: t("common.deleted"),
+                                description: t("referral.deleted"),
                             });
                         });
                 },
@@ -267,27 +266,32 @@ export default {
             Modal.confirm({
                 title: t("common.delete") + "?",
                 icon: createVNode(ExclamationCircleOutlined),
-                content: t("common.delete_message"),
+                content: t("referral.selected_delete_message"),
                 onOk() {
                     table.selectedRowKeys.forEach((id) => {
                         axiosAdmin.delete(`${crudUrl.value}/${id}`);
                     });
                     table.selectedRowKeys = [];
-                    fetch({ page: currentPage.value, limit: 10, status: filters.status });
+                    fetch({ page: currentPage.value });
                     notification.success({
                         message: t("common.success"),
-                        description: t("common.deleted"),
+                        description: t("referral.deleted"),
                     });
                 },
             });
         };
 
         crudUrl.value = "referrals";
+        tableUrl.value = {
+            url: "referrals",
+            filters: {
+                status: undefined,
+            },
+        };
 
         onMounted(() => {
             fetch({
                 page: 1,
-                limit: 10,
             });
         });
 
