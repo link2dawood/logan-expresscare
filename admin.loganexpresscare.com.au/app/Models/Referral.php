@@ -10,7 +10,16 @@ class Referral extends BaseModel
 {
     protected $table = 'referrals';
 
-    protected $default = ['xid'];
+    protected $default = [
+        'xid',
+        'first_name',
+        'last_name',
+        'email_address',
+        'phone_number',
+        'primary_service',
+        'status',
+        'submission_date'
+    ];
 
     protected $guarded = [
         'id',
