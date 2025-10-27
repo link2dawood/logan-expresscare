@@ -773,7 +773,7 @@
                         key="referrals"
                     >
                         <PlusCircleOutlined />
-                        <span>{{ $t("menu.referrals") }}</span>
+                        <span>{{ $t("referrals") }}</span>
                     </a-menu-item>
 
                     <a-sub-menu
