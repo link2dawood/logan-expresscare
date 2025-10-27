@@ -176,37 +176,37 @@ export default {
 
         const columns = [
             {
-                title: t("referral.first_name"),
+                title: t("First Name"),
                 dataIndex: "first_name",
                 key: "first_name",
                 width: 150,
             },
             {
-                title: t("referral.email"),
+                title: t("Email"),
                 dataIndex: "email_address",
                 key: "email_address",
                 width: 150,
             },
             {
-                title: t("referral.phone"),
+                title: t("Phone"),
                 dataIndex: "phone_number",
                 key: "phone_number",
                 width: 120,
             },
             {
-                title: t("referral.primary_service"),
+                title: t("Primary service"),
                 dataIndex: "primary_service",
                 key: "primary_service",
                 width: 150,
             },
             {
-                title: t("referral.status"),
+                title: t("Status"),
                 dataIndex: "status",
                 key: "status",
                 width: 100,
             },
             {
-                title: t("referral.submission_date"),
+                title: t("Submission Date"),
                 dataIndex: "submission_date",
                 key: "submission_date",
                 width: 130,
