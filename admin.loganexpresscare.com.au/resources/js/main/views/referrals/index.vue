@@ -95,15 +95,24 @@
                             <template v-if="column.dataIndex === 'first_name'">
                                 {{ record.first_name }} {{ record.last_name }}
                             </template>
-                            <template v-if="column.dataIndex === 'status'">
+                            <template v-else-if="column.dataIndex === 'email_address'">
+                                {{ record.email_address }}
+                            </template>
+                            <template v-else-if="column.dataIndex === 'phone_number'">
+                                {{ record.phone_number }}
+                            </template>
+                            <template v-else-if="column.dataIndex === 'primary_service'">
+                                {{ record.primary_service }}
+                            </template>
+                            <template v-else-if="column.dataIndex === 'status'">
                                 <a-tag :color="statusColors[text]">
                                     {{ $t(`common.${text}`) }}
                                 </a-tag>
                             </template>
-                            <template v-if="column.dataIndex === 'submission_date'">
+                            <template v-else-if="column.dataIndex === 'submission_date'">
                                 {{ formatDateTime(record.submission_date) }}
                             </template>
-                            <template v-if="column.dataIndex === 'action'">
+                            <template v-else-if="column.dataIndex === 'action'">
                                 <a-space>
                                     <a-button
                                         v-if="
