@@ -774,6 +774,25 @@
                         </a-menu-item>
                     </a-sub-menu>
 
+                    <a-menu-item
+                        v-if="
+                            permsArray.includes('referrals_view') ||
+                            permsArray.includes('admin')
+                        "
+                        @click="
+                            () => {
+                                menuSelected();
+                                $router.push({
+                                    name: 'admin.referrals.index',
+                                });
+                            }
+                        "
+                        key="referrals"
+                    >
+                        <PlusCircleOutlined />
+                        <span>{{ $t("menu.referrals") }}</span>
+                    </a-menu-item>
+
                     <a-sub-menu
                         key="letter_heads"
                         v-if="
@@ -1546,6 +1565,7 @@ import {
     TagOutlined,
     LineChartOutlined,
     PicCenterOutlined,
+    PlusCircleOutlined,
 } from "@ant-design/icons-vue";
 import common from "../../common/composable/common";
 const { Sider } = Layout;

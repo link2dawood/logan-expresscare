@@ -25,6 +25,7 @@ import Offboardings from "./offboardings";
 import LetterHeadRoutes from "./letterHead";
 import Reports from "./reports";
 import StaffOnboardingRoutes from "./staffOnboarding";
+import ReferralsRoutes from "./referrals";
 import { checkUserPermission } from "../../common/scripts/functions";
 
 import FrontRoutes from "./front";
@@ -75,6 +76,7 @@ const router = createRouter({
         ...LetterHeadRoutes,
         ...Reports,
         ...StaffOnboardingRoutes,
+        ...ReferralsRoutes,
     ],
     scrollBehavior: () => ({ left: 0, top: 0 }),
 });
