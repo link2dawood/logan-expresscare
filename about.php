@@ -32,7 +32,7 @@
                         <!-- About Us Image Start -->
                         <div class="about-image-1">
                             <figure class="image-anime reveal">
-                                <img src="images/about-us-image-1.jpg" alt="">
+                                <img src="images/homepage-4.svg" alt="">
                             </figure>
                         </div>
                         <!-- About Us Image End -->
@@ -40,7 +40,7 @@
                         <!-- About Us Image Start -->
                         <div class="about-image-2">
                             <figure class="image-anime reveal">
-                                <img src="images/about-us-image-2.jpg" alt="">
+                                <img src="images/homepage-5.svg" alt="">
                             </figure>
                         </div>
                         <!-- About Us Image End -->
@@ -54,19 +54,19 @@
                         <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">About us</h3>
-                            <h2 class="text-anime-style-2" data-cursor="-opaque">Dedicated to quality elderly care with compassion <span>and respect always</span></h2>
+                            <h2 class="text-anime-style-2" data-cursor="-opaque">At Logan Express Care, we are dedicated to quality <span>and compassion always</span></h2>
                         </div>
                         <!-- Section Title End -->
 
                         <!-- About Us Body Start -->
                         <div class="about-us-body">
                             <div class="about-us-circle">
-                                <a href="book-appointment.html">
+                                <a href="book-appointment.php">
                                     <img src="images/book-appointment-circle.svg" alt="">
                                 </a>
                             </div>
                             <div class="about-body-content wow fadeInUp" data-wow-delay="0.2s">
-                                <p>We believe that aging should be embraced with dignity right level of care. That's why we provide more assistance we offer welcoming environment.</p>
+                                <p>We seek to deliver exceptional, human-centered disability support that upholds dignity, choice, and connection, enabling every person to live life on their terms.</p>
                             </div>
                         </div>
                         <!-- About Us Body End -->
@@ -135,7 +135,7 @@
                     <div class="approach-image-content">
                         <div class="approach-image">
                             <figure class="image-anime">
-                                <img src="images/approach-image.jpg" alt="">
+                                <img src="images/about-us-1.svg" alt="">
                             </figure>
                         </div>
                         
@@ -173,7 +173,7 @@
                             </div>
                             <div class="mission-vision-item-content">
                                 <h3>Our Mission</h3>
-                                <p>Isolation and loneliness can be as harmful as physical illness. Our companionship services are designed to provide emotional support.</p>
+                                <p>To deliver exceptional, human-centered disability support that upholds dignity, choice, and connection, enabling every person to live life on their terms.</p>
                             </div>
                         </div>
                         <!-- Mission Vision Item End -->
@@ -185,7 +185,7 @@
                             </div>
                             <div class="mission-vision-item-content">
                                 <h3>Our Vision</h3>
-                                <p>Isolation and loneliness can be as harmful as physical illness. Our companionship services are designed to provide emotional support.</p>
+                                <p>To be a trusted care partner across Australia, recognized for our uniquely responsive services..</p>
                             </div>
                         </div>
                         <!-- Mission Vision Item End -->
@@ -207,7 +207,7 @@
                         <!-- Care Image 1 Start -->
                         <div class="care-image-1">
                             <figure class="image-anime reveal">
-                                <img src="images/care-image-1.jpg" alt="">
+                                <img src="images/about-2.svg" alt="">
                             </figure>
                         </div>
                         <!-- Care Image 1 End -->
@@ -215,7 +215,7 @@
                         <!-- Care Image 2 Start -->
                         <div class="care-image-2">
                             <figure class="image-anime">
-                                <img src="images/care-image-2.jpg" alt="">
+                                <img src="images/about-3.svg" alt="">
                             </figure>
                         </div>
                         <!-- Care Image 2 End -->
@@ -242,23 +242,23 @@
                             <div class="review-images">
                                 <div class="review-image">
                                     <figure class="image-anime reveal">
-                                        <img src="images/author-1.jpg" alt="">
+                                        <img src="images/1.svg" alt="">
                                     </figure>
                                 </div>
                                 <div class="review-image">
                                     <figure class="image-anime reveal">
-                                        <img src="images/author-2.jpg" alt="">
+                                        <img src="images/2.svg" alt="">
                                     </figure>
                                 </div>
                                 <div class="review-image">
                                     <figure class="image-anime reveal">
-                                        <img src="images/author-3.jpg" alt="">
+                                        <img src="images/3.svg.svg" alt="">
                                     </figure>
                                 </div>
                                 <div class="review-image">
-                                    <figure class="image-anime reveal">
-                                        <img src="images/author-4.jpg" alt="">
-                                    </figure>
+                                    <div class="review-image add-more">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Review Images End -->
@@ -327,7 +327,7 @@
 
                         <!-- Our Care Button Start -->
                         <div class="our-care-btn wow fadeInUp" data-wow-delay="0.8s">
-                            <a href="contact.html" class="btn-default">Dicover more</a>
+                            <a href="contact.php" class="btn-default">Dicover more</a>
                         </div>
                         <!-- Our Care Button End -->
                     </div>
@@ -363,12 +363,12 @@
                             <h3>01</h3>
                         </div>
                         <div class="work-step-content">
-                            <h3>Free Consultation & Assessment</h3>
-                            <p>We carefully match you with a caregiver or nurse who fits</p>
+                            <h3>Initial contact is made</h3>
+                            <p>This can be made via self or third party referral, or meeting in person.</p>
                         </div>
-                        <div class="work-step-btn">
+                        <!-- <div class="work-step-btn">
                             <a href="#" class="readmore-btn">learn more</a>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- How Steps Item End -->
                 </div>
@@ -383,12 +383,12 @@
                             <h3>02</h3>
                         </div>
                         <div class="work-step-content">
-                            <h3>Caregiver Matching & Introduction</h3>
-                            <p>We carefully match you with a caregiver or nurse who fits</p>
+                            <h3>Intake</h3>
+                            <p>Lets sort out documentation and onboarding processes.</p>
                         </div>
-                        <div class="work-step-btn">
+                        <!-- <div class="work-step-btn">
                             <a href="#" class="readmore-btn">learn more</a>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- How Steps Item End -->
                 </div>
@@ -403,12 +403,12 @@
                             <h3>03</h3>
                         </div>
                         <div class="work-step-content">
-                            <h3>Ongoing Support & Adjustments</h3>
-                            <p>We carefully match you with a caregiver or nurse who fits</p>
+                            <h3>Cross the T’s and dot the I’s.</h3>
+                            <p>We establish the service agreement and your support is scheduled.</p>
                         </div>
-                        <div class="work-step-btn">
+                        <!-- <div class="work-step-btn">
                             <a href="#" class="readmore-btn">learn more</a>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- How Steps Item End -->
                 </div>
@@ -423,12 +423,12 @@
                             <h3>04</h3>
                         </div>
                         <div class="work-step-content">
-                            <h3>Free Consultation & Assessment</h3>
-                            <p>We carefully match you with a caregiver or nurse who fits</p>
+                            <h3>Start receiving support</h3>
+                            <p>We will provide you with the  required staffing resources</p>
                         </div>
-                        <div class="work-step-btn">
+                        <!-- <div class="work-step-btn">
                             <a href="#" class="readmore-btn">learn more</a>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- How Steps Item End -->
                 </div>
@@ -436,7 +436,7 @@
                 <div class="col-lg-12">
                     <!-- Section Footer Text Start-->
                     <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                        <p>Compassionate care to enhance daily living. <a href="contact.html">Contact us today!</a></p>
+                        <p>Compassionate care to enhance daily living. <a href="contact.php">Contact us today!</a></p>
                     </div>
                     <!-- Section Footer Text End-->
                 </div>
@@ -452,8 +452,8 @@
                 <div class="col-lg-12">
                     <!-- Section Title Start -->
                     <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">Our facts</h3>
-                        <h2 class="text-anime-style-2" data-cursor="-opaque">Our senior care impact in <span>real numbers</span></h2>
+                        <h3 class="wow fadeInUp">Seeking a Provider?</h3>
+                        <h2 class="text-anime-style-2" data-cursor="-opaque">We offer a reliable, Flexible and <span>responsive service</span></h2>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -471,7 +471,7 @@
                                     <img src="images/icon-fact-item-1.svg" alt="">
                                 </div>
                                 <div class="fact-item-content">
-                                    <h2><span class="counter">15</span>K+</h2>
+                                    <h2>NDIS</h2>
                                     <p>Happy Patients</p>
                                 </div>
                             </div>
@@ -480,7 +480,7 @@
                             <!-- Fact Image Start -->
                             <div class="fact-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/fact-image-1.jpg" alt="">
+                                    <img src="images/seeking-provider-4.png" alt="">
                                 </figure>
                             </div>
                             <!-- Fact Image End -->
@@ -492,7 +492,7 @@
                             <!-- Fact Image Start -->
                             <div class="fact-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/fact-image-2.jpg" alt="">
+                                    <img src="images/seeking-provider-1.png" alt="">
                                 </figure>
                             </div>
                             <!-- Fact Image End -->
@@ -504,7 +504,7 @@
                             <!-- Fact Image Start -->
                             <div class="fact-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/fact-image-3.jpg" alt="">
+                                    <img src="images/seeking-provider-3.png" alt="">
                                 </figure>
                             </div>
                             <!-- Fact Image End -->
@@ -517,8 +517,8 @@
                                         <img src="images/icon-fact-item-2.svg" alt="">
                                     </div>
                                     <div class="fact-item-content">
-                                        <h2><span class="counter">25</span>Y+</h2>
-                                        <p>Year Of Experience</p>
+                                        <h2>24/7</h2>
+                                        <p>Dedicated Support</p>
                                     </div>
                                 </div>
                                 <!-- Fact Item End -->
@@ -526,7 +526,7 @@
                                 <!-- Fact Image Start -->
                                 <div class="fact-image">
                                     <figure class="image-anime reveal">
-                                        <img src="images/fact-image-4.jpg" alt="">
+                                        <img src="images/seeking-provider-2.png" alt="">
                                     </figure>
                                 </div>
                                 <!-- Fact Image End -->    
@@ -558,7 +558,7 @@
                         
                         <!-- CTA Box Button Start -->
                         <div class="cta-box-btn wow fadeInUp" data-wow-delay="0.2s">
-                            <a href="book-appointment.html" class="btn-default">Book appointment</a>
+                            <a href="book-appointment.php" class="btn-default">Book appointment</a>
                         </div>
                         <!-- CTA Box Button End -->
                     </div>
@@ -571,7 +571,7 @@
                     <!-- CTA Box Image Start -->
                     <div class="cta-box-image">
                         <figure>
-                            <img src="images/cta-box-image.png" alt="">
+                            <img src="images/Untitled design.svg" alt="">
                         </figure>
                     </div>
                     <!-- CTA Box Image End -->
@@ -589,12 +589,12 @@
                     <!-- Family Trust Image Start -->
                     <div class="family-trust-image">
                         <figure class="image-anime reveal">
-                            <img src="images/family-trust-image-1.jpg" alt="">
+                            <img src="images/unskl-684.svg" alt="">
                         </figure>
                         
                         <!-- Contact Us Circle Start -->
                         <div class="contact-us-circle">
-                            <a href="contact.html">
+                            <a href="contact.php">
                                 <img src="images/contact-us-circle.svg" alt="">
                             </a>
                         </div>
@@ -645,7 +645,7 @@
                             <!-- Family Trust Body Image Start -->
                             <div class="family-trust-body-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/family-trust-image-2.jpg" alt="">
+                                    <img src="images/unskl-318.svg" alt="">
                                 </figure>
                             </div>
                             <!-- Family Trust Body Image End -->
@@ -754,7 +754,7 @@
                             <!-- Feature image Start -->
                             <div class="feature-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/feature-image-1.jpg" alt="">
+                                    <img src="images/Untitled design (1).svg" alt="">
                                 </figure>
                             </div>
                             <!-- Feature image End -->
@@ -765,12 +765,12 @@
                                 <div class="review-images">
                                     <div class="review-image">
                                         <figure class="image-anime reveal">
-                                            <img src="images/author-1.jpg" alt="">
+                                            <img src="images/1.svg" alt="">
                                         </figure>
                                     </div>
                                     <div class="review-image">
                                         <figure class="image-anime reveal">
-                                            <img src="images/author-2.jpg" alt="">
+                                            <img src="images/2.svg" alt="">
                                         </figure>
                                     </div>
                                     <div class="review-image add-more">
@@ -814,7 +814,7 @@
                             <!-- Feature Image Start -->
                             <div class="feature-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/feature-image-2.jpg" alt="">
+                                    <img src="images/vision.svg" alt="">
                                 </figure>
                             </div>
                             <!-- Feature Image End -->
@@ -829,162 +829,162 @@
     <!-- Our Feature Section End -->
 
     <!-- Our Team Section Start -->
-    <div class="our-team">
-        <div class="container">
-            <div class="row section-row">
-                <div class="col-lg-12">
+    <!--<div class="our-team">-->
+    <!--    <div class="container">-->
+    <!--        <div class="row section-row">-->
+    <!--            <div class="col-lg-12">-->
                     <!-- Section Title Start -->
-                    <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">Expert team member</h3>
-                        <h2 class="text-anime-style-2" data-cursor="-opaque">Meet the compassionate hearts <span>behind our care</span></h2>
-                    </div>
+    <!--                <div class="section-title section-title-center">-->
+    <!--                    <h3 class="wow fadeInUp">Expert team member</h3>-->
+    <!--                    <h2 class="text-anime-style-2" data-cursor="-opaque">Meet the compassionate hearts <span>behind our care</span></h2>-->
+    <!--                </div>-->
                     <!-- Section Title End -->
-                </div>
-            </div>
+    <!--            </div>-->
+    <!--        </div>-->
             
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
+    <!--        <div class="row">-->
+    <!--            <div class="col-lg-3 col-md-6">-->
                     <!-- Team Member Item Start -->
-                    <div class="team-item wow fadeInUp">
+    <!--                <div class="team-item wow fadeInUp">-->
                         <!-- Team Image Start -->
-                        <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
-                                <figure>
-                                    <img src="images/team-1.jpg" alt="">
-                                </figure>
-                            </a>
+    <!--                    <div class="team-image">-->
+    <!--                        <a href="team-single.html" data-cursor-text="View">-->
+    <!--                            <figure>-->
+    <!--                                <img src="images/team-1.jpg" alt="">-->
+    <!--                            </figure>-->
+    <!--                        </a>-->
                 
                             <!-- Team Social Icon Start -->
-                            <div class="team-social-icon">
-                                <ul>
-                                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
-                                </ul>
-                            </div>
+    <!--                        <div class="team-social-icon">-->
+    <!--                            <ul>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>-->
+    <!--                            </ul>-->
+    <!--                        </div>-->
                             <!-- Team Social Icon End -->
-                        </div>
+    <!--                    </div>-->
                         <!-- Team Image End -->
                 
                         <!-- Team Content Start -->
-                        <div class="team-content">
-                            <h3><a href="team-single.html">Brooklyn Simmons</a></h3>
-                            <p>Seniors Nursing  </p>
-                        </div>
+    <!--                    <div class="team-content">-->
+    <!--                        <h3><a href="team-single.html">Brooklyn Simmons</a></h3>-->
+    <!--                        <p>Seniors Nursing  </p>-->
+    <!--                    </div>-->
                         <!-- Team Content End -->
-                    </div>
+    <!--                </div>-->
                     <!-- Team Member Item End -->
-                </div>
+    <!--            </div>-->
                 
-                <div class="col-lg-3 col-md-6">
+    <!--            <div class="col-lg-3 col-md-6">-->
                     <!-- Team Member Item Start -->
-                    <div class="team-item wow fadeInUp" data-wow-delay="0.2s">
+    <!--                <div class="team-item wow fadeInUp" data-wow-delay="0.2s">-->
                         <!-- Team Image Start -->
-                        <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
-                                <figure>
-                                    <img src="images/team-2.jpg" alt="">
-                                </figure>
-                            </a>
+    <!--                    <div class="team-image">-->
+    <!--                        <a href="team-single.html" data-cursor-text="View">-->
+    <!--                            <figure>-->
+    <!--                                <img src="images/team-2.jpg" alt="">-->
+    <!--                            </figure>-->
+    <!--                        </a>-->
                 
                             <!-- Team Social Icon Start -->
-                            <div class="team-social-icon">
-                                <ul>
-                                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
-                                </ul>
-                            </div>
+    <!--                        <div class="team-social-icon">-->
+    <!--                            <ul>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>-->
+    <!--                            </ul>-->
+    <!--                        </div>-->
                             <!-- Team Social Icon End -->
-                        </div>
+    <!--                    </div>-->
                         <!-- Team Image End -->
                 
                         <!-- Team Content Start -->
-                        <div class="team-content">
-                            <h3><a href="team-single.html">Cameron Williamson</a></h3>
-                            <p>Senior Counselor</p>
-                        </div>
+    <!--                    <div class="team-content">-->
+    <!--                        <h3><a href="team-single.html">Cameron Williamson</a></h3>-->
+    <!--                        <p>Senior Counselor</p>-->
+    <!--                    </div>-->
                         <!-- Team Content End -->
-                    </div>
+    <!--                </div>-->
                     <!-- Team Member Item End -->
-                </div>
+    <!--            </div>-->
                 
-                <div class="col-lg-3 col-md-6">
+    <!--            <div class="col-lg-3 col-md-6">-->
                     <!-- Team Member Item Start -->
-                    <div class="team-item wow fadeInUp" data-wow-delay="0.4s">
+    <!--                <div class="team-item wow fadeInUp" data-wow-delay="0.4s">-->
                         <!-- Team Image Start -->
-                        <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
-                                <figure>
-                                    <img src="images/team-3.jpg" alt="">
-                                </figure>
-                            </a>
+    <!--                    <div class="team-image">-->
+    <!--                        <a href="team-single.html" data-cursor-text="View">-->
+    <!--                            <figure>-->
+    <!--                                <img src="images/team-3.jpg" alt="">-->
+    <!--                            </figure>-->
+    <!--                        </a>-->
                 
                             <!-- Team Social Icon Start -->
-                            <div class="team-social-icon">
-                                <ul>
-                                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
-                                </ul>
-                            </div>
+    <!--                        <div class="team-social-icon">-->
+    <!--                            <ul>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>-->
+    <!--                            </ul>-->
+    <!--                        </div>-->
                             <!-- Team Social Icon End -->
-                        </div>
+    <!--                    </div>-->
                         <!-- Team Image End -->
                 
                         <!-- Team Content Start -->
-                        <div class="team-content">
-                            <h3><a href="team-single.html">Leslie Alexander</a></h3>
-                            <p>Seniors Nursing</p>
-                        </div>
+    <!--                    <div class="team-content">-->
+    <!--                        <h3><a href="team-single.html">Leslie Alexander</a></h3>-->
+    <!--                        <p>Seniors Nursing</p>-->
+    <!--                    </div>-->
                         <!-- Team Content End -->
-                    </div>
+    <!--                </div>-->
                     <!-- Team Member Item End -->
-                </div>
+    <!--            </div>-->
                 
-                <div class="col-lg-3 col-md-6">
+    <!--            <div class="col-lg-3 col-md-6">-->
                     <!-- Team Member Item Start -->
-                    <div class="team-item wow fadeInUp" data-wow-delay="0.6s">
+    <!--                <div class="team-item wow fadeInUp" data-wow-delay="0.6s">-->
                         <!-- Team Image Start -->
-                        <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
-                                <figure>
-                                    <img src="images/team-4.jpg" alt="">
-                                </figure>
-                            </a>
+    <!--                    <div class="team-image">-->
+    <!--                        <a href="team-single.html" data-cursor-text="View">-->
+    <!--                            <figure>-->
+    <!--                                <img src="images/team-4.jpg" alt="">-->
+    <!--                            </figure>-->
+    <!--                        </a>-->
                 
                             <!-- Team Social Icon Start -->
-                            <div class="team-social-icon">
-                                <ul>
-                                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
-                                </ul>
-                            </div>
+    <!--                        <div class="team-social-icon">-->
+    <!--                            <ul>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>-->
+    <!--                                <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>-->
+    <!--                            </ul>-->
+    <!--                        </div>-->
                             <!-- Team Social Icon End -->
-                        </div>
+    <!--                    </div>-->
                         <!-- Team Image End -->
                 
                         <!-- Team Content Start -->
-                        <div class="team-content">
-                            <h3><a href="team-single.html">Darlene Robertson</a></h3>
-                            <p>Seniors Nursing</p>
-                        </div>
+    <!--                    <div class="team-content">-->
+    <!--                        <h3><a href="team-single.html">Darlene Robertson</a></h3>-->
+    <!--                        <p>Seniors Nursing</p>-->
+    <!--                    </div>-->
                         <!-- Team Content End -->
-                    </div>
+    <!--                </div>-->
                     <!-- Team Member Item End -->
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
     <!-- Our Team Section End -->
 
     <!-- Our Testimonial Section Start -->
-    <div class="our-testimonials bg-section dark-section parallaxie">
+    <div class="our-testimonials bg-section dark-section parallaxie mt-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -1015,25 +1015,25 @@
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
-                                            <div class="testimonial-company-logo">
+                                            <!-- <div class="testimonial-company-logo">
                                                 <img src="images/company-logo-1.svg" alt="">
-                                            </div>
+                                            </div> -->
                                             <div class="testimonial-quote">
                                                 <img src="images/testimonial-quote.svg" alt="">
                                             </div>
                                         </div>
                                         <div class="testimonial-content">
-                                            <p>After my father's surgery, we were overwhelmed and unsure how to manage his recovery at home. The nurse from your team was a godsend - so kind, patient, and knowledgeable. She made sure he was comfortable, managed his medications & even helped lift his spirits.</p>
+                                            <p>The care and understanding shown to my daughter have been outstanding. Knowing she has a trusted support team gives us so much peace of mind.</p>
                                         </div>
                                         <div class="testimonial-author">       
                                             <div class="author-image">
                                                 <figure class="image-anime">
-                                                    <img src="images/author-1.jpg" alt="">
+                                                    <img src="images/1.svg" alt="">
                                                 </figure>
                                             </div>
                                             <div class="author-content">
-                                                <h3>Herman Miller</h3>
-                                                <p>Lorem ipsum</p>
+                                                <h3>Alison Burgas</h3>
+                                                <p>Parent & Carer</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1044,25 +1044,25 @@
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
-                                            <div class="testimonial-company-logo">
+                                            <!-- <div class="testimonial-company-logo">
                                                 <img src="images/company-logo-1.svg" alt="">
-                                            </div>
+                                            </div> -->
                                             <div class="testimonial-quote">
                                                 <img src="images/testimonial-quote.svg" alt="">
                                             </div>
                                         </div>
                                         <div class="testimonial-content">
-                                            <p>After my father's surgery, we were overwhelmed and unsure how to manage his recovery at home. The nurse from your team was a godsend - so kind, patient, and knowledgeable. She made sure he was comfortable, managed his medications & even helped lift his spirits.</p>
+                                            <p>Logan Express Care has been incredible in supporting my daily needs. The team always treats me with respect and makes me feel empowered to live life my way</p>
                                         </div>
                                         <div class="testimonial-author">       
                                             <div class="author-image">
                                                 <figure class="image-anime">
-                                                    <img src="images/author-2.jpg" alt="">
+                                                    <img src="images/2.svg" alt="">
                                                 </figure>
                                             </div>
                                             <div class="author-content">
-                                                <h3>Margaret Ellis</h3>
-                                                <p>Lorem ipsum</p>
+                                                <h3>Mark Adam</h3>
+                                                <p>NDIS Participant</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1073,25 +1073,25 @@
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
-                                            <div class="testimonial-company-logo">
+                                            <!-- <div class="testimonial-company-logo">
                                                 <img src="images/company-logo-1.svg" alt="">
-                                            </div>
+                                            </div> -->
                                             <div class="testimonial-quote">
                                                 <img src="images/testimonial-quote.svg" alt="">
                                             </div>
                                         </div>
                                         <div class="testimonial-content">
-                                            <p>After my father's surgery, we were overwhelmed and unsure how to manage his recovery at home. The nurse from your team was a godsend - so kind, patient, and knowledgeable. She made sure he was comfortable, managed his medications & even helped lift his spirits.</p>
+                                            <p>Working alongside Logan Express Care has been a privilege. Their commitment to inclusion and person-centred support truly makes a difference in people’s lives.</p>
                                         </div>
                                         <div class="testimonial-author">       
                                             <div class="author-image">
                                                 <figure class="image-anime">
-                                                    <img src="images/author-3.jpg" alt="">
+                                                    <img src="images/3.svg.svg" alt="">
                                                 </figure>
                                             </div>
                                             <div class="author-content">
-                                                <h3>Eleanor Brooks</h3>
-                                                <p>Lorem ipsum</p>
+                                                <h3>Lio Hernandez</h3>
+                                                <p>Community Coordinator</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1107,87 +1107,87 @@
                     <!-- Testimonial Slider End -->
                 </div>
 
-                <div class="col-lg-12">
+                <!--<div class="col-lg-12">-->
                     <!-- Comapany Support Slider Start -->
-                    <div class="company-supports-slider">
-                        <div class="swiper">
-                            <div class="swiper-wrapper">
+                <!--    <div class="company-supports-slider">-->
+                <!--        <div class="swiper">-->
+                <!--            <div class="swiper-wrapper">-->
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-1.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-1.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-2.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-2.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-3.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-3.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-1.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-1.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-2.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-2.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-3.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-3.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-1.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-1.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-2.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-2.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-3.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-3.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
-                            </div>
-                        </div>
-                    </div>
+                <!--            </div>-->
+                <!--        </div>-->
+                <!--    </div>-->
                     <!-- Comapany Support Slider End -->
-                </div>
+                <!--</div>-->
             </div>
         </div>
     </div>
@@ -1210,7 +1210,7 @@
 
                         <!-- Our Faqs Button Start -->
                         <div class="our-faqs-btn wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="contact.html" class="btn-default">Contact Us Now</a>
+                            <a href="contact.php" class="btn-default">Contact Us Now</a>
                         </div>
                         <!-- Our Faqs Button End -->
                     </div>
@@ -1219,82 +1219,7 @@
 
                 <div class="col-lg-6">
                     <!-- FAQ Accordion Start -->
-                    <div class="faq-accordion" id="accordion">
-                        <!-- FAQ Item Start -->
-                        <div class="accordion-item wow fadeInUp">
-                            <h2 class="accordion-header" id="heading1">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                    Q1. What types of care services do you offer?
-                                </button>
-                            </h2>
-                            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordion">
-                                <div class="accordion-body">
-                                    <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of each resident, ensuring that they receive.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FAQ Item End -->
-
-                        <!-- FAQ Item Start -->
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.2s">
-                            <h2 class="accordion-header" id="heading2">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                    Q2. How do you ensure the safety of residents?
-                                </button>
-                            </h2>
-                            <div id="collapse2" class="accordion-collapse collapse show" aria-labelledby="heading2" data-bs-parent="#accordion">
-                                <div class="accordion-body">
-                                    <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of each resident, ensuring that they receive.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FAQ Item End -->
-
-                        <!-- FAQ Item Start -->
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.4s">
-                            <h2 class="accordion-header" id="heading3">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                                    Q3. Can I schedule a tour of your facility?
-                                </button>
-                            </h2>
-                            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordion">
-                                <div class="accordion-body">
-                                    <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of each resident, ensuring that they receive.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FAQ Item End -->
-
-                        <!-- FAQ Item Start -->
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.6s">
-                            <h2 class="accordion-header" id="heading4">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                    Q4. How do you personalize care for each resident?
-                                </button>
-                            </h2>
-                            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordion">
-                                <div class="accordion-body">
-                                    <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of each resident, ensuring that they receive.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FAQ Item End -->
-
-                        <!-- FAQ Item Start -->
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.8s">
-                            <h2 class="accordion-header" id="heading5">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                    Q5. What types of activities are available for residents?
-                                </button>
-                            </h2>
-                            <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordion">
-                                <div class="accordion-body">
-                                    <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of each resident, ensuring that they receive.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FAQ Item End -->
-                    </div>
+                    <?php include 'layouts/faqs.php'; ?>
                     <!-- FAQ Accordion End -->
                 </div>
             </div>

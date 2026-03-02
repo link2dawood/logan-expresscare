@@ -1,37 +1,37 @@
 <?php include 'layouts/header.php'; ?>
 
-    <!-- Page Header Start -->
-    <div class="page-header bg-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <!-- Page Header Box Start -->
-                    <div class="page-header-box">
-                        <h1 class="text-anime-style-2" data-cursor="-opaque">Social & recreational <span>activities</span></h1>
-                        <nav class="wow fadeInUp">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="./">home</a></li>
-                                <li class="breadcrumb-item"><a href="services.html">services</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Social & recreational activities</li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <!-- Page Header Box End -->
+<!-- Page Header Start -->
+<div class="page-header bg-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <!-- Page Header Box Start -->
+                <div class="page-header-box">
+                    <h1 class="text-anime-style-2" data-cursor="-opaque">Community Nursing <span>Care</span></h1>
+                    <nav class="wow fadeInUp">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="./">home</a></li>
+                            <li class="breadcrumb-item"><a href="services.html">services</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Community Nursing Care</li>
+                        </ol>
+                    </nav>
                 </div>
+                <!-- Page Header Box End -->
             </div>
         </div>
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- Page Header End -->
 
-    <!-- Page Service Single Start -->
-    <div class="page-service-single">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <!-- Page Single Sidebar Start -->
-                    <div class="page-single-sidebar">
-                        <!-- Page Category List Start -->
-                        <div class="page-catagory-list wow fadeInUp">
+<!-- Page Service Single Start -->
+<div class="page-service-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <!-- Page Single Sidebar Start -->
+                <div class="page-single-sidebar">
+                    <!-- Page Category List Start -->
+                        <!-- <div class="page-catagory-list wow fadeInUp">
                             <h3>Explore Our Services</h3>
                             <ul>
                                 <li><a href="#">Social & Recreational Activities</a></li>
@@ -40,7 +40,7 @@
                                 <li><a href="#">24/7 Skilled Nursing Care</a></li>
                                 <li><a href="#">Assisted Living Support</a></li>
                             </ul>
-                        </div>
+                        </div> -->
                         <!-- Page Category List End -->
 
                         <!-- Sidebar Cta Box Start -->
@@ -48,7 +48,7 @@
                             <!-- Sidebar CTA Image Start -->
                             <div class="sidebar-cta-image">
                                 <figure class="image-anime">
-                                    <img src="images/sidebar-cta-image.jpg" alt="">
+                                    <img src="images/homepage-7.svg.svg" alt="">
                                 </figure>
                             </div>
                             <!-- Sidebar CTA Image End -->
@@ -73,7 +73,8 @@
 
                             <!-- Sidebar CTA Contact Start -->
                             <div class="sidebar-cta-contact">
-                                <a href="+123254963"><img src="images/icon-phone.svg" alt="">+00-123-2548-963</a>
+                                <a href="tel:1300 556 002"><img src="images/icon-phone.svg" alt="">1300 556 002</a>
+                                <a href="tel:0426 005 101"><img src="images/icon-phone.svg" alt="">0426 005 101</a>
                             </div>
                             <!-- Sidebar CTA Contact End -->
                         </div>
@@ -88,15 +89,17 @@
                         <!-- Page Single image Start -->
                         <div class="page-single-image">
                             <figure class="image-anime reveal">
-                                <img src="images/service-1.jpg" alt="">
+                                <img src="images/homepage-1.svg" alt="">
                             </figure>
                         </div>
                         <!-- Page Single image End -->
                         
                         <!-- Service Entry Start -->
                         <div class="service-entry">
-                            <p class="wow fadeInUp">At our care home, we believe that a joyful life goes beyond just medical support — it thrives on connection, laughter, and shared moments. Our thoughtfully planned social and recreational activities are designed to keep our residents engaged, uplifted, and mentally stimulated. From group games and music sessions to arts, crafts, and storytelling circles, every activity is tailored to promote a sense of belonging and purpose.</p>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">We understand the importance of staying active — not just physically, but emotionally and socially as well. Our caregivers encourage participation based on individual interests and comfort levels, ensuring every resident feels included and valued. These activities not only spark joy but also help build friendships, boost confidence, and create a vibrant, community-centered living experience.</p>
+                            <p class="wow fadeInUp">
+                                Community Nursing Care
+                                Professional health and wellbeing support at home, provided by well trained, competent and compassionate professionals.
+                            </p>
 
                             <!-- Compassionate Box Start -->
                             <div class="compassionate-box">
@@ -195,29 +198,7 @@
                                 <!-- Service Support Body End -->
 
                                 <!-- Service Support Image Video Start -->
-                                <div class="service-support-image-video">
-                                    <!-- Service Support Image Start -->
-                                    <div class="service-support-image">
-                                        <figure class="image-anime reveal">
-                                            <img src="images/service-support-image-1.jpg" alt="">
-                                        </figure>
-                                    </div> 
-                                    <!-- Service Support Image End -->
-                                    
-                                    <!-- Service Support Video Start -->
-                                    <div class="service-support-video">
-                                        <figure class="image-anime">
-                                            <img src="images/service-support-image-2.jpg" alt="">
-                                        </figure>
-                                        
-                                        <div class="video-play-button">
-                                            <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
-                                                <i class="fa-solid fa-play"></i>
-                                            </a>
-                                        </div>
-                                    </div> 
-                                    <!-- Service Support Video End -->
-                                </div>
+                                
                                 <!-- Service Support Image Video End -->
                             </div>
                             <!-- Service Support Box End -->
@@ -258,7 +239,7 @@
                                         <!-- Personalized Step Image Start -->
                                         <div class="personalized-step-image">
                                             <figure class="image-anime reveal">
-                                                <img src="images/personalized-step-image-1.jpg" alt="">
+                                                <img src="images/homepage-6.svg.svg" alt="">
                                             </figure>
                                         </div>
                                         <!-- Personalized Step Image End -->
@@ -294,7 +275,7 @@
                                         <!-- Personalized Step Image Start -->
                                         <div class="personalized-step-image">
                                             <figure class="image-anime reveal">
-                                                <img src="images/personalized-step-image-2.jpg" alt="">
+                                                <img src="images/homepage-4.svg" alt="">
                                             </figure>
                                         </div>
                                         <!-- Personalized Step Image End -->
@@ -316,82 +297,7 @@
                             <!-- Section Title End -->
 
                             <!-- FAQ Accordion Start -->
-                            <div class="faq-accordion" id="faqaccordion">
-                                <!-- FAQ Item Start -->
-                                <div class="accordion-item wow fadeInUp">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                            Q1. What types of care services do you offer?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#faqaccordion">
-                                        <div class="accordion-body">
-                                            <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of  each resident, ensuring that they receive.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- FAQ Item End -->
-
-                                <!-- FAQ Item Start -->
-                                <div class="accordion-item wow fadeInUp" data-wow-delay="0.2s">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                            Q2. How do you ensure the safety of residents?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse show" aria-labelledby="heading2" data-bs-parent="#faqaccordion">
-                                        <div class="accordion-body">
-                                            <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of  each resident, ensuring that they receive.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- FAQ Item End -->
-
-                                <!-- FAQ Item Start -->
-                                <div class="accordion-item wow fadeInUp" data-wow-delay="0.4s">
-                                    <h2 class="accordion-header" id="heading3">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                                            Q3. Can I schedule a tour of your facility?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#faqaccordion">
-                                        <div class="accordion-body">
-                                            <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of  each resident, ensuring that they receive.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- FAQ Item End -->    
-
-                                <!-- FAQ Item Start -->
-                                <div class="accordion-item wow fadeInUp" data-wow-delay="0.6s">
-                                    <h2 class="accordion-header" id="heading4">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                            Q4. How do you personalize care for each resident?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#faqaccordion">
-                                        <div class="accordion-body">
-                                            <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of  each resident, ensuring that they receive.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- FAQ Item End --> 
-                                
-                                <!-- FAQ Item Start -->
-                                <div class="accordion-item wow fadeInUp" data-wow-delay="0.8s">
-                                    <h2 class="accordion-header" id="heading5">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                            Q5. What types of activities are available for residents?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#faqaccordion">
-                                        <div class="accordion-body">
-                                            <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of  each resident, ensuring that they receive.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- FAQ Item End --> 
-                            </div>
+                            <?php include 'layouts/faqs.php'; ?>
                             <!-- FAQ Accordion End -->
                         </div>
                         <!-- Page Single FAQs End -->

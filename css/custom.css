@@ -47,7 +47,7 @@
 /************************************/
 
 :root{
-	--primary-color				: #273A29;
+	--primary-color				: #253873;
 	--secondary-color			: #F5F5F5;
 	--bg-color					: #FFFFFF;
 	--text-color				: #757575;
@@ -120,7 +120,9 @@ img{
 a{
 	text-decoration: none;
 }
-
+.ref-menu{
+    display:none;
+}
 a:hover{
 	text-decoration: none;
 	outline: 0;
@@ -136,7 +138,13 @@ body{
 	width: 100%;
 	overflow-x: clip;
 }
-
+.humburger{
+    background-color: #E2A76F;
+    border: unset !important;
+    padding: 6px;
+    border-radius: 3px;
+    margin-left: 100px;
+}
 .container{
 	max-width: 1300px;
 }
@@ -329,9 +337,9 @@ body{
 
 .loading-container,
 .loading{
-	height: 100px;
+	height: 400px;
 	position: relative;
-	width: 100px;
+	width: 400px;
 	border-radius: 100%;
 }
 
@@ -355,7 +363,7 @@ body{
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	max-width: 66px;
+	max-width: 500px;
 	transform: translate(-50%, -50%);
 }
 
@@ -645,6 +653,7 @@ header.main-header .header-sticky.active{
 .main-menu ul li.highlighted-menu{
     display: none;
 }
+
 
 .responsive-menu,
 .navbar-toggle{
@@ -1555,7 +1564,7 @@ header.main-header .header-sticky.active{
 
 .how-it-work{
 	position: relative;
-	background: url('../images/how-it-work-bg.jpg') no-repeat;
+	background: url('../images/how-it-work.svg') no-repeat;
 	background-position: center center;
 	background-size: cover;
 	padding: 100px 0;
@@ -2189,7 +2198,6 @@ header.main-header .header-sticky.active{
 	width: 45px;
 	height: 45px;
 	background-color: var(--accent-color);
-	border: 1px solid var(--primary-color);
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
@@ -2361,7 +2369,7 @@ header.main-header .header-sticky.active{
 
 .our-testimonials{
 	position: relative;
-	background-image: url('../images/testimonial-bg.jpg');
+	background-image: url('../images/bg-23.svg');
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -2865,7 +2873,7 @@ header.main-header .header-sticky.active{
 
 .page-header{
 	position: relative;
-	background: var(--accent-color) url('../images/page-header-bg.png') no-repeat;
+	background: var(--primary-color) url('../images/page-header-bg.png') no-repeat;
 	background-position: top center;
 	background-size: 100% auto;
 	padding: 145px 0;
@@ -6392,7 +6400,9 @@ header.main-header .header-sticky.active{
 }
 
 @media only screen and (max-width: 767px){
-
+    .ref-menu{
+        display: block !important;
+    }
 	.section-row{
 		margin-bottom: 30px;
 	}
@@ -7128,4 +7138,9 @@ header.main-header .header-sticky.active{
 		padding: 0;
 		border: none;
 	}
+}
+@media only screen and (max-width: 376px){
+    .humburger{
+            margin-left: 75px !important;   
+    }
 }

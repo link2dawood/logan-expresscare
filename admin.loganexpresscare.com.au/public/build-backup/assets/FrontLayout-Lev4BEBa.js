@@ -1,0 +1,1 @@
+import{_ as r}from"./app-BHU-Pkr8.js";import{a2 as t,Z as e,_ as n}from"./vue-DT6YAPub.js";import"./vendor-CoC1lfSh.js";import"./ant-design-vue-DDK1Jz9-.js";import"./chart-CJAGtuVq.js";const c={};function _(s,a){const o=e("router-view");return n(),t(o)}const l=r(c,[["render",_]]);export{l as default};

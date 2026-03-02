@@ -9,7 +9,7 @@
 	<meta name="keywords" content="">
 	<meta name="author" content="Awaiken">
 	<!-- Page Title -->
-    <title>Carely - Senior Care & Elderly Nursing HTML Template</title>
+    <title>The Logan Express Care Services</title>
 	<!-- Favicon Icon -->
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
 	<!-- Google Fonts Css-->
@@ -39,70 +39,60 @@
 	<div class="preloader">
 		<div class="loading-container">
 			<div class="loading"></div>
-			<div id="loading-icon"><img src="images/logoLEC-light.png" alt=""></div>
+			<div id="loading-icon"><img src="images/preloader-logo.png" alt=""></div>
 		</div>
 	</div>
 	<!-- Preloader End -->
 
     <!-- Header Start -->
 	<header class="main-header bg-section">
-		<div class="header-sticky">
-			<nav class="navbar navbar-expand-lg">
-				<div class="container-fluid">
-					<!-- Logo Start -->
-					<a class="navbar-brand" href="./">
-						<img src="images/logoLEC-full2.png" alt="Logo">
-					</a>
-					<!-- Logo End -->
+    <div class="header-sticky">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./">
+                    <img src="images/logo-main.png" alt="Logo">
+                </a>
+                <div class="responsive-menu">
+                    <button class="humburger" onclick="toggleBox()"><img style="width: 40px;" src="images/humburger.png"></button>
+                </div>
+                <div class="collapse navbar-collapse main-menu" style="display:none;" id="showmenu">
+                    <div class="nav-menu-wrapper">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="./">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.php">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="services.php">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.php">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin/user-signup.php">Join Our Team</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin/user-login.php">Login</a>
+                            </li>
+                            <li class="nav-item ref-menu">
+                                <a class="nav-link" href="referral.php">Referral</a>
+                            </li>
+                        </ul>
+                    </div>
 
-					<!-- Main Menu Start -->
-					<div class="collapse navbar-collapse main-menu">
-                        <div class="nav-menu-wrapper">
-                            <ul class="navbar-nav mr-auto" id="menu">
-                                <li class="nav-item submenu"><a class="nav-link" href="./">Home</a>
-                                    <ul>
-                                        <li class="nav-item"><a class="nav-link" href="index.php">Home - Main</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index-image.php">Home - Image</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index-video.php">Home - Video</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="about.php">About Us</a>
-                                <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
-                                <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
-                                <li class="nav-item submenu"><a class="nav-link" href="#">Pages</a>
-                                    <ul>
-                                        <li class="nav-item"><a class="nav-link" href="service-single.php">Service Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="blog-single.php">Blog Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="case-study.php">Case Study</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="case-study-single.php">Case Study details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="team.php">Our Team</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="team-single.php">Team Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="pricing.php">Pricing Plan</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="testimonials.php">Testimonials</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="image-gallery.php">Image Gallery</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="video-gallery.php">Video Gallery</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="faqs.php">FAQs</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="404.php">404</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
-                                <li class="nav-item"><a class="nav-link" href="user-signup.php">Join Our Team</a></li>
-                                <li class="nav-item"><a class="nav-link" href="user-login.php">Check Status</a></li>
-<li class="nav-item highlighted-menu"><a class="nav-link" href="referral.php">Referral</a></li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Header Btn Start -->
-                        <div class="header-btn">
-    <a href="referral.php" class="btn-default">Referral</a>
-</div>
-                        <!-- Header Btn End -->
-					</div>
-					<!-- Main Menu End -->
-					<div class="navbar-toggle"></div>
-				</div>
-			</nav>
-			<div class="responsive-menu"></div>
-		</div>
-	</header>
+                    <!-- Header Btn Start -->
+                    <div class="header-btn">
+                        <a href="referral.php" class="btn-default">Referral</a>
+                    </div>
+                    <!-- Header Btn End -->
+                </div>
+                <!-- Main Menu End -->
+                <div class="navbar-toggle"></div>
+            </div>
+        </nav>
+
+    </div>
+</header>
 	<!-- Header End -->

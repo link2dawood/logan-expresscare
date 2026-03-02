@@ -49,8 +49,11 @@
                                 <!-- Contact Item Content Start -->
                                 <div class="contact-item-content">
                                     <h3>Quick contact</h3>
-                                    <p><a href="tel:+1232548963">+00-123-2548-963</a></p>
-                                    <p><a href="mailto:info@domainname.com">info@domainname.com</a></p>
+                                    <p><a href="tel:1300 556 002">1300 556 002</a></p>
+                                    <p><a href="tel:0426 005 101">0426 005 101</a></p>
+                                    <p>
+                                        <a href="mailto:info@loganexpresscare.com.au">info@loganexpresscare.com.au</a>
+                                    </p>
                                 </div>
                                 <!-- Contact Item Content End -->
                             </div>
@@ -85,7 +88,7 @@
                                 <!-- Contact Item Content Start -->
                                 <div class="contact-item-content">
                                     <h3>location</h3>
-                                    <p>123 Maplewood Drive, Pinehill Residential Area, Near Greenview Senior Park, Pinehill, California - 90210, United States.</p>
+                                    <p>22 Adenmore Cct, Deanside VIC 3336</p>
                                 </div>
                                 <!-- Contact Item Content End -->
                             </div>
@@ -256,7 +259,7 @@
                 <div class="col-lg-12">
                     <!-- Section Footer Text Start-->
                     <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                        <p>Compassionate care to enhance daily living. <a href="contact.html">Contact us today!</a></p>
+                        <p>Compassionate care to enhance daily living. <a href="contact.php">Contact us today!</a></p>
                     </div>
                     <!-- Section Footer Text End-->
                 </div>
@@ -328,12 +331,12 @@
                         <!-- Why Choose Image 1 Start -->
                         <div class="why-choose-img-1">
                             <figure class="image-anime reveal">
-                                <img src="images/why-choose-img-1.jpg" alt="">
+                                <img src="images/homepage-6.svg.svg" alt="">
                             </figure>
                             
                             <!-- Contact Us Circle Start -->
                             <div class="contact-us-circle">
-                                <a href="contact.html">
+                                <a href="contact.php">
                                     <img src="images/contact-us-circle.svg" alt="">
                                 </a>
                             </div>
@@ -344,7 +347,7 @@
                         <!-- Why Choose Image 2 Start -->
                         <div class="why-choose-img-2">
                             <figure class="image-anime">
-                                <img src="images/why-choose-img-2.jpg" alt="">
+                                <img src="images/homepage-7.svg.svg" alt="">
                             </figure>
                         </div>
                         <!-- Why Choose Image 2 End -->
@@ -372,7 +375,7 @@
                         
                         <!-- CTA Box Button Start -->
                         <div class="cta-box-btn wow fadeInUp" data-wow-delay="0.2s">
-                            <a href="book-appointment.html" class="btn-default">Book appointment</a>
+                            <a href="book-appointment.php" class="btn-default">Book appointment</a>
                         </div>
                         <!-- CTA Box Button End -->
                     </div>
@@ -385,7 +388,7 @@
                     <!-- CTA Box Image Start -->
                     <div class="cta-box-image">
                         <figure>
-                            <img src="images/cta-box-image.png" alt="">
+                            <img src="images/Untitled design.svg" alt="">
                         </figure>
                     </div>
                     <!-- CTA Box Image End -->
@@ -412,7 +415,7 @@
 
                         <!-- Our Faqs Button Start -->
                         <div class="our-faqs-btn wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="contact.html" class="btn-default">Contact Us Now</a>
+                            <a href="contact.php" class="btn-default">Contact Us Now</a>
                         </div>
                         <!-- Our Faqs Button End -->
                     </div>
@@ -421,82 +424,7 @@
 
                 <div class="col-lg-6">
                     <!-- FAQ Accordion Start -->
-                    <div class="faq-accordion" id="accordion">
-                        <!-- FAQ Item Start -->
-                        <div class="accordion-item wow fadeInUp">
-                            <h2 class="accordion-header" id="heading1">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                    Q1. What types of care services do you offer?
-                                </button>
-                            </h2>
-                            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordion">
-                                <div class="accordion-body">
-                                    <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of each resident, ensuring that they receive.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FAQ Item End -->
-
-                        <!-- FAQ Item Start -->
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.2s">
-                            <h2 class="accordion-header" id="heading2">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                    Q2. How do you ensure the safety of residents?
-                                </button>
-                            </h2>
-                            <div id="collapse2" class="accordion-collapse collapse show" aria-labelledby="heading2" data-bs-parent="#accordion">
-                                <div class="accordion-body">
-                                    <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of each resident, ensuring that they receive.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FAQ Item End -->
-
-                        <!-- FAQ Item Start -->
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.4s">
-                            <h2 class="accordion-header" id="heading3">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                                    Q3. Can I schedule a tour of your facility?
-                                </button>
-                            </h2>
-                            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordion">
-                                <div class="accordion-body">
-                                    <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of each resident, ensuring that they receive.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FAQ Item End -->
-
-                        <!-- FAQ Item Start -->
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.6s">
-                            <h2 class="accordion-header" id="heading4">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                    Q4. How do you personalize care for each resident?
-                                </button>
-                            </h2>
-                            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordion">
-                                <div class="accordion-body">
-                                    <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of each resident, ensuring that they receive.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FAQ Item End -->
-
-                        <!-- FAQ Item Start -->
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.8s">
-                            <h2 class="accordion-header" id="heading5">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                    Q5. What types of activities are available for residents?
-                                </button>
-                            </h2>
-                            <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordion">
-                                <div class="accordion-body">
-                                    <p>We offer a variety of care options, including assisted living, memory care, services, and palliative care. Our care plans are customized to meet the unique needs of each resident, ensuring that they receive.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FAQ Item End -->
-                    </div>
+                    <?php include 'layouts/faqs.php'; ?>
                     <!-- FAQ Accordion End -->
                 </div>
             </div>

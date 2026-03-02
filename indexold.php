@@ -12,15 +12,16 @@
                             <div class="hero-content-box">
                                 <!-- Section Title Start -->
                                 <div class="section-title">
-                                    <h3 class="wow fadeInUp">Discover the power of premium</h3>
-                                    <h1 class="text-anime-style-2" data-cursor="-opaque">Delivering holistic senior care that honors each <span>individual's life journey</span></h1>
+                                    
+                                    <h3 class="wow fadeInUp">Discover The Logan Express Care Services</h3>
+                                    <h1 class="text-anime-style-2" data-cursor="-opaque">Empowering lives & Enabling Independence  <span>Through Dedication!</span></h1>
                                 </div>
                                 <!-- Section Title End -->
                                 
                                 <!-- Hero Content Circle Start -->
                                 <div class="hero-content-circle">
-                                    <p class="wow fadeInUp" data-wow-delay="0.2s">At our senior care community, we understand that aging is a deeply personal journey. That's why we focus on a holistic, resident-centered care that nurtures the mind, body, and spirit.</p>
-                                    <a href="book-appointment.html" class="book-appointment-circle"><img src="images/book-appointment-circle.svg" alt=""></a>
+                                    <p class="wow fadeInUp" data-wow-delay="0.2s">At Logan Express Care, we understand that care need(s) is a deeply personal journey. That's why we focus on a holistic, person-centered care that nurtures the mind, body, and promotes the overall wellbeing of service users.</p>
+                                    <a href="book-appointment.php" class="book-appointment-circle"><img src="images/book-appointment-circle.svg" alt=""></a>
                                 </div>
                                 <!-- Hero Content Circle End -->
                             </div>
@@ -31,7 +32,7 @@
                                 <!-- Working Hour Image Start -->
                                 <div class="working-hour-image">
                                     <figure class="image-anime reveal">
-                                        <img src="images/hero-content-image.jpg" alt="">
+                                        <img src="images/homepage-3.svg" alt="">
                                     </figure>
                                 </div>
                                 <!-- Working Hour Image End -->
@@ -40,7 +41,7 @@
                                 <div class="working-hours-item wow fadeInUp" data-wow-delay="0.4s">
                                     <div class="working-hours-header">
                                         <h3>Working Hours</h3>
-                                        <p>We believe that aging should be embraced with dignity, joy, and the right level.</p>
+                                        <p>We’re just a call away when you need us. Let us know how we may be of help.</p>
                                     </div>
                                     <div class="working-hours-body">
                                         <ul>
@@ -57,7 +58,7 @@
                         <!-- Hero Image Start -->
                         <div class="hero-image">
                             <figure class="image-anime reveal">
-                                <img src="images/hero-image.jpg" alt="">
+                                <img src="images/homepage-2.svg" alt="">
                             </figure>
                         </div>
                         <!-- Hero Image End -->
@@ -96,7 +97,7 @@
                                 <img src="images/icon-hero-benefit-3.svg" alt="">
                             </div>
                             <div class="hero-benefit-item-content">
-                                <h3>Every Detail Designed with Seniors in Mind</h3>
+                                <h3>Every Detail Designed with your Care in Mind</h3>
                             </div>
                         </div>
                         <!-- Hero Benefit Item End -->
@@ -118,7 +119,7 @@
                         <!-- About Us Image Start -->
                         <div class="about-image-1">
                             <figure class="image-anime reveal">
-                                <img src="images/about-us-image-1.jpg" alt="">
+                                <img src="images/homepage-4.svg" alt="">
                             </figure>
                         </div>
                         <!-- About Us Image End -->
@@ -126,7 +127,7 @@
                         <!-- About Us Image Start -->
                         <div class="about-image-2">
                             <figure class="image-anime reveal">
-                                <img src="images/about-us-image-2.jpg" alt="">
+                                <img src="images/homepage-5.svg" alt="">
                             </figure>
                         </div>
                         <!-- About Us Image End -->
@@ -140,7 +141,7 @@
                         <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">About us</h3>
-                            <h2 class="text-anime-style-2" data-cursor="-opaque">Dedicated to quality elderly care with compassion <span>and respect always</span></h2>
+                            <h2 class="text-anime-style-2" data-cursor="-opaque">At Logan Express Care, we are dedicated to quality and <span>compassion always</span></h2>
                         </div>
                         <!-- Section Title End -->
 
@@ -152,7 +153,7 @@
                                 </a>
                             </div>
                             <div class="about-body-content wow fadeInUp" data-wow-delay="0.2s">
-                                <p>We believe that aging should be embraced with dignity right level of care. That's why we provide more assistance we offer welcoming environment.</p>
+                                <p>We seek to deliver exceptional, human-centered disability support that upholds dignity, choice, and connection, enabling every person to live life on their terms.</p>
                             </div>
                         </div>
                         <!-- About Us Body End -->
@@ -161,7 +162,7 @@
                         <div class="about-us-list wow fadeInUp" data-wow-delay="0.4s">
                             <ul>
                                 <li>Personalized Care for Each</li>
-                                <li>Memory & Dementia Care</li>
+                                <li>Disability Support</li>
                             </ul>
                         </div>
                         <!-- About Us List End -->
@@ -189,7 +190,7 @@
                 <div class="col-lg-6">
                     <!-- Section Button Start -->
                     <div class="section-btn wow fadeInUp" data-wow-delay="0.2s">
-                        <a href="services.html" class="btn-default">View All Services</a>
+                        <a href="services.php" class="btn-default">View All Services</a>
                     </div>
                     <!-- Section Button End -->
                 </div>
@@ -201,7 +202,7 @@
                     <div class="service-item active wow fadeInUp">
                         <!-- Service Image Start -->
                         <div class="service-image">
-                            <img src="images/service-1.jpg" alt="">
+                            <img src="images/homepage-1.svg" alt="">
                         </div>
                         <!-- Service Image End -->
 
@@ -215,14 +216,14 @@
                             
                             <!-- Service Content Start -->
                             <div class="service-content">
-                                <h3><a href="service-single.html">Social & Recreational Activities</a></h3>
-                                <p>Daily programs including games, crafts, music, fitness, and outings Daily programs including games, crafts, music.</p>
+                                <h3><a href="https://html.awaikenthemes.com/carely/service-single.html">Community Nursing Care</a></h3>
+                                <p>Professional health and wellbeing support at home, provided by well trained, competent and compassionate professionals.</p>
                             </div>
                             <!-- Service Content End -->
                             
                             <!-- Service Readmore Button Start -->
                             <div class="service-readmore-btn">
-                                <a href="service-single.html" class="readmore-btn">Learn more</a>
+                                <a href="https://html.awaikenthemes.com/carely/service-single.html" class="readmore-btn">Learn more</a>
                             </div>
                             <!-- Service Readmore Button End -->
                         </div>
@@ -236,7 +237,7 @@
                     <div class="service-item wow fadeInUp" data-wow-delay="0.2s">
                         <!-- Service Image Start -->
                         <div class="service-image">
-                            <img src="images/service-1.jpg" alt="">
+                            <img src="images/homepage-1.svg" alt="">
                         </div>
                         <!-- Service Image End -->
 
@@ -250,14 +251,16 @@
                             
                             <!-- Service Content Start -->
                             <div class="service-content">
-                                <h3><a href="service-single.html">Memory & Dementia Care</a></h3>
-                                <p>Nutritious, chef-prepared meals tailored to individual dietary needs. Nutritious, chef-prepared meals tailored.</p>
+                                <h3><a href="https://html.awaikenthemes.com/carely/service-single.html">Home and Living Support</a></h3>
+                                <p>
+                                    Supported Independent Living, Short Term Accommodation and Medium Term Accommodation provided to encourage independence.
+                                </p>
                             </div>
                             <!-- Service Content End -->
                             
                             <!-- Service Readmore Button Start -->
                             <div class="service-readmore-btn">
-                                <a href="service-single.html" class="readmore-btn">Learn more</a>
+                                <a href="https://html.awaikenthemes.com/carely/service-single.html" class="readmore-btn">Learn more</a>
                             </div>
                             <!-- Service Readmore Button End -->
                         </div>
@@ -271,7 +274,7 @@
                     <div class="service-item wow fadeInUp" data-wow-delay="0.4s">
                         <!-- Service Image Start -->
                         <div class="service-image">
-                            <img src="images/service-1.jpg" alt="">
+                            <img src="images/homepage-1.svg" alt="">
                         </div>
                         <!-- Service Image End -->
 
@@ -285,14 +288,16 @@
                             
                             <!-- Service Content Start -->
                             <div class="service-content">
-                                <h3><a href="service-single.html">Healthy Meals & Nutrition Plans</a></h3>
-                                <p>Isolation & loneliness can be as harmful as physical illness. Our companion services & design to provide emotional support.</p>
+                                <h3><a href="https://html.awaikenthemes.com/carely/service-single.html">Community Participation</a></h3>
+                                <p>
+                                    Isolation & loneliness can be as harmful as physical illness. Our companion services & design to provide emotional suppor
+                                .</p>
                             </div>
                             <!-- Service Content End -->
                             
                             <!-- Service Readmore Button Start -->
                             <div class="service-readmore-btn">
-                                <a href="service-single.html" class="readmore-btn">Learn more</a>
+                                <a href="" class="readmore-btn">Learn more</a>
                             </div>
                             <!-- Service Readmore Button End -->
                         </div>
@@ -306,7 +311,7 @@
                     <div class="service-item wow fadeInUp" data-wow-delay="0.6s">
                         <!-- Service Image Start -->
                         <div class="service-image">
-                            <img src="images/service-1.jpg" alt="">
+                            <img src="images/homepage-1.svg" alt="">
                         </div>
                         <!-- Service Image End -->
 
@@ -320,14 +325,14 @@
                             
                             <!-- Service Content Start -->
                             <div class="service-content">
-                                <h3><a href="service-single.html">24/7 Skilled Nursing Care</a></h3>
-                                <p>Care need don't follow a 9-to-5 schedule, and family caregivers need support too. We offer flexible around-the-clock care </p>
+                                <h3><a href="https://html.awaikenthemes.com/carely/service-single.html">In Home Support </a></h3>
+                                <p>Care needs don't follow a 9-to-5 schedule, and family caregivers need support too. We offer flexible around-the-clock home care.</p>
                             </div>
                             <!-- Service Content End -->
                             
                             <!-- Service Readmore Button Start -->
                             <div class="service-readmore-btn">
-                                <a href="service-single.html" class="readmore-btn">Learn more</a>
+                                <a href="https://html.awaikenthemes.com/carely/service-single.html" class="readmore-btn">Learn more</a>
                             </div>
                             <!-- Service Readmore Button End -->
                         </div>
@@ -341,7 +346,7 @@
                     <div class="service-item wow fadeInUp" data-wow-delay="0.8s">
                         <!-- Service Image Start -->
                         <div class="service-image">
-                            <img src="images/service-1.jpg" alt="">
+                            <img src="images/homepage-1.svg" alt="">
                         </div>
                         <!-- Service Image End -->
 
@@ -355,14 +360,14 @@
                             
                             <!-- Service Content Start -->
                             <div class="service-content">
-                                <h3><a href="service-single.html">Assisted Living Support</a></h3>
-                                <p>we believe that quality nursing care goes beyond medical assistance—it's about delivering comfort,</p>
+                                <h3><a href="https://html.awaikenthemes.com/carely/service-single.html">Transport Services </a></h3>
+                                <p>Safe, Reliable and Flexible travel support to suit your specific needs and schedule. </p>
                             </div>
                             <!-- Service Content End -->
                             
                             <!-- Service Readmore Button Start -->
                             <div class="service-readmore-btn">
-                                <a href="service-single.html" class="readmore-btn">Learn more</a>
+                                <a href="https://html.awaikenthemes.com/carely/service-single.html" class="readmore-btn">Learn more</a>
                             </div>
                             <!-- Service Readmore Button End -->
                         </div>
@@ -377,7 +382,7 @@
                         <!-- Service CTA Image Start -->
                         <div class="service-cta-image">
                             <figure>
-                                <img src="images/service-cta-image.jpg" alt="">
+                                <img src="images/homepage-1.svg" alt="">
                             </figure>
                         </div>
                         <!-- Service CTA Image End -->
@@ -385,7 +390,7 @@
                         <!-- Service CTA Content Start -->
                         <div class="service-cta-content">
                             <h3>Ready to start your journey to recovery</h3>
-                            <a href="book-appointment.html" class="btn-default btn-highlighted">Book appointment</a>
+                            <a href="book-appointment.php" class="btn-default btn-highlighted">Book appointment</a>
                         </div>
                         <!-- Service CTA Content End -->
                     </div>
@@ -395,7 +400,7 @@
                 <div class="col-lg-12">
                     <!-- Section Footer Text Start-->
                     <div class="section-footer-text wow fadeInUp" data-wow-delay="1.2s">
-                        <p><span>Free</span>Discover the care you deserve - <a href="book-appointment.html">book your free visit today!</a></p>
+                        <p><span>Free</span><strong>Free Discover the care you deserve -</strong> Contact Us today for a free no obligation quote! <a href="book-appointment.php">book your free visit today!</a></p>
                     </div>
                     <!-- Section Footer Text End-->
                 </div>
@@ -414,7 +419,7 @@
                         <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">Why choose us</h3>
-                            <h2 class="text-anime-style-2" data-cursor="-opaque">A community where seniors thrive, <span>not just survive</span></h2>
+                            <h2 class="text-anime-style-2" data-cursor="-opaque">A community where you thrive, <span>not just survive</span></h2>
                         </div>
                         <!-- Section Title End -->
                         
@@ -427,7 +432,7 @@
                                 </div>
                                 <div class="why-choose-item-content">
                                     <h3>Compassionate & Experienced Staff</h3>
-                                    <p>Our modern, fully-equipped facility is designed with senior comfort and safety in mind. With advanced health monitoring.</p>
+                                    <p>We believe exceptional care begins with genuine compassion. Our team treats every individual with dignity, empathy, and respect—because we care for people, not just their needs.</p>
                                 </div>
                             </div>
                             <!-- Why Choose Item End -->
@@ -438,8 +443,8 @@
                                     <img src="images/icon-why-choose-2.svg" alt="">
                                 </div>
                                 <div class="why-choose-item-content">
-                                    <h3>State-of-the-Art Facilities and Services</h3>
-                                    <p>Our modern, fully-equipped facility is designed with senior comfort and safety in mind. With advanced health monitoring.</p>
+                                    <h3>Highly Trained and Trusted Staff</h3>
+                                    <p>All our carers are carefully selected, fully trained, and background-checked. We invest in continuous professional development so our team can deliver safe, high-quality, and person-centred care</p>
                                 </div>
                             </div>
                             <!-- Why Choose Item End -->
@@ -450,8 +455,8 @@
                                     <img src="images/icon-why-choose-3.svg" alt="">
                                 </div>
                                 <div class="why-choose-item-content">
-                                    <h3>Holistic Approach to Senior Well-Being</h3>
-                                    <p>Our modern, fully-equipped facility is designed with senior comfort and safety in mind. With advanced health monitoring.</p>
+                                    <h3>Local Care with a Personal Touch</h3>
+                                    <p>As a community-based provider, we know and care about the people we serve. Our local roots mean we’re always close by, with a personal touch that large organizations often can’t match.</p>
                                 </div>
                             </div>
                             <!-- Why Choose Item End -->
@@ -467,12 +472,12 @@
                         <!-- Why Choose Image 1 Start -->
                         <div class="why-choose-img-1">
                             <figure class="image-anime reveal">
-                                <img src="images/why-choose-img-1.jpg" alt="">
+                                <img src="images/homepage-7.svg.svg" alt="">
                             </figure>
                             
                             <!-- Contact Us Circle Start -->
                             <div class="contact-us-circle">
-                                <a href="contact.html">
+                                <a href="contact.php">
                                     <img src="images/contact-us-circle.svg" alt="">
                                 </a>
                             </div>
@@ -483,7 +488,7 @@
                         <!-- Why Choose Image 2 Start -->
                         <div class="why-choose-img-2">
                             <figure class="image-anime">
-                                <img src="images/why-choose-img-2.jpg" alt="">
+                                <img src="images/homepage-6.svg.svg" alt="">
                             </figure>
                         </div>
                         <!-- Why Choose Image 2 End -->
@@ -593,7 +598,7 @@
                 <div class="col-lg-12">
                     <!-- Section Footer Text Start-->
                     <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                        <p>Compassionate care to enhance daily living. <a href="contact.html">Contact us today!</a></p>
+                        <p>Compassionate care to enhance daily living. <a href="contact.php">Contact us today!</a></p>
                     </div>
                     <!-- Section Footer Text End-->
                 </div>
@@ -609,8 +614,8 @@
                 <div class="col-lg-12">
                     <!-- Section Title Start -->
                     <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">Our facts</h3>
-                        <h2 class="text-anime-style-2" data-cursor="-opaque">Our senior care impact in <span>real numbers</span></h2>
+                        <h3 class="wow fadeInUp">Seeking a Provider?</h3>
+                        <h2 class="text-anime-style-2" data-cursor="-opaque">We offer a reliable, Flexible and <span> responsive service</span></h2>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -628,8 +633,8 @@
                                     <img src="images/icon-fact-item-1.svg" alt="">
                                 </div>
                                 <div class="fact-item-content">
-                                    <h2><span class="counter">15</span>K+</h2>
-                                    <p>Happy Patients</p>
+                                    <h2>NDIS</h2>
+                                    <p>Trusted Provided</p>
                                 </div>
                             </div>
                             <!-- Fact Item End -->
@@ -637,7 +642,7 @@
                             <!-- Fact Image Start -->
                             <div class="fact-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/fact-image-1.jpg" alt="">
+                                    <img src="images/seeking-provider-4.png" alt="">
                                 </figure>
                             </div>
                             <!-- Fact Image End -->
@@ -649,7 +654,7 @@
                             <!-- Fact Image Start -->
                             <div class="fact-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/fact-image-2.jpg" alt="">
+                                    <img src="images/seeking-provider-1.png" alt="">
                                 </figure>
                             </div>
                             <!-- Fact Image End -->
@@ -661,7 +666,7 @@
                             <!-- Fact Image Start -->
                             <div class="fact-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/fact-image-3.jpg" alt="">
+                                    <img src="images/seeking-provider-3.png" alt="">
                                 </figure>
                             </div>
                             <!-- Fact Image End -->
@@ -674,8 +679,8 @@
                                         <img src="images/icon-fact-item-2.svg" alt="">
                                     </div>
                                     <div class="fact-item-content">
-                                        <h2><span class="counter">25</span>Y+</h2>
-                                        <p>Year Of Experience</p>
+                                        <h2>24/7</h2>
+                                        <p>Dedicated Support</p>
                                     </div>
                                 </div>
                                 <!-- Fact Item End -->
@@ -683,7 +688,7 @@
                                 <!-- Fact Image Start -->
                                 <div class="fact-image">
                                     <figure class="image-anime reveal">
-                                        <img src="images/fact-image-4.jpg" alt="">
+                                        <img src="images/seeking-provider-2.png" alt="">
                                     </figure>
                                 </div>
                                 <!-- Fact Image End -->    
@@ -715,7 +720,8 @@
                         
                         <!-- CTA Box Button Start -->
                         <div class="cta-box-btn wow fadeInUp" data-wow-delay="0.2s">
-                            <a href="book-appointment.html" class="btn-default">Book appointment</a>
+                            <a href="book-appointment.php" class="btn-default">Contact Us Now
+</a>
                         </div>
                         <!-- CTA Box Button End -->
                     </div>
@@ -728,7 +734,7 @@
                     <!-- CTA Box Image Start -->
                     <div class="cta-box-image">
                         <figure>
-                            <img src="images/cta-box-image.png" alt="">
+                            <img src="images/Untitled design.svg" alt="">
                         </figure>
                     </div>
                     <!-- CTA Box Image End -->
@@ -782,7 +788,7 @@
 
                         <!-- Pricing Button Start -->
                         <div class="pricing-btn">
-                            <a href="contact.html" class="btn-default">get started</a>
+                            <a href="contact.php" class="btn-default">get started</a>
                         </div>
                         <!-- Pricing Button End -->
                     </div>
@@ -818,7 +824,7 @@
 
                         <!-- Pricing Button Start -->
                         <div class="pricing-btn">
-                            <a href="contact.html" class="btn-default btn-highlighted">get started</a>
+                            <a href="contact.php" class="btn-default btn-highlighted">get started</a>
                         </div>
                         <!-- Pricing Button End -->
                     </div>
@@ -854,7 +860,7 @@
 
                         <!-- Pricing Button Start -->
                         <div class="pricing-btn">
-                            <a href="contact.html" class="btn-default">get started</a>
+                            <a href="contact.php" class="btn-default">get started</a>
                         </div>
                         <!-- Pricing Button End -->
                     </div>
@@ -886,7 +892,7 @@
                     <div class="feature-content">
                         <!-- Section Title Start -->
                         <div class="section-title">
-                            <h3 class="wow fadeInUp">Our feature</h3>
+                            <h3 class="wow fadeInUp">Logan Express Care at a Glance</h3>
                             <h2 class="text-anime-style-2" data-cursor="-opaque">Designed for comfort care <span>and everyday living</span></h2>
                         </div>
                         <!-- Section Title End -->
@@ -900,11 +906,11 @@
                                         <img src="images/icon-feature-1.svg" alt="">
                                     </div>
                                     <div class="feature-item-title">
-                                        <h3>Healthy Meals & Nutrition Plans</h3>
+                                        <h3>Our Vision</h3>
                                     </div>
                                 </div>
                                 <div class="feature-item-content">
-                                    <p>We believe that quality nursing care goes beyond medical assistance.</p>
+                                    <p>To be a trusted care partner across Australia, recognized for our uniquely responsive services.</p>
                                 </div>
                             </div>
                             <!-- Feature Item End -->
@@ -916,11 +922,11 @@
                                         <img src="images/icon-feature-2.svg" alt="">
                                     </div>
                                     <div class="feature-item-title">
-                                        <h3>Customized Plans</h3>
+                                        <h3>Our Mission</h3>
                                     </div>
                                 </div>
                                 <div class="feature-item-content">
-                                    <p>We believe that quality nursing care goes beyond medical assistance.</p>
+                                    <p>To deliver exceptional, human-centered disability support that upholds dignity, choice, and connection, enabling every person to live life on their terms</p>
                                 </div>
                             </div>
                             <!-- Feature Item End -->
@@ -932,11 +938,11 @@
                                         <img src="images/icon-feature-3.svg" alt="">
                                     </div>
                                     <div class="feature-item-title">
-                                        <h3>Comprehensive Services</h3>
+                                        <h3>Unique Value Proposition</h3>
                                     </div>
                                 </div>
                                 <div class="feature-item-content">
-                                    <p>We believe that quality nursing care goes beyond medical assistance.</p>
+                                    <p>Outstanding Personalized Care,Expertise, Experience, Reliable & Compliant.</p>
                                 </div>
                             </div>
                             <!-- Feature Item End -->
@@ -954,7 +960,7 @@
                             <!-- Feature image Start -->
                             <div class="feature-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/feature-image-1.jpg" alt="">
+                                    <img src="images/Untitled design (1).svg" alt="">
                                 </figure>
                             </div>
                             <!-- Feature image End -->
@@ -965,12 +971,12 @@
                                 <div class="review-images">
                                     <div class="review-image">
                                         <figure class="image-anime reveal">
-                                            <img src="images/author-1.jpg" alt="">
+                                            <img src="images/1.svg" alt="">
                                         </figure>
                                     </div>
                                     <div class="review-image">
                                         <figure class="image-anime reveal">
-                                            <img src="images/author-2.jpg" alt="">
+                                            <img src="images/2.svg" alt="">
                                         </figure>
                                     </div>
                                     <div class="review-image add-more">
@@ -1014,7 +1020,7 @@
                             <!-- Feature Image Start -->
                             <div class="feature-image">
                                 <figure class="image-anime reveal">
-                                    <img src="images/feature-image-2.jpg" alt="">
+                                    <img src="images/vision.svg" alt="">
                                 </figure>
                             </div>
                             <!-- Feature Image End -->
@@ -1045,7 +1051,7 @@
 
                         <!-- Our Faqs Button Start -->
                         <div class="our-faqs-btn wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="contact.html" class="btn-default">Contact Us Now</a>
+                            <a href="contact.php" class="btn-default">Contact Us Now</a>
                         </div>
                         <!-- Our Faqs Button End -->
                     </div>
@@ -1154,7 +1160,7 @@
                         
                         <div class="testimonials-counter-box">
                             <h2><span class="counter">99</span>%</h2>
-                            <p>Happy to adjust or finish up whatever you need!</p>
+                            <p>We believe in putting in 100% effort in the right direction.</p>
                         </div>
                     </div>
                     <!-- Testimonials Content End -->
@@ -1169,25 +1175,25 @@
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
-                                            <div class="testimonial-company-logo">
+                                            <!-- <div class="testimonial-company-logo">
                                                 <img src="images/company-logo-1.svg" alt="">
-                                            </div>
+                                            </div> -->
                                             <div class="testimonial-quote">
                                                 <img src="images/testimonial-quote.svg" alt="">
                                             </div>
                                         </div>
                                         <div class="testimonial-content">
-                                            <p>After my father's surgery, we were overwhelmed and unsure how to manage his recovery at home. The nurse from your team was a godsend - so kind, patient, and knowledgeable. She made sure he was comfortable, managed his medications & even helped lift his spirits.</p>
+                                            <p>The care and understanding shown to my daughter have been outstanding. Knowing she has a trusted support team gives us so much peace of mind.</p>
                                         </div>
                                         <div class="testimonial-author">       
                                             <div class="author-image">
                                                 <figure class="image-anime">
-                                                    <img src="images/author-1.jpg" alt="">
+                                                    <img src="images/1.svg" alt="">
                                                 </figure>
                                             </div>
                                             <div class="author-content">
-                                                <h3>Herman Miller</h3>
-                                                <p>Lorem ipsum</p>
+                                                <h3>Alison Burgas</h3>
+                                                <p>Parent & Carer</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1198,25 +1204,25 @@
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
-                                            <div class="testimonial-company-logo">
+                                            <!-- <div class="testimonial-company-logo">
                                                 <img src="images/company-logo-1.svg" alt="">
-                                            </div>
+                                            </div> -->
                                             <div class="testimonial-quote">
                                                 <img src="images/testimonial-quote.svg" alt="">
                                             </div>
                                         </div>
                                         <div class="testimonial-content">
-                                            <p>After my father's surgery, we were overwhelmed and unsure how to manage his recovery at home. The nurse from your team was a godsend - so kind, patient, and knowledgeable. She made sure he was comfortable, managed his medications & even helped lift his spirits.</p>
+                                            <p>Logan Express Care has been incredible in supporting my daily needs. The team always treats me with respect and makes me feel empowered to live life my way</p>
                                         </div>
                                         <div class="testimonial-author">       
                                             <div class="author-image">
                                                 <figure class="image-anime">
-                                                    <img src="images/author-2.jpg" alt="">
+                                                    <img src="images/2.svg" alt="">
                                                 </figure>
                                             </div>
                                             <div class="author-content">
-                                                <h3>Margaret Ellis</h3>
-                                                <p>Lorem ipsum</p>
+                                                <h3>Mark Adam</h3>
+                                                <p>NDIS Participant</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1227,25 +1233,25 @@
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
-                                            <div class="testimonial-company-logo">
+                                            <!-- <div class="testimonial-company-logo">
                                                 <img src="images/company-logo-1.svg" alt="">
-                                            </div>
+                                            </div> -->
                                             <div class="testimonial-quote">
                                                 <img src="images/testimonial-quote.svg" alt="">
                                             </div>
                                         </div>
                                         <div class="testimonial-content">
-                                            <p>After my father's surgery, we were overwhelmed and unsure how to manage his recovery at home. The nurse from your team was a godsend - so kind, patient, and knowledgeable. She made sure he was comfortable, managed his medications & even helped lift his spirits.</p>
+                                            <p>Working alongside Logan Express Care has been a privilege. Their commitment to inclusion and person-centred support truly makes a difference in people’s lives.</p>
                                         </div>
                                         <div class="testimonial-author">       
                                             <div class="author-image">
                                                 <figure class="image-anime">
-                                                    <img src="images/author-3.jpg" alt="">
+                                                    <img src="images/3.svg.svg" alt="">
                                                 </figure>
                                             </div>
                                             <div class="author-content">
-                                                <h3>Eleanor Brooks</h3>
-                                                <p>Lorem ipsum</p>
+                                                <h3>Lio Hernandez</h3>
+                                                <p>Community Coordinator</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1261,87 +1267,87 @@
                     <!-- Testimonial Slider End -->
                 </div>
 
-                <div class="col-lg-12">
+                <!--<div class="col-lg-12">-->
                     <!-- Comapany Support Slider Start -->
-                    <div class="company-supports-slider">
-                        <div class="swiper">
-                            <div class="swiper-wrapper">
+                <!--    <div class="company-supports-slider">-->
+                <!--        <div class="swiper">-->
+                <!--            <div class="swiper-wrapper">-->
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-1.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-1.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-2.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-2.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-3.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-3.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-1.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-1.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-2.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-2.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-3.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-3.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-1.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-1.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-2.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-2.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
 
                                 <!-- Company Support Logo Start -->
-                                <div class="swiper-slide">
-                                    <div class="company-supports-logo">
-                                        <img src="images/company-supports-logo-3.svg" alt="">
-                                    </div>
-                                </div>
+                <!--                <div class="swiper-slide">-->
+                <!--                    <div class="company-supports-logo">-->
+                <!--                        <img src="images/company-supports-logo-3.svg" alt="">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                                 <!-- Comapany Support Logo End -->
-                            </div>
-                        </div>
-                    </div>
+                <!--            </div>-->
+                <!--        </div>-->
+                <!--    </div>-->
                     <!-- Comapany Support Slider End -->
-                </div>
+                <!--</div>-->
             </div>
         </div>
     </div>
@@ -1367,9 +1373,9 @@
                     <div class="post-item wow fadeInUp">
                         <!-- Post Featured Image Start-->
                         <div class="post-featured-image">
-                            <a href="blog-single.html" data-cursor-text="View">
+                            <a href="blog-single.php" data-cursor-text="View">
                                 <figure class="image-anime">
-                                    <img src="images/post-1.jpg" alt="">
+                                    <img src="images/blog-1.svg" alt="">
                                 </figure>    
                             </a>                            
                         </div>
@@ -1379,13 +1385,13 @@
                         <div class="post-item-body">
                             <!-- Post Item Content Start -->
                             <div class="post-item-content">
-                                <h2><a href="blog-single.html">Simple Activities That Boost Senior Mental Health</a></h2>
+                                <h2><a href="blog-single.php">Simple Activities That Boost Senior Mental Health</a></h2>
                             </div>
                             <!-- Post Item Content End -->
 
                             <!-- Post Item Readmore Button Start-->
                             <div class="post-item-btn">
-                                <a href="blog-single.html" class="readmore-btn">learn more</a>
+                                <a href="blog-single.php" class="readmore-btn">learn more</a>
                             </div>
                             <!-- Post Item Readmore Button End-->
                         </div>
@@ -1399,9 +1405,9 @@
                     <div class="post-item wow fadeInUp" data-wow-delay="0.2s">
                         <!-- Post Featured Image Start-->
                         <div class="post-featured-image">
-                            <a href="blog-single.html" data-cursor-text="View">
+                            <a href="blog-single.php" data-cursor-text="View">
                                 <figure class="image-anime">
-                                    <img src="images/post-2.jpg" alt="">
+                                    <img src="images/blog-2.svg" alt="">
                                 </figure>    
                             </a>                            
                         </div>
@@ -1411,13 +1417,13 @@
                         <div class="post-item-body">
                             <!-- Post Item Content Start -->
                             <div class="post-item-content">
-                                <h2><a href="blog-single.html">Family Involvement in Senior Care Staying Connected</a></h2>
+                                <h2><a href="blog-single.php">Family Involvement in Senior Care Staying Connected</a></h2>
                             </div>
                             <!-- Post Item Content End -->
 
                             <!-- Post Item Readmore Button Start-->
                             <div class="post-item-btn">
-                                <a href="blog-single.html" class="readmore-btn">learn more</a>
+                                <a href="blog-single.php" class="readmore-btn">learn more</a>
                             </div>
                             <!-- Post Item Readmore Button End-->
                         </div>
@@ -1431,9 +1437,9 @@
                     <div class="post-item wow fadeInUp" data-wow-delay="0.4s">
                         <!-- Post Featured Image Start-->
                         <div class="post-featured-image">
-                            <a href="blog-single.html" data-cursor-text="View">
+                            <a href="blog-single.php" data-cursor-text="View">
                                 <figure class="image-anime">
-                                    <img src="images/post-3.jpg" alt="">
+                                    <img src="images/blog-3.svg" alt="">
                                 </figure>    
                             </a>                            
                         </div>
@@ -1443,13 +1449,13 @@
                         <div class="post-item-body">
                             <!-- Post Item Content Start -->
                             <div class="post-item-content">
-                                <h2><a href="blog-single.html">Navigating the Costs of Senior Care What You Need to Know</a></h2>
+                                <h2><a href="blog-single.php">Navigating the Costs of Senior Care What You Need to Know</a></h2>
                             </div>
                             <!-- Post Item Content End -->
 
                             <!-- Post Item Readmore Button Start-->
                             <div class="post-item-btn">
-                                <a href="blog-single.html" class="readmore-btn">learn more</a>
+                                <a href="blog-single.php" class="readmore-btn">learn more</a>
                             </div>
                             <!-- Post Item Readmore Button End-->
                         </div>

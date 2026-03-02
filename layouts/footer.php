@@ -7,7 +7,7 @@
                     <div class="about-footer">
                         <!-- Footer Logo Start -->
                         <div class="footer-logo">
-                            <img src="images/logoLEC-full-light.png" alt="">
+                            <img src="images/footer-logo-light.png" alt="">
                         </div>
                         <!-- Footer Logo End -->
 
@@ -18,14 +18,14 @@
                         <!-- About Footer Content End -->
 
                         <!-- Footer Social Link Start -->
-                        <div class="footer-social-links">
-                            <ul>
-                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
-                            </ul>
-                        </div>
+                        <!--<div class="footer-social-links">-->
+                        <!--    <ul>-->
+                        <!--        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>-->
+                        <!--        <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>-->
+                        <!--        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>-->
+                        <!--        <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>-->
+                        <!--    </ul>-->
+                        <!--</div>-->
                         <!-- Footer Social Link End -->
                     </div>
                     <!-- About Footer End -->
@@ -37,14 +37,18 @@
                         <!-- Footer Contact Item Start -->
                         <div class="footer-contact-item">
                             <h3>Contact Information</h3>
-                            <p>123 Maplewood Drive, Pinehill, CA 90210</p>
+                            <p>460 Lonsdale Street, Level 13 & Level 14, Melbourne, Victoria, 3000, Australia</p>
                         </div>
                         <!-- Footer Contact Item End -->
-
+                
                         <!-- Footer Contact Item Start -->
                         <div class="footer-contact-item">
                             <h3>Email Address</h3>
-                            <p><a href="mailto:info@domainname.com">info@domainname.com</a></p>
+                            <p><a href="mailto:info@loganexpresscare.com.au">info@loganexpresscare.com.au</a></p>
+                        </div>
+                        <div class="footer-contact-item">
+                            <h3>Phone Number</h3>
+                            <p><a href="tel:1300 556 002">1300 556 002</a></p>
                         </div>
                         <!-- Footer Contact Item End -->
                     </div>
@@ -94,12 +98,12 @@
                         <!-- Footer Copyright Text End -->
 
                         <!-- Footer Privacy Policy Start -->
-                        <div class="footer-privacy-policy">
-                            <ul>
-                                <li><a href="#">privacy policy</a></li>
-                                <li><a href="#">terms & condition</a></li>
-                            </ul>
-                        </div>
+                        <!--<div class="footer-privacy-policy">-->
+                        <!--    <ul>-->
+                        <!--        <li><a href="#">privacy policy</a></li>-->
+                        <!--        <li><a href="#">terms & condition</a></li>-->
+                        <!--    </ul>-->
+                        <!--</div>-->
                         <!-- Footer Privacy Policy End -->
                     </div>
                     <!-- Footer Copyright End -->
@@ -140,5 +144,63 @@
     <script src="js/wow.min.js"></script>
     <!-- Main Custom js file -->
     <script src="js/function.js"></script>
+    <script>
+        function toggleBox() {
+    const box = document.getElementById("showmenu");
+
+    if (box.style.display === "none") {
+        box.style.display = "block";
+    } else {
+        box.style.display = "none";
+    }
+}
+
+    </script>
+    <script>
+$(document).ready(function () {
+    $('#contactForms').on('submit', function (e) {
+        e.preventDefault();
+
+        let form = $(this);
+        let url = form.attr('action');
+        let formData = form.serialize();
+
+        $('#submitBtn').prop('disabled', true).html('<span>Submitting...</span>');
+        $('#msgSubmit').html('');
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function (response) {
+                if (response.success) {
+                    $('#msgSubmit').html(
+                        '<div style="color:#155724;background:#d4edda;padding:12px 15px;border-radius:6px;border:1px solid #c3e6cb;">' 
+                        + response.message + 
+                        '</div>'
+                    );
+                    $('#contactForm')[0].reset();
+                } else {
+                    $('#msgSubmit').html(
+                        '<div style="color:#721c24;background:#f8d7da;padding:12px 15px;border-radius:6px;border:1px solid #f5c6cb;">' 
+                        + response.message + 
+                        '</div>'
+                    );
+                }
+
+                $('#submitBtn').prop('disabled', false).html('<span>Submit Message</span>');
+            },
+            error: function (xhr, status, error) {
+                $('#msgSubmit').html(
+                    '<div style="color:#721c24;background:#f8d7da;padding:12px 15px;border-radius:6px;border:1px solid #f5c6cb;">Something went wrong. Please try again.</div>'
+                );
+                $('#submitBtn').prop('disabled', false).html('<span>Submit Message</span>');
+                console.log(xhr.responseText);
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>

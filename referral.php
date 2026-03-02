@@ -3,14 +3,20 @@
 <!-- Page Header Start -->
 <div class="page-header bg-section">
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-lg-12">
-                <div class="page-header-content">
-                    <h1 class="text-anime-style-2" data-cursor="-opaque">Referral Form</h1>
-                    <nav class="breadcrumb">
-                        <a href="./">Home</a>
-                        <span>/</span>
-                        <span>Referral</span>
+                <div class="page-header-box">
+                    <h1 class="text-anime-style-2" data-cursor="-opaque"><div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">R</div><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">e</div><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">f</div><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">e</div><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">r</div><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">r</div><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">a</div><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">l</div>
+                        </div> 
+                        <span><div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">F</div><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">o</div><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">r</div><div style="position: relative; display: inline-block; opacity: 1; visibility: inherit; transform: translate(0px, 0px);">m</div>
+                            </div>
+                        </span>
+                    </h1>
+                    <nav class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="./">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Referral</li>
+                        </ol>
                     </nav>
                 </div>
             </div>
@@ -348,7 +354,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn-default btn-highlighted">Submit Referral</button>
+                                    <button type="submit" class="btn-default">Submit Referral</button>
                                 </div>
                             </div>
                         </div>

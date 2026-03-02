@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         .login-header h1 {
             font-size: 28px;
-            color: #273a29;
+            color: #253873;
             margin-bottom: 10px;
             font-weight: 700;
         }
@@ -153,10 +153,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .btn-login:hover {
-            background: #273a29;
+            background: #253873;
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(39, 58, 41, 0.3);
         }
+        .btn-default::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    background-position: center center;
+    background-size: cover;
+    transform: translateY(-50%);
+    transition: all 0.4s 
+ease-in-out;
+    z-index: 1;
+}
         
         .alert {
             border-radius: 10px;
@@ -205,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="login-container">
         <div class="login-header">
-            <img src="../images/logoLEC-full2.png" alt="Logan Express Care" class="logo">
+            <img src="../images/logo-main.png" alt="Logan Express Care" class="logo">
             <h1>Staff Login</h1>
             <p>Enter your email to access your onboarding form</p>
         </div>
@@ -233,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
             </div>
             
-            <button type="submit" class="btn-login">
+            <button type="submit" class="btn-default w-100">
                 <i class="fas fa-sign-in-alt"></i> Login
             </button>
         </form>
