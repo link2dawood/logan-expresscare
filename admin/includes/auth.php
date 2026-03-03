@@ -111,6 +111,27 @@ class Auth {
         }
     }
     
+
+    /**
+     * Require one of the given roles for protected pages
+     */
+    public function requireAnyRole(array $roles) {
+        if (!$this->isLoggedIn()) {
+            header('Location: login.php');
+            exit();
+        }
+
+        foreach ($roles as $role) {
+            if ($this->hasRole($role)) {
+                return;
+            }
+        }
+
+        header('HTTP/1.1 403 Forbidden');
+        echo 'Access denied.';
+        exit();
+    }
+
     /**
      * Check if user has specific role
      */

@@ -41,7 +41,7 @@ if (isset($_POST['action']) && in_array($_POST['action'], ['approve', 'reject', 
     
     try {
         // Update application status
-        $query = "UPDATE staff_applications 
+        $query = "UPDATE staff_onboarding 
                   SET status = :status, reviewed_by = :reviewed_by, reviewed_at = NOW(), notes = :notes 
                   WHERE id = :id";
         $stmt = $db->prepare($query);
@@ -67,7 +67,7 @@ if (isset($_POST['action']) && in_array($_POST['action'], ['approve', 'reject', 
             $emailNotification = new EmailNotification();
             
             // Get user details for email
-            $userQuery = "SELECT first_name, last_name, email FROM staff_applications WHERE id = :id";
+            $userQuery = "SELECT first_name, last_name, email FROM staff_onboarding WHERE id = :id";
             $userStmt = $db->prepare($userQuery);
             $userStmt->bindParam(':id', $applicationId);
             $userStmt->execute();
@@ -96,7 +96,7 @@ if (isset($_POST['action']) && in_array($_POST['action'], ['approve', 'reject', 
 // Get application details
 try {
     $query = "SELECT sa.*, au.full_name as reviewed_by_name 
-              FROM staff_applications sa 
+              FROM staff_onboarding sa 
               LEFT JOIN admin_users au ON sa.reviewed_by = au.id 
               WHERE sa.id = :id";
     $stmt = $db->prepare($query);
@@ -728,6 +728,12 @@ try {
                 <a href="applications.php" class="nav-link active">
                     <i class="fas fa-file-alt"></i>
                     <span class="nav-text">Applications</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="referrals.php" class="nav-link">
+                    <i class="fas fa-handshake"></i>
+                    <span class="nav-text">Referrals</span>
                 </a>
             </div>
             <div class="nav-item">

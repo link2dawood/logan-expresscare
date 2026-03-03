@@ -248,10 +248,13 @@ try {
     // Send email to admin
     $mail_sent = mail(ADMIN_EMAIL, $email_subject, $email_body, implode("\r\n", $headers));
 
-    // Send confirmation email to participant/referrer
-    if (!empty($data['email_address']) || !empty($data['referrer_email'])) {
-        $recipient_email = !empty($data['email_address']) ? $data['email_address'] : $data['referrer_email'];
-        
+    // Send confirmation email to participant and referrer (if provided)
+    $confirmation_recipients = array_unique(array_filter(array(
+        $data['email_address'],
+        $data['referrer_email']
+    )));
+
+    if (!empty($confirmation_recipients)) {
         $confirmation_subject = "Referral Received - Logan Express Care";
         $confirmation_body = "
         <html>
@@ -306,7 +309,9 @@ try {
         </body>
         </html>";
         
-        mail($recipient_email, $confirmation_subject, $confirmation_body, implode("\r\n", $headers));
+        foreach ($confirmation_recipients as $recipient_email) {
+            mail($recipient_email, $confirmation_subject, $confirmation_body, implode("\r\n", $headers));
+        }
     }
 
     // Success response
