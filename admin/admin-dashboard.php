@@ -404,6 +404,12 @@ $user = $auth->getCurrentUser();
                 </a>
             </div>
             <div class="nav-item">
+                <a href="referrals.php" class="nav-link">
+                    <i class="fas fa-user-check"></i>
+                    <span class="nav-text">Referrals</span>
+                </a>
+            </div>
+            <div class="nav-item">
                 <a href="users.php" class="nav-link">
                     <i class="fas fa-users"></i>
                     <span class="nav-text">Users</span>
