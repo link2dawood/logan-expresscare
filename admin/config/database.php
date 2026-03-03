@@ -57,13 +57,15 @@ class Database {
      */
     private function autoSetupTables() {
         try {
-            // Check if admin_users table exists
-            $query = "SHOW TABLES LIKE 'admin_users'";
+            // Always ensure required tables exist
+            $this->createTables();
+
+            // Seed default admin only when there are no admin users
+            $query = "SELECT COUNT(*) AS total FROM admin_users";
             $stmt = $this->conn->query($query);
-            
-            if ($stmt->rowCount() === 0) {
-                // Tables don't exist, create them
-                $this->createTables();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!isset($result['total']) || (int)$result['total'] === 0) {
                 $this->seedDefaultData();
             }
         } catch(PDOException $e) {
