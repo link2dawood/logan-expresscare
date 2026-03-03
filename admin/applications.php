@@ -336,6 +336,21 @@ $user = $auth->getCurrentUser();
             font-weight: 600;
             margin-right: 5px;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 92px;
+        }
+
+        .actions-cell {
+            min-width: 280px;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
         }
         
         .btn-view {
@@ -443,6 +458,12 @@ $user = $auth->getCurrentUser();
                 <a href="applications.php" class="nav-link active">
                     <i class="fas fa-file-alt"></i>
                     <span class="nav-text">Applications</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="referrals.php" class="nav-link">
+                    <i class="fas fa-handshake"></i>
+                    <span class="nav-text">Referrals</span>
                 </a>
             </div>
             <div class="nav-item">
@@ -650,18 +671,20 @@ $user = $auth->getCurrentUser();
                                             <td>
                                                 <?php echo $app['reviewed_at'] ? date('M j, Y', strtotime($app['reviewed_at'])) : '-'; ?>
                                             </td>
-                                            <td>
-                                                <a href="application-details.php?id=<?php echo $app['id']; ?>" class="btn-action btn-view">
-                                                    <i class="fas fa-eye"></i> View
-                                                </a>
-                                                <?php if ($app['status'] === 'pending'): ?>
-                                                    <a href="application-details.php?id=<?php echo $app['id']; ?>&action=approve" class="btn-action btn-approve">
-                                                        <i class="fas fa-check"></i> Approve
+                                            <td class="actions-cell">
+                                                <div class="action-buttons">
+                                                    <a href="application-details.php?id=<?php echo $app['id']; ?>" class="btn-action btn-view">
+                                                        <i class="fas fa-eye"></i>&nbsp;View
                                                     </a>
-                                                    <a href="application-details.php?id=<?php echo $app['id']; ?>&action=reject" class="btn-action btn-reject">
-                                                        <i class="fas fa-times"></i> Reject
-                                                    </a>
-                                                <?php endif; ?>
+                                                    <?php if ($app['status'] === 'pending'): ?>
+                                                        <a href="application-details.php?id=<?php echo $app['id']; ?>&action=approve" class="btn-action btn-approve">
+                                                            <i class="fas fa-check"></i>&nbsp;Approve
+                                                        </a>
+                                                        <a href="application-details.php?id=<?php echo $app['id']; ?>&action=reject" class="btn-action btn-reject">
+                                                            <i class="fas fa-times"></i>&nbsp;Reject
+                                                        </a>
+                                                    <?php endif; ?>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

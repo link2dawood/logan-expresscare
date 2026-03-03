@@ -6,6 +6,7 @@ require_once 'includes/auth.php';
 
 $auth = new Auth();
 $auth->requireLogin();
+$auth->requireAnyRole(['admin', 'manager']);
 
 $user = $auth->getCurrentUser();
 ?>
@@ -391,6 +392,12 @@ $user = $auth->getCurrentUser();
                 </a>
             </div>
             <div class="nav-item">
+                <a href="referrals.php" class="nav-link">
+                    <i class="fas fa-handshake"></i>
+                    <span class="nav-text">Referrals</span>
+                </a>
+            </div>
+            <div class="nav-item">
                 <a href="users.php" class="nav-link active">
                     <i class="fas fa-users"></i>
                     <span class="nav-text">Users</span>
@@ -446,25 +453,25 @@ $user = $auth->getCurrentUser();
             $stats = [];
             
             // Total users
-            $query = "SELECT COUNT(*) as total FROM staff_applications";
+            $query = "SELECT COUNT(*) as total FROM staff_onboarding";
             $stmt = $db->prepare($query);
             $stmt->execute();
             $stats['total'] = $stmt->fetch()['total'];
             
             // Pending users
-            $query = "SELECT COUNT(*) as pending FROM staff_applications WHERE status = 'pending'";
+            $query = "SELECT COUNT(*) as pending FROM staff_onboarding WHERE status = 'pending'";
             $stmt = $db->prepare($query);
             $stmt->execute();
             $stats['pending'] = $stmt->fetch()['pending'];
             
             // Approved users
-            $query = "SELECT COUNT(*) as approved FROM staff_applications WHERE status = 'approved'";
+            $query = "SELECT COUNT(*) as approved FROM staff_onboarding WHERE status = 'approved'";
             $stmt = $db->prepare($query);
             $stmt->execute();
             $stats['approved'] = $stmt->fetch()['approved'];
             
             // Rejected users
-            $query = "SELECT COUNT(*) as rejected FROM staff_applications WHERE status = 'rejected'";
+            $query = "SELECT COUNT(*) as rejected FROM staff_onboarding WHERE status = 'rejected'";
             $stmt = $db->prepare($query);
             $stmt->execute();
             $stats['rejected'] = $stmt->fetch()['rejected'];
@@ -514,7 +521,7 @@ $user = $auth->getCurrentUser();
                     <?php
                     // Get all users
                     $query = "SELECT id, first_name, last_name, email, phone, position, employment_type, status, created_at, reviewed_at
-                              FROM staff_applications 
+                              FROM staff_onboarding 
                               ORDER BY created_at DESC";
                     $stmt = $db->prepare($query);
                     $stmt->execute();
