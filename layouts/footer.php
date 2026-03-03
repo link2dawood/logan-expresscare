@@ -37,7 +37,7 @@
                         <!-- Footer Contact Item Start -->
                         <div class="footer-contact-item">
                             <h3>Contact Information</h3>
-                            <p>460 Lonsdale Street, Level 13 & Level 14, Melbourne, Victoria, 3000, Australia</p>
+                            <p>460 Lonsdale Street, level 13 & 14, Melbourne, Victoria, 3000, Australia</p>
                         </div>
                         <!-- Footer Contact Item End -->
                 
