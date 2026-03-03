@@ -110,6 +110,15 @@ The database automatically creates tables on first connection. Default admin cre
 2. Login with admin credentials
 3. Review and manage staff applications
 
+### **Build / Deploy Note (Important)**
+This repository root is primarily a PHP site for the `/admin` onboarding panel.
+For these PHP changes, **do not run** `npm run dev` or `npm run prod` in `public_html` because this app section has no npm scripts.
+Deployment for these changes is:
+1. `git pull`
+2. Ensure PHP can connect to MySQL
+3. Open `/admin/superadmin-login.php` and `/admin/referrals.php` (table auto-creates via `Database::autoSetupTables()`)
+
+
 ---
 
 ## 📝 Onboarding Process
