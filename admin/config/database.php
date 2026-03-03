@@ -166,6 +166,52 @@ class Database {
                 INDEX idx_email (email)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
         ");
+
+        // Referrals Table
+        $this->conn->exec("
+            CREATE TABLE IF NOT EXISTS referrals (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                referral_source VARCHAR(100) NOT NULL,
+                first_name VARCHAR(100) NOT NULL,
+                last_name VARCHAR(100) NOT NULL,
+                dob DATE NOT NULL,
+                gender VARCHAR(50) DEFAULT NULL,
+                home_address TEXT NOT NULL,
+                phone_number VARCHAR(30) NOT NULL,
+                email_address VARCHAR(150) DEFAULT NULL,
+                ndis_number VARCHAR(100) DEFAULT NULL,
+                has_guardian VARCHAR(20) DEFAULT NULL,
+                country_of_birth VARCHAR(120) DEFAULT NULL,
+                require_interpreter VARCHAR(20) DEFAULT NULL,
+                relevant_culture TEXT DEFAULT NULL,
+                identify_aboriginal VARCHAR(50) DEFAULT NULL,
+                primary_service VARCHAR(100) NOT NULL,
+                hours_required VARCHAR(100) DEFAULT NULL,
+                secondary_service VARCHAR(100) DEFAULT NULL,
+                additional_service VARCHAR(100) DEFAULT NULL,
+                participant_conditions TEXT DEFAULT NULL,
+                extra_information TEXT DEFAULT NULL,
+                special_assessments TEXT DEFAULT NULL,
+                practitioner_notes TEXT DEFAULT NULL,
+                referrer_name VARCHAR(150) DEFAULT NULL,
+                referrer_relationship VARCHAR(120) DEFAULT NULL,
+                referrer_phone VARCHAR(30) DEFAULT NULL,
+                referrer_email VARCHAR(150) DEFAULT NULL,
+                consent_privacy VARCHAR(10) DEFAULT NULL,
+                consent_contact VARCHAR(10) DEFAULT NULL,
+                submission_date DATETIME NOT NULL,
+                ip_address VARCHAR(45) DEFAULT NULL,
+                status ENUM('pending', 'under_review', 'approved', 'rejected') DEFAULT 'pending',
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+                INDEX idx_referral_status (status),
+                INDEX idx_referral_created_at (created_at),
+                INDEX idx_referral_submission_date (submission_date),
+                INDEX idx_referral_name (first_name, last_name),
+                INDEX idx_referral_email (email_address)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+        ");
         
     }
     
