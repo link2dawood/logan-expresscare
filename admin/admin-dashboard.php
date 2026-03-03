@@ -392,7 +392,7 @@ $user = $auth->getCurrentUser();
         
         <nav class="sidebar-nav">
             <div class="nav-item">
-                <a href="admin-dashboard.php" class="nav-link active">
+                <a href="dashboard.php" class="nav-link active">
                     <i class="fas fa-tachometer-alt"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>
