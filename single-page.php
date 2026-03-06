@@ -1417,18 +1417,21 @@
 
     	const formData = new FormData(form);
 
-    	try {
-    		const response = await fetch('send-mail.php', {
-    			method: 'POST',
-    			body: formData
-    		});
+	    	try {
+	    		const response = await fetch('send-mail.php', {
+	    			method: 'POST',
+	    			headers: {
+	    				'X-Requested-With': 'XMLHttpRequest'
+	    			},
+	    			body: formData
+	    		});
 
-    		const result = (await response.text()).trim();
+	    		const result = (await response.text()).trim();
 
-    		if (response.ok && result === 'success') {
-    			window.location.href = 'thank-you.php';
-    			return;
-    		}
+	    		if (response.ok && result === 'success') {
+	    			window.location.href = 'thankyou.php';
+	    			return;
+	    		}
 
     		showToast('Error', 'Unable to submit your request. Please try again.', 'error');
     	} catch (error) {

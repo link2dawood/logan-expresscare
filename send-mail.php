@@ -7,20 +7,46 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 require 'PHPMailer/src/Exception.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo 'error';
+function isAjaxRequest()
+{
+    return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+}
+
+function respondSuccess()
+{
+    if (isAjaxRequest()) {
+        echo 'success';
+        exit;
+    }
+
+    header('Location: thankyou.php');
     exit;
 }
 
-$userType        = $_POST['userType'] ?? '';
-$serviceInterest = $_POST['serviceInterest'] ?? '';
-$fullName        = $_POST['fullName'] ?? '';
-$phoneNumber     = $_POST['phoneNumber'] ?? '';
-$emailAddress    = $_POST['emailAddress'] ?? '';
-$contactMethod   = $_POST['contactMethod'] ?? '';
-$contactTime     = $_POST['contactTime'] ?? '';
-$message         = $_POST['message'] ?? '';
+function respondError($statusLine)
+{
+    if (isAjaxRequest()) {
+        header($statusLine);
+        echo 'error';
+        exit;
+    }
+
+    header('Location: single-page.php?status=error');
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    respondError('HTTP/1.1 405 Method Not Allowed');
+}
+
+$userType        = isset($_POST['userType']) ? $_POST['userType'] : '';
+$serviceInterest = isset($_POST['serviceInterest']) ? $_POST['serviceInterest'] : '';
+$fullName        = isset($_POST['fullName']) ? $_POST['fullName'] : '';
+$phoneNumber     = isset($_POST['phoneNumber']) ? $_POST['phoneNumber'] : '';
+$emailAddress    = isset($_POST['emailAddress']) ? $_POST['emailAddress'] : '';
+$contactMethod   = isset($_POST['contactMethod']) ? $_POST['contactMethod'] : '';
+$contactTime     = isset($_POST['contactTime']) ? $_POST['contactTime'] : '';
+$message         = isset($_POST['message']) ? $_POST['message'] : '';
 
 $mail = new PHPMailer(true);
 
@@ -67,8 +93,8 @@ try {
         $mail->send();
     }
 
-    echo 'success';
+    respondSuccess();
 } catch (Exception $e) {
-    http_response_code(500);
-    echo 'error';
+    error_log('send-mail.php error: ' . $mail->ErrorInfo);
+    respondError('HTTP/1.1 500 Internal Server Error');
 }
