@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 $DEBUG_MODE = isset($_REQUEST['debug']) && $_REQUEST['debug'] === '1';
 $DEBUG_LOG_FILE = __DIR__ . '/send-mail-debug.log';
+$QUEUE_FILE = __DIR__ . '/consultation-queue.jsonl';
 
 function isAjaxRequest()
 {
@@ -101,6 +102,25 @@ function sendConsultationEmails($mailer, $data)
         $mailer->send();
         debugLog('User confirmation email sent');
     }
+}
+
+function queueSubmission($data, $reason)
+{
+    global $QUEUE_FILE;
+
+    $entry = array(
+        'queued_at' => date('c'),
+        'reason' => $reason,
+        'payload' => $data,
+    );
+
+    $json = json_encode($entry);
+    if ($json === false) {
+        return false;
+    }
+
+    $result = @file_put_contents($QUEUE_FILE, $json . PHP_EOL, FILE_APPEND | LOCK_EX);
+    return $result !== false;
 }
 
 register_shutdown_function(function () {
@@ -224,6 +244,14 @@ try {
             'exception' => $fallbackException->getMessage(),
             'mail_error' => $fallbackError,
         ));
-        respondError('HTTP/1.1 500 Internal Server Error', $debugMessage . ' | fallback: ' . $fallbackError);
+
+        $queueReason = $debugMessage . ' | fallback: ' . $fallbackError;
+        if (queueSubmission($payload, $queueReason)) {
+            error_log('send-mail.php queued submission after mail failures');
+            debugLog('Submission queued to local file', array('queue_file' => $QUEUE_FILE));
+            respondSuccess();
+        }
+
+        respondError('HTTP/1.1 500 Internal Server Error', $queueReason . ' | queue: failed_to_write');
     }
 }
