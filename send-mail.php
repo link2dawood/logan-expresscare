@@ -60,6 +60,49 @@ function respondError($statusLine, $debugMessage = '')
     exit;
 }
 
+function sendConsultationEmails($mailer, $data)
+{
+    $fromEmail = 'ateeqrehman4809@gmail.com';
+    $fromName = 'Consultation Form';
+    $adminEmail = 'ateeqrehman4809@gmail.com';
+
+    $adminBody = "
+        <h3>New Consultation Request</h3>
+        <p><strong>Name:</strong> {$data['fullName']}</p>
+        <p><strong>Phone:</strong> {$data['phoneNumber']}</p>
+        <p><strong>Email:</strong> {$data['emailAddress']}</p>
+        <p><strong>Role:</strong> {$data['userType']}</p>
+        <p><strong>Service:</strong> {$data['serviceInterest']}</p>
+        <p><strong>Preferred Contact:</strong> {$data['contactMethod']}</p>
+        <p><strong>Preferred Time:</strong> {$data['contactTime']}</p>
+        <p><strong>Message:</strong><br>{$data['message']}</p>
+    ";
+
+    $mailer->setFrom($fromEmail, $fromName);
+    $mailer->addAddress($adminEmail);
+    $mailer->isHTML(true);
+    $mailer->Subject = 'New Consultation Request';
+    $mailer->Body = $adminBody;
+    $mailer->send();
+    debugLog('Admin email sent');
+
+    if (!empty($data['emailAddress'])) {
+        debugLog('Sending confirmation email to user', array('email' => $data['emailAddress']));
+        $mailer->clearAddresses();
+        $mailer->addAddress($data['emailAddress']);
+        $mailer->Subject = 'We Received Your Request';
+        $mailer->Body = "
+            <h3>Thank You {$data['fullName']}</h3>
+            <p>We have received your consultation request.</p>
+            <p>Our team will contact you soon.</p>
+            <br>
+            <p>Regards,<br>Support Team</p>
+        ";
+        $mailer->send();
+        debugLog('User confirmation email sent');
+    }
+}
+
 register_shutdown_function(function () {
     $error = error_get_last();
     if (!$error) {
@@ -106,6 +149,17 @@ $contactMethod   = isset($_POST['contactMethod']) ? $_POST['contactMethod'] : ''
 $contactTime     = isset($_POST['contactTime']) ? $_POST['contactTime'] : '';
 $message         = isset($_POST['message']) ? $_POST['message'] : '';
 
+$payload = array(
+    'userType' => $userType,
+    'serviceInterest' => $serviceInterest,
+    'fullName' => $fullName,
+    'phoneNumber' => $phoneNumber,
+    'emailAddress' => $emailAddress,
+    'contactMethod' => $contactMethod,
+    'contactTime' => $contactTime,
+    'message' => $message,
+);
+
 $mail = new PHPMailer(true);
 
 try {
@@ -140,41 +194,7 @@ try {
     $mail->Port       = 587;
     $mail->Timeout    = 20;
 
-    $mail->setFrom('ateeqrehman4809@gmail.com', 'Consultation Form');
-    $mail->addAddress('ateeqrehman4809@gmail.com');
-    $mail->isHTML(true);
-    $mail->Subject = 'New Consultation Request';
-    $mail->Body = "
-        <h3>New Consultation Request</h3>
-        <p><strong>Name:</strong> $fullName</p>
-        <p><strong>Phone:</strong> $phoneNumber</p>
-        <p><strong>Email:</strong> $emailAddress</p>
-        <p><strong>Role:</strong> $userType</p>
-        <p><strong>Service:</strong> $serviceInterest</p>
-        <p><strong>Preferred Contact:</strong> $contactMethod</p>
-        <p><strong>Preferred Time:</strong> $contactTime</p>
-        <p><strong>Message:</strong><br>$message</p>
-    ";
-
-    $mail->send();
-    debugLog('Admin email sent');
-
-    // Optional user confirmation
-    if (!empty($emailAddress)) {
-        debugLog('Sending confirmation email to user', array('email' => $emailAddress));
-        $mail->clearAddresses();
-        $mail->addAddress($emailAddress);
-        $mail->Subject = 'We Received Your Request';
-        $mail->Body = "
-            <h3>Thank You $fullName</h3>
-            <p>We have received your consultation request.</p>
-            <p>Our team will contact you soon.</p>
-            <br>
-            <p>Regards,<br>Support Team</p>
-        ";
-        $mail->send();
-        debugLog('User confirmation email sent');
-    }
+    sendConsultationEmails($mail, $payload);
 
     debugLog('Request completed successfully');
     respondSuccess();
@@ -188,5 +208,22 @@ try {
         'mail_error' => $mailError,
     ));
 
-    respondError('HTTP/1.1 500 Internal Server Error', $debugMessage);
+    // Fallback transport for hosts where outbound SMTP is blocked.
+    try {
+        debugLog('Attempting mail() fallback transport');
+        $fallbackMail = new PHPMailer(true);
+        $fallbackMail->isMail();
+        $fallbackMail->CharSet = 'UTF-8';
+        sendConsultationEmails($fallbackMail, $payload);
+        debugLog('Fallback mail() transport succeeded');
+        respondSuccess();
+    } catch (Exception $fallbackException) {
+        $fallbackError = isset($fallbackMail->ErrorInfo) ? $fallbackMail->ErrorInfo : $fallbackException->getMessage();
+        error_log('send-mail.php fallback error: ' . $fallbackError);
+        debugLog('Fallback transport failed', array(
+            'exception' => $fallbackException->getMessage(),
+            'mail_error' => $fallbackError,
+        ));
+        respondError('HTTP/1.1 500 Internal Server Error', $debugMessage . ' | fallback: ' . $fallbackError);
+    }
 }
