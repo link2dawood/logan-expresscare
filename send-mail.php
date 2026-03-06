@@ -209,7 +209,7 @@ try {
     $mail->Host       = $smtpResolvedHost;
     $mail->SMTPAuth   = true;
     $mail->Username   = 'ateeqrehman4809@gmail.com';
-    $mail->Password   = 'dnzn gvkb vawy wkwd';
+    $mail->Password   = 'dbuy mrum lybo stia';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
     $mail->Timeout    = 20;
