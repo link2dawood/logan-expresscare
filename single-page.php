@@ -1415,7 +1415,11 @@
     	submitBtn.classList.add('btn-loading');
     	submitBtn.disabled = true;
 
-    	const formData = new FormData(form);
+	    	const formData = new FormData(form);
+	    	const debugMode = new URLSearchParams(window.location.search).get('debug') === '1';
+	    	if (debugMode) {
+	    		formData.append('debug', '1');
+	    	}
 
 	    	try {
 	    		const response = await fetch('send-mail.php', {
@@ -1433,10 +1437,20 @@
 	    			return;
 	    		}
 
-    		showToast('Error', 'Unable to submit your request. Please try again.', 'error');
-    	} catch (error) {
-    		showToast('Error', 'Server error. Please try again later.', 'error');
-    	} finally {
+	    		if (debugMode) {
+	    			console.error('send-mail.php debug response', {
+	    				status: response.status,
+	    				body: result
+	    			});
+	    		}
+
+	    		showToast('Error', 'Unable to submit your request. Please try again.', 'error');
+	    	} catch (error) {
+	    		if (debugMode) {
+	    			console.error('Form submit exception', error);
+	    		}
+	    		showToast('Error', 'Server error. Please try again later.', 'error');
+	    	} finally {
     		submitBtn.classList.remove('btn-loading');
     		submitBtn.disabled = false;
     		submitBtn.innerHTML = originalText;
