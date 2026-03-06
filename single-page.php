@@ -1423,23 +1423,21 @@
     			body: formData
     		});
 
-    		const result = await response.text();
+    		const result = (await response.text()).trim();
 
-    		if (result.trim() === "success") {
-    			showToast('Success!', 'Our team will contact you soon.');
-    			form.reset();
-    		} else {
-    			showToast('Success!', 'Our team will contact you soon.');
-    			form.reset();
+    		if (response.ok && result === 'success') {
+    			window.location.href = 'thank-you.php';
+    			return;
     		}
 
+    		showToast('Error', 'Unable to submit your request. Please try again.', 'error');
     	} catch (error) {
     		showToast('Error', 'Server error. Please try again later.', 'error');
+    	} finally {
+    		submitBtn.classList.remove('btn-loading');
+    		submitBtn.disabled = false;
+    		submitBtn.innerHTML = originalText;
     	}
-
-    	submitBtn.classList.remove('btn-loading');
-    	submitBtn.disabled = false;
-    	submitBtn.innerHTML = originalText;
     });
 
     // Intersection Observer for animations
