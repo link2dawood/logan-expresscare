@@ -119,13 +119,26 @@ try {
     }
 
     // SMTP settings
+    $smtpHostname = 'smtp.gmail.com';
+    $smtpResolvedHost = gethostbyname($smtpHostname);
+    if (empty($smtpResolvedHost) || $smtpResolvedHost === $smtpHostname) {
+        $smtpResolvedHost = $smtpHostname;
+    }
+
+    debugLog('SMTP host selected', array(
+        'hostname' => $smtpHostname,
+        'resolved_host' => $smtpResolvedHost,
+        'port' => 587,
+    ));
+
     $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com';
+    $mail->Host       = $smtpResolvedHost;
     $mail->SMTPAuth   = true;
     $mail->Username   = 'ateeqrehman4809@gmail.com';
     $mail->Password   = 'dnzn gvkb vawy wkwd';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
+    $mail->Timeout    = 20;
 
     $mail->setFrom('ateeqrehman4809@gmail.com', 'Consultation Form');
     $mail->addAddress('ateeqrehman4809@gmail.com');
