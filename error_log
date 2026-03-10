@@ -64870,3 +64870,19 @@ Stack trace:
 [02-Mar-2026 17:31:25 UTC] Contact form error: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
 [02-Mar-2026 17:33:01 UTC] Contact form error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'first-name' in 'INSERT INTO'
 [02-Mar-2026 17:36:53 UTC] Contact form error: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+[06-Mar-2026 16:12:35 UTC] send-mail.php error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 101 Additional SMTP info: Network is unreachable
+[06-Mar-2026 16:18:56 UTC] send-mail.php error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 101 Additional SMTP info: Network is unreachable
+[06-Mar-2026 16:22:14 UTC] send-mail.php error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 110 Additional SMTP info: Connection timed out
+[06-Mar-2026 16:25:21 UTC] send-mail.php error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 110 Additional SMTP info: Connection timed out
+[06-Mar-2026 16:25:32 UTC] send-mail.php fallback error: Could not instantiate mail function.
+[06-Mar-2026 16:26:25 UTC] send-mail.php error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 110 Additional SMTP info: Connection timed out
+[06-Mar-2026 16:26:41 UTC] send-mail.php fallback error: Could not instantiate mail function.
+[06-Mar-2026 16:31:46 UTC] send-mail.php error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 110 Additional SMTP info: Connection timed out
+[06-Mar-2026 16:31:57 UTC] send-mail.php fallback error: Could not instantiate mail function.
+[06-Mar-2026 16:31:57 UTC] send-mail.php queued submission after mail failures
+[06-Mar-2026 16:34:16 UTC] send-mail.php error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 110 Additional SMTP info: Connection timed out
+[06-Mar-2026 16:34:28 UTC] send-mail.php fallback error: Could not instantiate mail function.
+[06-Mar-2026 16:34:28 UTC] send-mail.php queued submission after mail failures
+[06-Mar-2026 16:53:21 UTC] send-mail.php error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 110 Additional SMTP info: Connection timed out
+[06-Mar-2026 16:53:34 UTC] send-mail.php fallback error: Could not instantiate mail function.
+[06-Mar-2026 16:53:34 UTC] send-mail.php queued submission after mail failures

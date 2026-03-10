@@ -1,2 +1,82 @@
 [21-Oct-2025 14:58:27 UTC] Connection error: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
 [21-Oct-2025 14:59:46 UTC] Database tables created and seeded successfully with default admin user (username: admin, password: admin123)
+[03-Mar-2026 19:35:27 UTC] Application fetch error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'booking_system.staff_applications' doesn't exist
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 800
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 800
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 800
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 800
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 802
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 802
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 803
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 803
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 810
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 810
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 814
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 814
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 818
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 818
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 822
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 822
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 826
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 826
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 828
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 828
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 834
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 834
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 855
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 855
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 859
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 859
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 863
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 863
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 867
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 867
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 871
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 871
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 875
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 875
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 877
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 877
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 900
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 900
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 901
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 901
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 902
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 902
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 903
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 903
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 904
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 904
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 905
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 905
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 906
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 906
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 907
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 907
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 908
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 908
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 909
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 909
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 910
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 910
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 911
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 911
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 912
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 912
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Undefined variable $application in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 947
+[03-Mar-2026 19:35:27 UTC] PHP Warning:  Trying to access array offset on null in /home/bw8ol9jzdeiy/public_html/admin/application-details.php on line 947
+[03-Mar-2026 19:37:40 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'booking_system.staff_applications' doesn't exist in /home/bw8ol9jzdeiy/public_html/admin/users.php:450
+Stack trace:
+#0 /home/bw8ol9jzdeiy/public_html/admin/users.php(450): PDO->prepare()
+#1 {main}
+  thrown in /home/bw8ol9jzdeiy/public_html/admin/users.php on line 450
+[03-Mar-2026 19:39:06 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'booking_system.staff_applications' doesn't exist in /home/bw8ol9jzdeiy/public_html/admin/users.php:450
+Stack trace:
+#0 /home/bw8ol9jzdeiy/public_html/admin/users.php(450): PDO->prepare()
+#1 {main}
+  thrown in /home/bw8ol9jzdeiy/public_html/admin/users.php on line 450
+[03-Mar-2026 19:40:36 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'booking_system.staff_applications' doesn't exist in /home/bw8ol9jzdeiy/public_html/admin/users.php:450
+Stack trace:
+#0 /home/bw8ol9jzdeiy/public_html/admin/users.php(450): PDO->prepare()
+#1 {main}
+  thrown in /home/bw8ol9jzdeiy/public_html/admin/users.php on line 450

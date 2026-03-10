@@ -1,0 +1,31 @@
+[2026-03-06 16:21:54] Request started | {"method":"POST","ajax":true,"php_version":"8.3.30","post_keys":["userType","serviceInterest","fullName","phoneNumber","emailAddress","contactMethod","contactTime","message","debug"]}
+[2026-03-06 16:21:54] Configuring SMTP transport
+[2026-03-06 16:21:54] SMTP host selected | {"hostname":"smtp.gmail.com","resolved_host":"142.251.127.108","port":587}
+[2026-03-06 16:22:14] SMTP debug | {"level":1,"message":"SMTP ERROR: Failed to connect to server: Connection timed out (110)"}
+[2026-03-06 16:22:14] SMTP debug | {"level":2,"message":"SMTP Error: Could not connect to SMTP host. Failed to connect to server"}
+[2026-03-06 16:22:14] Exception caught | {"exception":"SMTP Error: Could not connect to SMTP host. Failed to connect to server","mail_error":"SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 110 Additional SMTP info: Connection timed out"}
+[2026-03-06 16:25:01] Request started | {"method":"POST","ajax":true,"php_version":"8.3.30","post_keys":["userType","serviceInterest","fullName","phoneNumber","emailAddress","contactMethod","contactTime","message","debug"]}
+[2026-03-06 16:25:01] Configuring SMTP transport
+[2026-03-06 16:25:01] SMTP host selected | {"hostname":"smtp.gmail.com","resolved_host":"142.251.127.109","port":587}
+[2026-03-06 16:25:21] SMTP debug | {"level":1,"message":"SMTP ERROR: Failed to connect to server: Connection timed out (110)"}
+[2026-03-06 16:25:21] SMTP debug | {"level":2,"message":"SMTP Error: Could not connect to SMTP host. Failed to connect to server"}
+[2026-03-06 16:25:21] Exception caught | {"exception":"SMTP Error: Could not connect to SMTP host. Failed to connect to server","mail_error":"SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 110 Additional SMTP info: Connection timed out"}
+[2026-03-06 16:25:21] Attempting mail() fallback transport
+[2026-03-06 16:25:32] Fallback transport failed | {"exception":"Could not instantiate mail function.","mail_error":"Could not instantiate mail function."}
+[2026-03-06 16:26:05] Request started | {"method":"POST","ajax":true,"php_version":"8.3.30","post_keys":["userType","serviceInterest","fullName","phoneNumber","emailAddress","contactMethod","contactTime","message","debug"]}
+[2026-03-06 16:26:05] Configuring SMTP transport
+[2026-03-06 16:26:05] SMTP host selected | {"hostname":"smtp.gmail.com","resolved_host":"142.251.127.109","port":587}
+[2026-03-06 16:26:25] SMTP debug | {"level":1,"message":"SMTP ERROR: Failed to connect to server: Connection timed out (110)"}
+[2026-03-06 16:26:25] SMTP debug | {"level":2,"message":"SMTP Error: Could not connect to SMTP host. Failed to connect to server"}
+[2026-03-06 16:26:25] Exception caught | {"exception":"SMTP Error: Could not connect to SMTP host. Failed to connect to server","mail_error":"SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 110 Additional SMTP info: Connection timed out"}
+[2026-03-06 16:26:25] Attempting mail() fallback transport
+[2026-03-06 16:26:41] Fallback transport failed | {"exception":"Could not instantiate mail function.","mail_error":"Could not instantiate mail function."}
+[2026-03-06 16:31:26] Request started | {"method":"POST","ajax":true,"php_version":"8.3.30","post_keys":["userType","serviceInterest","fullName","phoneNumber","emailAddress","contactMethod","contactTime","message","debug"]}
+[2026-03-06 16:31:26] Configuring SMTP transport
+[2026-03-06 16:31:26] SMTP host selected | {"hostname":"smtp.gmail.com","resolved_host":"142.251.127.108","port":587}
+[2026-03-06 16:31:46] SMTP debug | {"level":1,"message":"SMTP ERROR: Failed to connect to server: Connection timed out (110)"}
+[2026-03-06 16:31:46] SMTP debug | {"level":2,"message":"SMTP Error: Could not connect to SMTP host. Failed to connect to server"}
+[2026-03-06 16:31:46] Exception caught | {"exception":"SMTP Error: Could not connect to SMTP host. Failed to connect to server","mail_error":"SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server SMTP code: 110 Additional SMTP info: Connection timed out"}
+[2026-03-06 16:31:46] Attempting mail() fallback transport
+[2026-03-06 16:31:57] Fallback transport failed | {"exception":"Could not instantiate mail function.","mail_error":"Could not instantiate mail function."}
+[2026-03-06 16:31:57] Submission queued to local file | {"queue_file":"\/home\/bw8ol9jzdeiy\/public_html\/consultation-queue.jsonl"}

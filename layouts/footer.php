@@ -18,14 +18,14 @@
                         <!-- About Footer Content End -->
 
                         <!-- Footer Social Link Start -->
-                        <!--<div class="footer-social-links">-->
-                        <!--    <ul>-->
-                        <!--        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>-->
-                        <!--        <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>-->
-                        <!--        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>-->
-                        <!--        <li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>-->
-                        <!--    </ul>-->
-                        <!--</div>-->
+                        <div class="footer-social-links">
+	<ul>
+		<li><a href="https://www.instagram.com/loganexpresscare"><i class="fa-brands fa-instagram"></i></a></li>
+		<li><a href="https://www.facebook.com/profile.php?id=61578906639892"><i class="fa-brands fa-facebook-f"></i></a></li>
+		<li><a href="https://www.linkedin.com/company/logan-express-care/"><i class="fa-brands fa-linkedin-in"></i></a></li>
+		<li><a href="https://wa.me/loganexpresscare" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+	</ul>
+</div>
                         <!-- Footer Social Link End -->
                     </div>
                     <!-- About Footer End -->
