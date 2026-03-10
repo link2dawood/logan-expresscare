@@ -114,6 +114,21 @@
                             </template>
                             <template v-else-if="column.dataIndex === 'action'">
                                 <a-space>
+                                    <a-tooltip placement="topLeft">
+                                        <template #title>
+                                            <span>{{ $t("referral.referral_details") }}</span>
+                                        </template>
+                                        <a-button
+                                            v-if="
+                                                permsArray.includes('referrals_view') ||
+                                                permsArray.includes('admin')
+                                            "
+                                            type="primary"
+                                            @click="viewReferral(record)"
+                                        >
+                                            <template #icon><EyeOutlined /></template>
+                                        </a-button>
+                                    </a-tooltip>
                                     <a-button
                                         v-if="
                                             permsArray.includes(
@@ -136,16 +151,22 @@
             </a-col>
         </a-row>
     </admin-page-table-content>
+
+    <View
+        :visible="viewVisible"
+        :referral-xid="viewReferralXid"
+        :page-title="$t('referral.referral_details')"
+        @close="onCloseView"
+    />
 </template>
 
 <script>
-import { onMounted, ref, computed, reactive } from "vue";
-import {
-    DeleteOutlined,
-} from "@ant-design/icons-vue";
+import { onMounted, ref, reactive } from "vue";
+import { DeleteOutlined, EyeOutlined } from "@ant-design/icons-vue";
 import crud from "../../../common/composable/crud";
 import common from "../../../common/composable/common";
 import AdminPageHeader from "../../../common/layouts/AdminPageHeader.vue";
+import View from "./View.vue";
 import { useI18n } from "vue-i18n";
 import { Modal } from "ant-design-vue";
 import { ExclamationCircleOutlined } from "@ant-design/icons-vue";
@@ -155,7 +176,9 @@ export default {
     name: "ReferralsIndex",
     components: {
         DeleteOutlined,
+        EyeOutlined,
         AdminPageHeader,
+        View,
     },
     setup() {
         const { t } = useI18n();
@@ -215,10 +238,21 @@ export default {
                 title: t("common.action"),
                 dataIndex: "action",
                 key: "action",
-                width: 80,
+                width: 120,
                 fixed: "right",
             },
         ];
+
+        const viewVisible = ref(false);
+        const viewReferralXid = ref("");
+        const viewReferral = (record) => {
+            viewReferralXid.value = record.xid;
+            viewVisible.value = true;
+        };
+        const onCloseView = () => {
+            viewVisible.value = false;
+            viewReferralXid.value = "";
+        };
 
         const statusColors = {
             pending: "processing",
@@ -318,6 +352,10 @@ export default {
             handleTableChange,
             showDeleteConfirm,
             showSelectedDeleteConfirm,
+            viewVisible,
+            viewReferralXid,
+            viewReferral,
+            onCloseView,
         };
     },
 };

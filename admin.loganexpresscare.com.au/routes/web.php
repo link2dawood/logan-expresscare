@@ -122,7 +122,7 @@ ApiRoute::group(['namespace' => 'App\Http\Controllers\Api'], function () {
 
 
         ApiRoute::resource('complaints', 'ComplaintController', $options);
-        ApiRoute::resource('referrals', 'ReferralController', $options);
+        ApiRoute::resource('referrals', 'ReferralController', ['as' => 'api']);
         ApiRoute::resource('news', 'NewsController', $options);
         ApiRoute::resource('forms', 'FormController', $options);
         ApiRoute::resource('feedbacks', 'FeedbackController', $options);

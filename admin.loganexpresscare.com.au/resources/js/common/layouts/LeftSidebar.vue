@@ -760,7 +760,8 @@
                     <a-menu-item
                         v-if="
                             permsArray.includes('referrals_view') ||
-                            permsArray.includes('admin')
+                            permsArray.includes('admin') ||
+                            (authStore.user && authStore.user.is_superadmin)
                         "
                         @click="
                             () => {
