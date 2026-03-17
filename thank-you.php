@@ -95,7 +95,7 @@
 
             if (seconds <= 0) {
                 clearInterval(timer);
-                window.location.href = 'single-page.php';
+                window.location.href = 'index-old.php';
             }
         }, 1000);
     </script>
