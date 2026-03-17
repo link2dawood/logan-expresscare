@@ -6,6 +6,20 @@ use PHPMailer\PHPMailer\PHPMailer;
 $DEBUG_MODE = isset($_REQUEST['debug']) && $_REQUEST['debug'] === '1';
 $DEBUG_LOG_FILE = __DIR__ . '/send-mail-debug.log';
 $QUEUE_FILE = __DIR__ . '/consultation-queue.jsonl';
+$MAIL_LOG_FILE = __DIR__ . '/consultation-mail.log';
+
+// SMTP configuration (recommended). Configure via environment variables on hosting.
+// If not set, this script will queue only (cron worker should be used).
+$SMTP_HOST = getenv('CONSULT_SMTP_HOST') ?: '';
+$SMTP_PORT = (int)(getenv('CONSULT_SMTP_PORT') ?: 587);
+$SMTP_USER = getenv('CONSULT_SMTP_USER') ?: '';
+$SMTP_PASS = getenv('CONSULT_SMTP_PASS') ?: '';
+$SMTP_ENCRYPTION = getenv('CONSULT_SMTP_ENCRYPTION') ?: 'tls'; // tls|ssl|none
+$SMTP_TIMEOUT = (int)(getenv('CONSULT_SMTP_TIMEOUT') ?: 4);
+
+$FROM_EMAIL = getenv('CONSULT_FROM_EMAIL') ?: '';
+$FROM_NAME = getenv('CONSULT_FROM_NAME') ?: 'Consultation Form';
+$ADMIN_EMAIL = getenv('CONSULT_ADMIN_EMAIL') ?: '';
 
 function isAjaxRequest()
 {
@@ -63,9 +77,12 @@ function respondError($statusLine, $debugMessage = '')
 
 function sendConsultationEmails($mailer, $data)
 {
-    $fromEmail = 'ateeqrehman4809@gmail.com';
-    $fromName = 'Consultation Form';
-    $adminEmail = 'ateeqrehman4809@gmail.com';
+    global $FROM_EMAIL, $FROM_NAME, $ADMIN_EMAIL;
+
+    // Backward-compatible defaults (avoid hard dependency on env vars)
+    $fromEmail = $FROM_EMAIL !== '' ? $FROM_EMAIL : 'noreply@loganexpresscare.com.au';
+    $fromName = $FROM_NAME !== '' ? $FROM_NAME : 'Consultation Form';
+    $adminEmail = $ADMIN_EMAIL !== '' ? $ADMIN_EMAIL : 'info@loganexpresscare.com.au';
 
     $adminBody = "
         <h3>New Consultation Request</h3>
@@ -123,6 +140,12 @@ function queueSubmission($data, $reason)
     return $result !== false;
 }
 
+function logMailLine($message)
+{
+    global $MAIL_LOG_FILE;
+    @file_put_contents($MAIL_LOG_FILE, '[' . date('c') . '] ' . $message . PHP_EOL, FILE_APPEND);
+}
+
 register_shutdown_function(function () {
     $error = error_get_last();
     if (!$error) {
@@ -152,14 +175,6 @@ $phpMailerFiles = array(
     'Exception.php' => __DIR__ . '/PHPMailer/src/Exception.php',
 );
 
-foreach ($phpMailerFiles as $name => $path) {
-    if (!file_exists($path)) {
-        debugLog('Missing PHPMailer file', array('file' => $name, 'path' => $path));
-        respondError('HTTP/1.1 500 Internal Server Error', 'missing_phpmailer_file_' . $name);
-    }
-    require_once $path;
-}
-
 $userType        = isset($_POST['userType']) ? $_POST['userType'] : '';
 $serviceInterest = isset($_POST['serviceInterest']) ? $_POST['serviceInterest'] : '';
 $fullName        = isset($_POST['fullName']) ? $_POST['fullName'] : '';
@@ -180,78 +195,21 @@ $payload = array(
     'message' => $message,
 );
 
-$mail = new PHPMailer(true);
-
 try {
-    debugLog('Configuring SMTP transport');
-
-    if ($DEBUG_MODE) {
-        $mail->SMTPDebug = 2;
-        $mail->Debugoutput = function ($str, $level) {
-            debugLog('SMTP debug', array('level' => $level, 'message' => $str));
-        };
+    // Always queue first so the browser redirect is fast (no SMTP/mail() blocking).
+    if (!queueSubmission($payload, 'queued')) {
+        logMailLine('Queue write failed');
+    } else {
+        debugLog('Submission queued', array('queue_file' => $QUEUE_FILE));
     }
 
-    // SMTP settings
-    $smtpHostname = 'smtp.gmail.com';
-    $smtpResolvedHost = gethostbyname($smtpHostname);
-    if (empty($smtpResolvedHost) || $smtpResolvedHost === $smtpHostname) {
-        $smtpResolvedHost = $smtpHostname;
-    }
-
-    debugLog('SMTP host selected', array(
-        'hostname' => $smtpHostname,
-        'resolved_host' => $smtpResolvedHost,
-        'port' => 587,
-    ));
-
-    $mail->isSMTP();
-    $mail->Host       = $smtpResolvedHost;
-    $mail->SMTPAuth   = true;
-    $mail->Username   = 'ateeqrehman4809@gmail.com';
-    $mail->Password   = 'dbuy mrum lybo stia';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 587;
-    $mail->Timeout    = 20;
-
-    sendConsultationEmails($mail, $payload);
-
-    debugLog('Request completed successfully');
+    // Respond immediately (front-end redirects to thankyou.php on "success")
     respondSuccess();
 } catch (Exception $e) {
-    $mailError = isset($mail->ErrorInfo) ? $mail->ErrorInfo : '';
-    $debugMessage = $mailError !== '' ? $mailError : $e->getMessage();
-
-    error_log('send-mail.php error: ' . $debugMessage);
-    debugLog('Exception caught', array(
-        'exception' => $e->getMessage(),
-        'mail_error' => $mailError,
-    ));
-
-    // Fallback transport for hosts where outbound SMTP is blocked.
-    try {
-        debugLog('Attempting mail() fallback transport');
-        $fallbackMail = new PHPMailer(true);
-        $fallbackMail->isMail();
-        $fallbackMail->CharSet = 'UTF-8';
-        sendConsultationEmails($fallbackMail, $payload);
-        debugLog('Fallback mail() transport succeeded');
-        respondSuccess();
-    } catch (Exception $fallbackException) {
-        $fallbackError = isset($fallbackMail->ErrorInfo) ? $fallbackMail->ErrorInfo : $fallbackException->getMessage();
-        error_log('send-mail.php fallback error: ' . $fallbackError);
-        debugLog('Fallback transport failed', array(
-            'exception' => $fallbackException->getMessage(),
-            'mail_error' => $fallbackError,
-        ));
-
-        $queueReason = $debugMessage . ' | fallback: ' . $fallbackError;
-        if (queueSubmission($payload, $queueReason)) {
-            error_log('send-mail.php queued submission after mail failures');
-            debugLog('Submission queued to local file', array('queue_file' => $QUEUE_FILE));
-            respondSuccess();
-        }
-
-        respondError('HTTP/1.1 500 Internal Server Error', $queueReason . ' | queue: failed_to_write');
-    }
+    error_log('send-mail.php error: ' . $e->getMessage());
+    debugLog('Exception caught', array('exception' => $e->getMessage()));
+    respondError('HTTP/1.1 500 Internal Server Error', $e->getMessage());
 }
+
+// If respondSuccess() returned (shouldn't), exit.
+exit;
