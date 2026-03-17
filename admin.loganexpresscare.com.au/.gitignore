@@ -20,7 +20,6 @@ yarn-error.log
 /public/css/*
 /public/js/*
 /public/uploads/*
-/public/build/*
 /Modules/*
 !/Modules
 .DS_Store
