@@ -39,10 +39,10 @@ define('MAILGUN_API_BASE', rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mail
 define('MAILGUN_API_KEY', getenv('MAILGUN_API_KEY') ?: '');
 
 define('SMTP_HOST',       getenv('MAILGUN_SMTP_HOST') ?: '');
-define('SMTP_PORT',       (int)(getenv('MAILGUN_SMTP_PORT') ?: 587));
+define('SMTP_PORT',       (int)(getenv('MAILGUN_SMTP_PORT') ?: 465));
 define('SMTP_USER',       getenv('MAILGUN_SMTP_USER') ?: '');
 define('SMTP_PASS',       getenv('MAILGUN_SMTP_PASS') ?: '');
-define('SMTP_ENCRYPTION', 'tls');
+define('SMTP_ENCRYPTION', 'ssl');
 define('SMTP_TIMEOUT',    10);
 
 define('FROM_EMAIL',  getenv('MAILGUN_FROM_EMAIL')  ?: 'noreply@loganexpresscare.com.au');

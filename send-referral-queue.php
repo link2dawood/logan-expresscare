@@ -28,16 +28,16 @@ ini_set('display_errors', 0);
 define('FROM_EMAIL', getenv('MAILGUN_FROM_EMAIL') ?: 'noreply@loganexpresscare.com.au');
 define('FROM_NAME',  getenv('MAILGUN_FROM_NAME')  ?: 'Logan Express Care');
 
-define('MAILGUN_DOMAIN', getenv('MAILGUN_DOMAIN') ?: '');
+define('MAILGUN_DOMAIN',   getenv('MAILGUN_DOMAIN')   ?: '');
 define('MAILGUN_API_BASE', rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mailgun.net', '/'));
-define('MAILGUN_API_KEY', getenv('MAILGUN_API_KEY') ?: '');
+define('MAILGUN_API_KEY',  getenv('MAILGUN_API_KEY')  ?: '');
 
-define('REFERRAL_SMTP_HOST', getenv('REFERRAL_SMTP_HOST') ?: '');
-define('REFERRAL_SMTP_PORT', (int)(getenv('REFERRAL_SMTP_PORT') ?: 587));
-define('REFERRAL_SMTP_USER', getenv('REFERRAL_SMTP_USER') ?: '');
-define('REFERRAL_SMTP_PASS', getenv('REFERRAL_SMTP_PASS') ?: '');
-define('REFERRAL_SMTP_ENCRYPTION', getenv('REFERRAL_SMTP_ENCRYPTION') ?: 'tls');
-define('REFERRAL_SMTP_TIMEOUT', (int)(getenv('REFERRAL_SMTP_TIMEOUT') ?: 10));
+define('REFERRAL_SMTP_HOST',       getenv('MAILGUN_SMTP_HOST') ?: '');
+define('REFERRAL_SMTP_PORT',       (int)(getenv('MAILGUN_SMTP_PORT') ?: 465));
+define('REFERRAL_SMTP_USER',       getenv('MAILGUN_SMTP_USER') ?: '');
+define('REFERRAL_SMTP_PASS',       getenv('MAILGUN_SMTP_PASS') ?: '');
+define('REFERRAL_SMTP_ENCRYPTION', 'ssl');
+define('REFERRAL_SMTP_TIMEOUT',    10);
 
 define('REFERRAL_MAIL_QUEUE_FILE', __DIR__ . '/referral-mail-queue.jsonl');
 define('REFERRAL_MAIL_QUEUE_SENT_FILE', __DIR__ . '/referral-mail-queue.sent.jsonl');
