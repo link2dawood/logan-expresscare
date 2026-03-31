@@ -1,15 +1,18 @@
 <?php
 /**
- * Local Mailgun config (DO NOT COMMIT).
+ * Mailgun configuration - DO NOT COMMIT this file.
  *
- * Put this file on hosting at:
+ * Place this file on hosting at:
  * /home/<user>/public_html/mailgun-config.php
  *
- * The queue workers will load these values if environment variables are not set.
+ * Fill in your Mailgun credentials below.
  */
 
-// Example:
-// putenv('MAILGUN_DOMAIN=...');
-// putenv('MAILGUN_API_BASE=https://api.mailgun.net');
-// putenv('MAILGUN_API_KEY=...');
+putenv('MAILGUN_DOMAIN=mg.loganexpresscare.com.au');           // Your Mailgun sending domain
+putenv('MAILGUN_API_BASE=https://api.mailgun.net');             // US region; EU: https://api.eu.mailgun.net
+putenv('MAILGUN_API_KEY=key-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'); // Your Mailgun private API key
 
+// Sender identity (from address must belong to your verified Mailgun domain)
+putenv('MAILGUN_FROM_EMAIL=noreply@loganexpresscare.com.au');
+putenv('MAILGUN_FROM_NAME=Logan Express Care');
+putenv('MAILGUN_ADMIN_EMAIL=info@loganexpresscare.com.au');

@@ -1,96 +1,106 @@
 <?php
 
-	$errorMSG = "";
+@include_once __DIR__ . '/mailgun-config.php';
 
-	// FIRSTNAME
-	if (empty($_POST["fname"])) {
-		$errorMSG = "First Name is required. ";
-	} else {
-		$fname = $_POST["fname"];
-	}
+$mg_domain   = getenv('MAILGUN_DOMAIN')      ?: '';
+$mg_api_base = rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mailgun.net', '/');
+$mg_api_key  = getenv('MAILGUN_API_KEY')     ?: '';
+$from_email  = getenv('MAILGUN_FROM_EMAIL')  ?: 'noreply@loganexpresscare.com.au';
+$from_name   = getenv('MAILGUN_FROM_NAME')   ?: 'Logan Express Care';
+$admin_email = getenv('MAILGUN_ADMIN_EMAIL') ?: 'info@loganexpresscare.com.au';
 
-	// LASTNAME
-	if (empty($_POST["lname"])) {
-		$errorMSG = "Last Name is required. ";
-	} else {
-		$lname = $_POST["lname"];
-	}
+$errorMSG = "";
 
-	// PHONE
-	if (empty($_POST["phone"])) {
-		$errorMSG .= "Phone is required. ";
-	} else {
-		$phone = $_POST["phone"];
-	}
+// FIRSTNAME
+if (empty($_POST["fname"])) {
+	$errorMSG = "First Name is required. ";
+} else {
+	$fname = $_POST["fname"];
+}
 
-	// EMAIL
-	if (empty($_POST["email"])) {
-		$errorMSG .= "Email is required. ";
-	} else {
-		$email = $_POST["email"];
-	}
+// LASTNAME
+if (empty($_POST["lname"])) {
+	$errorMSG = "Last Name is required. ";
+} else {
+	$lname = $_POST["lname"];
+}
 
-	// SERVICES
-	if (empty($_POST["services"])) {
-		$errorMSG .= "services is required. ";
-	} else {
-		$services = $_POST["services"];
-	}
+// PHONE
+if (empty($_POST["phone"])) {
+	$errorMSG .= "Phone is required. ";
+} else {
+	$phone = $_POST["phone"];
+}
 
-	// DATE
-	if (empty($_POST["date"])) {
-		$errorMSG .= "Date is required. ";
-	} else {
-		$date = $_POST["date"];
-	}
+// EMAIL
+if (empty($_POST["email"])) {
+	$errorMSG .= "Email is required. ";
+} else {
+	$email = $_POST["email"];
+}
 
-	// MESSAGE
-	if (empty($_POST["message"])) {
-		$errorMSG .= "Message is required. ";
-	} else {
-		$message = $_POST["message"];
-	}
+// SERVICES
+if (empty($_POST["services"])) {
+	$errorMSG .= "services is required. ";
+} else {
+	$services = $_POST["services"];
+}
 
-	$subject ='Book Appointment from site';
+// DATE
+if (empty($_POST["date"])) {
+	$errorMSG .= "Date is required. ";
+} else {
+	$date = $_POST["date"];
+}
 
-	$EmailTo = "info@yourdomain.com"; // Replace with your email.
+// MESSAGE
+if (empty($_POST["message"])) {
+	$errorMSG .= "Message is required. ";
+} else {
+	$message = $_POST["message"];
+}
 
-	// prepare email body text
-	$Body = "";
-	$Body .= "fname: ";
-	$Body .= $fname;
-	$Body .= "\n";
-	$Body .= "lname: ";
-	$Body .= $lname;
-	$Body .= "\n";
-	$Body .= "Phone: ";
-	$Body .= $phone;
-	$Body .= "\n";
-	$Body .= "Email: ";
-	$Body .= $email;
-	$Body .= "\n";
-	$Body .= "services: ";
-	$Body .= $services;
-	$Body .= "\n";
-	$Body .= "Date: ";
-	$Body .= $date;
-	$Body .= "\n";
-	$Body .= "Message: ";
-	$Body .= $message;
-	$Body .= "\n";
+if ($errorMSG !== "") {
+	echo $errorMSG;
+	exit;
+}
 
-	// send email
-	$success = @mail($EmailTo, $subject, $Body, "From:".$email);
+$subject = 'Book Appointment from site';
 
-	// redirect to success page
-	if ($success && $errorMSG == ""){
-	   echo "success";
-	}else{
-		if($errorMSG == ""){
-			echo "Something went wrong :(";
-		} else {
-			echo $errorMSG;
-		}
-	}
+$html = "
+<p><strong>First Name:</strong> " . htmlspecialchars($fname, ENT_QUOTES, 'UTF-8') . "</p>
+<p><strong>Last Name:</strong> " . htmlspecialchars($lname, ENT_QUOTES, 'UTF-8') . "</p>
+<p><strong>Phone:</strong> " . htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') . "</p>
+<p><strong>Email:</strong> " . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . "</p>
+<p><strong>Services:</strong> " . htmlspecialchars($services, ENT_QUOTES, 'UTF-8') . "</p>
+<p><strong>Date:</strong> " . htmlspecialchars($date, ENT_QUOTES, 'UTF-8') . "</p>
+<p><strong>Message:</strong> " . nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8')) . "</p>
+";
 
+$success = false;
+
+if ($mg_domain !== '' && $mg_api_key !== '' && function_exists('curl_init')) {
+	$url  = $mg_api_base . '/v3/' . $mg_domain . '/messages';
+	$from = $from_name . ' <' . $from_email . '>';
+	$ch   = curl_init();
+	curl_setopt_array($ch, array(
+		CURLOPT_URL            => $url,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_POST           => true,
+		CURLOPT_POSTFIELDS     => array('from' => $from, 'to' => $admin_email, 'subject' => $subject, 'html' => $html),
+		CURLOPT_USERPWD        => 'api:' . $mg_api_key,
+		CURLOPT_TIMEOUT        => 15,
+	));
+	$body   = curl_exec($ch);
+	$err    = curl_error($ch);
+	$status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	curl_close($ch);
+	$success = (!$err && $status >= 200 && $status < 300);
+}
+
+if ($success) {
+	echo "success";
+} else {
+	echo "Something went wrong :(";
+}
 ?>

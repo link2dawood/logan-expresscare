@@ -1,9 +1,9 @@
 <?php
-// Enable error reporting for debugging (remove in production)
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 
-// Set response header to JSON
+@include_once __DIR__ . '/mailgun-config.php';
+
 header('Content-Type: application/json');
 
 // Database configuration
@@ -12,25 +12,41 @@ define('DB_NAME', 'booking_system');
 define('DB_USER', 'admin-getgo');
 define('DB_PASS', 'zain123@getgo');
 
-// Email configuration
-// NOTE: Avoid PHP mail() on shared hosting: it can block for 20-30s and often gets rejected.
-// This script now queues outgoing emails and returns quickly, then attempts a fast SMTP send if configured.
-define('ADMIN_EMAIL', 'admin@loganexpresscare.com'); // Change to your email
-define('FROM_EMAIL', 'noreply@loganexpresscare.com');
-define('FROM_NAME', 'Logan Express Care');
+// Email configuration (from mailgun-config.php or env vars)
+define('ADMIN_EMAIL', getenv('MAILGUN_ADMIN_EMAIL') ?: 'info@loganexpresscare.com.au');
+define('FROM_EMAIL',  getenv('MAILGUN_FROM_EMAIL')  ?: 'noreply@loganexpresscare.com.au');
+define('FROM_NAME',   getenv('MAILGUN_FROM_NAME')   ?: 'Logan Express Care');
+define('MG_DOMAIN',   getenv('MAILGUN_DOMAIN')      ?: '');
+define('MG_API_BASE', rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mailgun.net', '/'));
+define('MG_API_KEY',  getenv('MAILGUN_API_KEY')     ?: '');
 
-// SMTP configuration (recommended). Set these as environment variables on the server.
-// Example: REFERRAL_SMTP_HOST, REFERRAL_SMTP_PORT, REFERRAL_SMTP_USER, REFERRAL_SMTP_PASS, REFERRAL_SMTP_ENCRYPTION
-define('REFERRAL_SMTP_HOST', getenv('REFERRAL_SMTP_HOST') ?: '');
-define('REFERRAL_SMTP_PORT', (int)(getenv('REFERRAL_SMTP_PORT') ?: 587));
-define('REFERRAL_SMTP_USER', getenv('REFERRAL_SMTP_USER') ?: '');
-define('REFERRAL_SMTP_PASS', getenv('REFERRAL_SMTP_PASS') ?: '');
-define('REFERRAL_SMTP_ENCRYPTION', getenv('REFERRAL_SMTP_ENCRYPTION') ?: 'tls'); // tls|ssl|none
-define('REFERRAL_SMTP_TIMEOUT', (int)(getenv('REFERRAL_SMTP_TIMEOUT') ?: 4)); // seconds
-
-// Queue/log files
-define('REFERRAL_MAIL_QUEUE_FILE', __DIR__ . '/referral-mail-queue.jsonl');
 define('REFERRAL_MAIL_LOG_FILE', __DIR__ . '/referral-mail.log');
+
+function sendViaMailgunReferral($to, $subject, $html) {
+    if (!function_exists('curl_init') || MG_DOMAIN === '' || MG_API_KEY === '') {
+        return false;
+    }
+    $url  = MG_API_BASE . '/v3/' . MG_DOMAIN . '/messages';
+    $from = FROM_NAME . ' <' . FROM_EMAIL . '>';
+    $ch   = curl_init();
+    curl_setopt_array($ch, array(
+        CURLOPT_URL            => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => array('from' => $from, 'to' => $to, 'subject' => $subject, 'html' => $html),
+        CURLOPT_USERPWD        => 'api:' . MG_API_KEY,
+        CURLOPT_TIMEOUT        => 15,
+    ));
+    $body   = curl_exec($ch);
+    $err    = curl_error($ch);
+    $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    if ($err || $status < 200 || $status >= 300) {
+        @file_put_contents(REFERRAL_MAIL_LOG_FILE, '[' . date('c') . '] Mailgun error status=' . $status . ' err=' . $err . PHP_EOL, FILE_APPEND);
+        return false;
+    }
+    return true;
+}
 
 // Response array
 $response = array('success' => false, 'message' => '');
@@ -251,15 +267,6 @@ try {
     </body>
     </html>";
 
-    // Email headers
-    $headers = array(
-        'MIME-Version: 1.0',
-        'Content-type: text/html; charset=utf-8',
-        'From: ' . FROM_NAME . ' <' . FROM_EMAIL . '>',
-        'Reply-To: ' . FROM_EMAIL,
-        'X-Mailer: PHP/' . phpversion()
-    );
-
     // Recipients: admin + confirmation emails to participant and referrer (if provided)
     $confirmation_recipients = array_unique(array_filter(array(
         $data['email_address'],
@@ -320,124 +327,17 @@ try {
         </body>
         </html>";
 
-    // Queue email jobs first (so the request returns fast even if sending fails/blocks)
-    $queuedAt = date('c');
-    $jobs = [];
-    $jobs[] = [
-        'queued_at' => $queuedAt,
-        'type' => 'admin',
-        'to' => ADMIN_EMAIL,
-        'subject' => $email_subject,
-        'html' => $email_body,
-        'headers' => $headers,
-        'referral_id' => (int)$referral_id,
-    ];
-
+    // Send emails via Mailgun directly
+    sendViaMailgunReferral(ADMIN_EMAIL, $email_subject, $email_body);
     foreach ($confirmation_recipients as $recipient_email) {
-        $jobs[] = [
-            'queued_at' => $queuedAt,
-            'type' => 'confirmation',
-            'to' => $recipient_email,
-            'subject' => $confirmation_subject,
-            'html' => $confirmation_body,
-            'headers' => $headers,
-            'referral_id' => (int)$referral_id,
-        ];
+        sendViaMailgunReferral($recipient_email, $confirmation_subject, $confirmation_body);
     }
-
-    foreach ($jobs as $job) {
-        $json = json_encode($job);
-        if ($json !== false) {
-            @file_put_contents(REFERRAL_MAIL_QUEUE_FILE, $json . PHP_EOL, FILE_APPEND | LOCK_EX);
-        }
-    }
-
-    // Try a fast SMTP send *after* the response is ready (best effort).
-    // If SMTP is not configured, emails remain queued for a cron worker to send.
-    $smtpConfigured = (REFERRAL_SMTP_HOST !== '' && REFERRAL_SMTP_USER !== '' && REFERRAL_SMTP_PASS !== '');
 
     $response['success'] = true;
     $response['message'] = 'Thank you! Your referral has been submitted successfully. Reference ID: #' . $referral_id;
     $response['referral_id'] = $referral_id;
 
     echo json_encode($response);
-
-    // Finish HTTP response quickly (prevents 20-30s wait in the browser)
-    if (function_exists('fastcgi_finish_request')) {
-        fastcgi_finish_request();
-    }
-
-    if ($smtpConfigured) {
-        // Minimal runtime + safety limits
-        @set_time_limit(6);
-        @ignore_user_abort(true);
-
-        $phpMailerBase = __DIR__ . '/PHPMailer/src/';
-        if (file_exists($phpMailerBase . 'PHPMailer.php')) {
-            require_once $phpMailerBase . 'PHPMailer.php';
-            require_once $phpMailerBase . 'SMTP.php';
-            require_once $phpMailerBase . 'Exception.php';
-
-            $mailer = new PHPMailer\PHPMailer\PHPMailer(true);
-            try {
-                $mailer->isSMTP();
-                $mailer->Host = REFERRAL_SMTP_HOST;
-                $mailer->SMTPAuth = true;
-                $mailer->Username = REFERRAL_SMTP_USER;
-                $mailer->Password = REFERRAL_SMTP_PASS;
-                $mailer->Port = REFERRAL_SMTP_PORT;
-                $mailer->Timeout = REFERRAL_SMTP_TIMEOUT;
-                $mailer->CharSet = 'UTF-8';
-
-                if (REFERRAL_SMTP_ENCRYPTION === 'ssl') {
-                    $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
-                } elseif (REFERRAL_SMTP_ENCRYPTION === 'tls') {
-                    $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-                } else {
-                    $mailer->SMTPSecure = false;
-                    $mailer->SMTPAutoTLS = false;
-                }
-
-                $mailer->isHTML(true);
-                $mailer->setFrom(FROM_EMAIL, FROM_NAME);
-
-                // Send admin email
-                $mailer->clearAddresses();
-                $mailer->Subject = $email_subject;
-                $mailer->Body = $email_body;
-                $mailer->addAddress(ADMIN_EMAIL);
-                $mailer->send();
-
-                // Send confirmations (best effort)
-                foreach ($confirmation_recipients as $recipient_email) {
-                    $mailer->clearAddresses();
-                    $mailer->Subject = $confirmation_subject;
-                    $mailer->Body = $confirmation_body;
-                    $mailer->addAddress($recipient_email);
-                    $mailer->send();
-                }
-            } catch (\Throwable $mailEx) {
-                @file_put_contents(
-                    REFERRAL_MAIL_LOG_FILE,
-                    '[' . date('c') . '] SMTP send failed: ' . $mailEx->getMessage() . PHP_EOL,
-                    FILE_APPEND
-                );
-            }
-        } else {
-            @file_put_contents(
-                REFERRAL_MAIL_LOG_FILE,
-                '[' . date('c') . '] PHPMailer not found, emails queued only' . PHP_EOL,
-                FILE_APPEND
-            );
-        }
-    } else {
-        @file_put_contents(
-            REFERRAL_MAIL_LOG_FILE,
-            '[' . date('c') . '] SMTP not configured, emails queued only' . PHP_EOL,
-            FILE_APPEND
-        );
-    }
-
     exit;
 
 } catch (Exception $e) {

@@ -2,6 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 
+@include_once __DIR__ . '/mailgun-config.php';
+
 header('Content-Type: application/json');
 
 // Database configuration
@@ -11,11 +13,41 @@ define('DB_USER', 'admin-getgo');
 define('DB_PASS', 'zain123@getgo');
 
 // Email configuration
-define('ADMIN_EMAIL', 'admin@loganexpresscare.com');
-define('FROM_EMAIL', 'noreply@loganexpresscare.com');
-define('FROM_NAME', 'Logan Express Care');
+define('ADMIN_EMAIL',  getenv('MAILGUN_ADMIN_EMAIL') ?: 'info@loganexpresscare.com.au');
+define('FROM_EMAIL',   getenv('MAILGUN_FROM_EMAIL')  ?: 'noreply@loganexpresscare.com.au');
+define('FROM_NAME',    getenv('MAILGUN_FROM_NAME')   ?: 'Logan Express Care');
+define('MG_DOMAIN',    getenv('MAILGUN_DOMAIN')      ?: '');
+define('MG_API_BASE',  rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mailgun.net', '/'));
+define('MG_API_KEY',   getenv('MAILGUN_API_KEY')     ?: '');
 
-$CONTACT_MAIL_QUEUE_FILE = __DIR__ . '/contact-mail-queue.jsonl';
+function sendViaMailgun($to, $subject, $html, $logFile = null) {
+    if (!function_exists('curl_init') || MG_DOMAIN === '' || MG_API_KEY === '') {
+        return false;
+    }
+    $url  = MG_API_BASE . '/v3/' . MG_DOMAIN . '/messages';
+    $from = FROM_NAME . ' <' . FROM_EMAIL . '>';
+    $ch   = curl_init();
+    curl_setopt_array($ch, array(
+        CURLOPT_URL            => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => array('from' => $from, 'to' => $to, 'subject' => $subject, 'html' => $html),
+        CURLOPT_USERPWD        => 'api:' . MG_API_KEY,
+        CURLOPT_TIMEOUT        => 15,
+    ));
+    $body   = curl_exec($ch);
+    $err    = curl_error($ch);
+    $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    if ($err || $status < 200 || $status >= 300) {
+        if ($logFile) {
+            @file_put_contents($logFile, '[' . date('c') . '] Mailgun error status=' . $status . ' err=' . $err . PHP_EOL, FILE_APPEND);
+        }
+        return false;
+    }
+    return true;
+}
+
 $CONTACT_MAIL_LOG_FILE = __DIR__ . '/contact-mail.log';
 
 $response = array(
@@ -167,40 +199,9 @@ try {
     </body>
     </html>";
 
-    $headers = array(
-        'MIME-Version: 1.0',
-        'Content-type: text/html; charset=utf-8',
-        'From: ' . FROM_NAME . ' <' . FROM_EMAIL . '>',
-        'Reply-To: ' . ADMIN_EMAIL,
-        'X-Mailer: PHP/' . phpversion()
-    );
-
-    // Queue email jobs (avoid PHP mail() which is often disabled on shared hosting)
-    $queuedAt = date('c');
-    $jobs = [];
-    $jobs[] = [
-        'queued_at' => $queuedAt,
-        'type' => 'admin',
-        'to' => ADMIN_EMAIL,
-        'subject' => $admin_subject,
-        'html' => $admin_body,
-        'contact_id' => (int)$contact_id,
-    ];
-    $jobs[] = [
-        'queued_at' => $queuedAt,
-        'type' => 'confirmation',
-        'to' => $data['email'],
-        'subject' => $user_subject,
-        'html' => $user_body,
-        'contact_id' => (int)$contact_id,
-    ];
-
-    foreach ($jobs as $job) {
-        $json = json_encode($job);
-        if ($json !== false) {
-            @file_put_contents($CONTACT_MAIL_QUEUE_FILE, $json . PHP_EOL, FILE_APPEND | LOCK_EX);
-        }
-    }
+    // Send emails via Mailgun directly
+    sendViaMailgun(ADMIN_EMAIL, $admin_subject, $admin_body, $CONTACT_MAIL_LOG_FILE);
+    sendViaMailgun($data['email'], $user_subject, $user_body, $CONTACT_MAIL_LOG_FILE);
 
     $response['success'] = true;
     $response['message'] = 'Thank you! Your message has been submitted successfully.';

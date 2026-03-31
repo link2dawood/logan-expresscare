@@ -1,25 +1,83 @@
 <?php
 
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\PHPMailer;
+@include_once __DIR__ . '/mailgun-config.php';
 
 $DEBUG_MODE = isset($_REQUEST['debug']) && $_REQUEST['debug'] === '1';
 $DEBUG_LOG_FILE = __DIR__ . '/send-mail-debug.log';
-$QUEUE_FILE = __DIR__ . '/consultation-queue.jsonl';
 $MAIL_LOG_FILE = __DIR__ . '/consultation-mail.log';
 
-// SMTP configuration (recommended). Configure via environment variables on hosting.
-// If not set, this script will queue only (cron worker should be used).
-$SMTP_HOST = getenv('CONSULT_SMTP_HOST') ?: '';
-$SMTP_PORT = (int)(getenv('CONSULT_SMTP_PORT') ?: 587);
-$SMTP_USER = getenv('CONSULT_SMTP_USER') ?: '';
-$SMTP_PASS = getenv('CONSULT_SMTP_PASS') ?: '';
-$SMTP_ENCRYPTION = getenv('CONSULT_SMTP_ENCRYPTION') ?: 'tls'; // tls|ssl|none
-$SMTP_TIMEOUT = (int)(getenv('CONSULT_SMTP_TIMEOUT') ?: 4);
+// Mailgun configuration (loaded from mailgun-config.php or server env vars)
+$MG_DOMAIN   = getenv('MAILGUN_DOMAIN') ?: '';
+$MG_API_BASE = rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mailgun.net', '/');
+$MG_API_KEY  = getenv('MAILGUN_API_KEY') ?: '';
 
-$FROM_EMAIL = getenv('CONSULT_FROM_EMAIL') ?: '';
-$FROM_NAME = getenv('CONSULT_FROM_NAME') ?: 'Consultation Form';
-$ADMIN_EMAIL = getenv('CONSULT_ADMIN_EMAIL') ?: '';
+$FROM_EMAIL  = getenv('MAILGUN_FROM_EMAIL') ?: 'noreply@loganexpresscare.com.au';
+$FROM_NAME   = getenv('MAILGUN_FROM_NAME') ?: 'Consultation Form';
+$ADMIN_EMAIL = getenv('MAILGUN_ADMIN_EMAIL') ?: 'info@loganexpresscare.com.au';
+
+function mailgunSend($to, $subject, $html)
+{
+    global $MG_DOMAIN, $MG_API_BASE, $MG_API_KEY, $FROM_NAME, $FROM_EMAIL, $MAIL_LOG_FILE;
+
+    if (!function_exists('curl_init') || $MG_DOMAIN === '' || $MG_API_KEY === '') {
+        return false;
+    }
+
+    $url  = $MG_API_BASE . '/v3/' . $MG_DOMAIN . '/messages';
+    $from = $FROM_NAME !== '' ? ($FROM_NAME . ' <' . $FROM_EMAIL . '>') : $FROM_EMAIL;
+
+    $ch = curl_init();
+    curl_setopt_array($ch, array(
+        CURLOPT_URL            => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => array('from' => $from, 'to' => $to, 'subject' => $subject, 'html' => $html),
+        CURLOPT_USERPWD        => 'api:' . $MG_API_KEY,
+        CURLOPT_TIMEOUT        => 15,
+    ));
+
+    $body   = curl_exec($ch);
+    $err    = curl_error($ch);
+    $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($err || $status < 200 || $status >= 300) {
+        @file_put_contents($MAIL_LOG_FILE, '[' . date('c') . '] Mailgun error status=' . $status . ' err=' . $err . ' body=' . $body . PHP_EOL, FILE_APPEND);
+        return false;
+    }
+
+    @file_put_contents($MAIL_LOG_FILE, '[' . date('c') . '] Sent to ' . $to . PHP_EOL, FILE_APPEND);
+    return true;
+}
+
+function buildConsultAdminHtml($data)
+{
+    $safe = function($v) { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); };
+    return "
+        <h3>New Consultation Request</h3>
+        <p><strong>Name:</strong> {$safe($data['fullName'])}</p>
+        <p><strong>Phone:</strong> {$safe($data['phoneNumber'])}</p>
+        <p><strong>Email:</strong> {$safe($data['emailAddress'])}</p>
+        <p><strong>Role:</strong> {$safe($data['userType'])}</p>
+        <p><strong>Service:</strong> {$safe($data['serviceInterest'])}</p>
+        <p><strong>Preferred Contact:</strong> {$safe($data['contactMethod'])}</p>
+        <p><strong>Preferred Time:</strong> {$safe($data['contactTime'])}</p>
+        <p><strong>Message:</strong><br>{$safe($data['message'])}</p>
+    ";
+}
+
+function buildConsultUserHtml($data)
+{
+    $safe = function($v) { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); };
+    $name = $safe($data['fullName'] ?? 'there');
+    return "
+        <h3>Thank You {$name}</h3>
+        <p>We have received your consultation request.</p>
+        <p>Our team will contact you soon.</p>
+        <br>
+        <p>Regards,<br>Logan Express Care</p>
+    ";
+}
 
 function isAjaxRequest()
 {
@@ -75,70 +133,6 @@ function respondError($statusLine, $debugMessage = '')
     exit;
 }
 
-function sendConsultationEmails($mailer, $data)
-{
-    global $FROM_EMAIL, $FROM_NAME, $ADMIN_EMAIL;
-
-    // Backward-compatible defaults (avoid hard dependency on env vars)
-    $fromEmail = $FROM_EMAIL !== '' ? $FROM_EMAIL : 'noreply@loganexpresscare.com.au';
-    $fromName = $FROM_NAME !== '' ? $FROM_NAME : 'Consultation Form';
-    $adminEmail = $ADMIN_EMAIL !== '' ? $ADMIN_EMAIL : 'info@loganexpresscare.com.au';
-
-    $adminBody = "
-        <h3>New Consultation Request</h3>
-        <p><strong>Name:</strong> {$data['fullName']}</p>
-        <p><strong>Phone:</strong> {$data['phoneNumber']}</p>
-        <p><strong>Email:</strong> {$data['emailAddress']}</p>
-        <p><strong>Role:</strong> {$data['userType']}</p>
-        <p><strong>Service:</strong> {$data['serviceInterest']}</p>
-        <p><strong>Preferred Contact:</strong> {$data['contactMethod']}</p>
-        <p><strong>Preferred Time:</strong> {$data['contactTime']}</p>
-        <p><strong>Message:</strong><br>{$data['message']}</p>
-    ";
-
-    $mailer->setFrom($fromEmail, $fromName);
-    $mailer->addAddress($adminEmail);
-    $mailer->isHTML(true);
-    $mailer->Subject = 'New Consultation Request';
-    $mailer->Body = $adminBody;
-    $mailer->send();
-    debugLog('Admin email sent');
-
-    if (!empty($data['emailAddress'])) {
-        debugLog('Sending confirmation email to user', array('email' => $data['emailAddress']));
-        $mailer->clearAddresses();
-        $mailer->addAddress($data['emailAddress']);
-        $mailer->Subject = 'We Received Your Request';
-        $mailer->Body = "
-            <h3>Thank You {$data['fullName']}</h3>
-            <p>We have received your consultation request.</p>
-            <p>Our team will contact you soon.</p>
-            <br>
-            <p>Regards,<br>Support Team</p>
-        ";
-        $mailer->send();
-        debugLog('User confirmation email sent');
-    }
-}
-
-function queueSubmission($data, $reason)
-{
-    global $QUEUE_FILE;
-
-    $entry = array(
-        'queued_at' => date('c'),
-        'reason' => $reason,
-        'payload' => $data,
-    );
-
-    $json = json_encode($entry);
-    if ($json === false) {
-        return false;
-    }
-
-    $result = @file_put_contents($QUEUE_FILE, $json . PHP_EOL, FILE_APPEND | LOCK_EX);
-    return $result !== false;
-}
 
 function logMailLine($message)
 {
@@ -169,12 +163,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respondError('HTTP/1.1 405 Method Not Allowed', 'invalid_method');
 }
 
-$phpMailerFiles = array(
-    'PHPMailer.php' => __DIR__ . '/PHPMailer/src/PHPMailer.php',
-    'SMTP.php' => __DIR__ . '/PHPMailer/src/SMTP.php',
-    'Exception.php' => __DIR__ . '/PHPMailer/src/Exception.php',
-);
-
 $userType        = isset($_POST['userType']) ? $_POST['userType'] : '';
 $serviceInterest = isset($_POST['serviceInterest']) ? $_POST['serviceInterest'] : '';
 $fullName        = isset($_POST['fullName']) ? $_POST['fullName'] : '';
@@ -196,14 +184,24 @@ $payload = array(
 );
 
 try {
-    // Always queue first so the browser redirect is fast (no SMTP/mail() blocking).
-    if (!queueSubmission($payload, 'queued')) {
-        logMailLine('Queue write failed');
-    } else {
-        debugLog('Submission queued', array('queue_file' => $QUEUE_FILE));
+    // Send admin notification via Mailgun
+    $adminSent = mailgunSend(
+        $ADMIN_EMAIL,
+        'New Consultation Request',
+        buildConsultAdminHtml($payload)
+    );
+    debugLog('Admin email via Mailgun', array('sent' => $adminSent));
+
+    // Send user confirmation if email provided
+    if (!empty($payload['emailAddress'])) {
+        $userSent = mailgunSend(
+            $payload['emailAddress'],
+            'We Received Your Request',
+            buildConsultUserHtml($payload)
+        );
+        debugLog('User confirmation via Mailgun', array('sent' => $userSent));
     }
 
-    // Respond immediately (front-end redirects to thankyou.php on "success")
     respondSuccess();
 } catch (Exception $e) {
     error_log('send-mail.php error: ' . $e->getMessage());
