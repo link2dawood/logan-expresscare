@@ -15,6 +15,9 @@ define('ADMIN_EMAIL', 'admin@loganexpresscare.com');
 define('FROM_EMAIL', 'noreply@loganexpresscare.com');
 define('FROM_NAME', 'Logan Express Care');
 
+$CONTACT_MAIL_QUEUE_FILE = __DIR__ . '/contact-mail-queue.jsonl';
+$CONTACT_MAIL_LOG_FILE = __DIR__ . '/contact-mail.log';
+
 $response = array(
     'success' => false,
     'message' => ''
@@ -172,20 +175,31 @@ try {
         'X-Mailer: PHP/' . phpversion()
     );
 
-    // Send admin email
-    $admin_mail_sent = mail(ADMIN_EMAIL, $admin_subject, $admin_body, implode("\r\n", $headers));
+    // Queue email jobs (avoid PHP mail() which is often disabled on shared hosting)
+    $queuedAt = date('c');
+    $jobs = [];
+    $jobs[] = [
+        'queued_at' => $queuedAt,
+        'type' => 'admin',
+        'to' => ADMIN_EMAIL,
+        'subject' => $admin_subject,
+        'html' => $admin_body,
+        'contact_id' => (int)$contact_id,
+    ];
+    $jobs[] = [
+        'queued_at' => $queuedAt,
+        'type' => 'confirmation',
+        'to' => $data['email'],
+        'subject' => $user_subject,
+        'html' => $user_body,
+        'contact_id' => (int)$contact_id,
+    ];
 
-    // Send user email
-    $user_mail_sent = mail($data['email'], $user_subject, $user_body, implode("\r\n", $headers));
-
-    // You can choose whether email failure should block success or not
-    // Here: form submission is considered successful if DB insert worked
-    if (!$admin_mail_sent) {
-        error_log("Admin email failed for contact ID #" . $contact_id);
-    }
-
-    if (!$user_mail_sent) {
-        error_log("User confirmation email failed for contact ID #" . $contact_id);
+    foreach ($jobs as $job) {
+        $json = json_encode($job);
+        if ($json !== false) {
+            @file_put_contents($CONTACT_MAIL_QUEUE_FILE, $json . PHP_EOL, FILE_APPEND | LOCK_EX);
+        }
     }
 
     $response['success'] = true;
