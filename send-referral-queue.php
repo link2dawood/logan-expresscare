@@ -105,23 +105,9 @@ if (!file_exists(REFERRAL_MAIL_QUEUE_FILE)) {
     exit(0);
 }
 
-$mailgunConfigured = (MAILGUN_DOMAIN !== '' && MAILGUN_API_KEY !== '');
-$smtpConfigured = (REFERRAL_SMTP_HOST !== '' && REFERRAL_SMTP_USER !== '' && REFERRAL_SMTP_PASS !== '');
-
-if (!$mailgunConfigured && !$smtpConfigured) {
-    logLine('Mailgun and SMTP not configured; exiting');
+if (MAILGUN_DOMAIN === '' || MAILGUN_API_KEY === '') {
+    logLine('Mailgun API not configured; exiting');
     exit(0);
-}
-
-$phpMailerBase = __DIR__ . '/PHPMailer/src/';
-if ($smtpConfigured) {
-    if (!file_exists($phpMailerBase . 'PHPMailer.php')) {
-        logLine('PHPMailer not found; cannot use SMTP');
-        exit(1);
-    }
-    require_once $phpMailerBase . 'PHPMailer.php';
-    require_once $phpMailerBase . 'SMTP.php';
-    require_once $phpMailerBase . 'Exception.php';
 }
 
 $lines = @file(REFERRAL_MAIL_QUEUE_FILE, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -129,32 +115,7 @@ if (!$lines) {
     exit(0);
 }
 
-// Truncate queue file early to avoid double-sends if cron overlaps.
 @file_put_contents(REFERRAL_MAIL_QUEUE_FILE, '');
-
-$mailer = null;
-if ($smtpConfigured) {
-    $mailer = new PHPMailer\PHPMailer\PHPMailer(true);
-    $mailer->isSMTP();
-    $mailer->Host = REFERRAL_SMTP_HOST;
-    $mailer->SMTPAuth = true;
-    $mailer->Username = REFERRAL_SMTP_USER;
-    $mailer->Password = REFERRAL_SMTP_PASS;
-    $mailer->Port = REFERRAL_SMTP_PORT;
-    $mailer->Timeout = REFERRAL_SMTP_TIMEOUT;
-    $mailer->CharSet = 'UTF-8';
-    $mailer->isHTML(true);
-    $mailer->setFrom(FROM_EMAIL, FROM_NAME);
-
-    if (REFERRAL_SMTP_ENCRYPTION === 'ssl') {
-        $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
-    } elseif (REFERRAL_SMTP_ENCRYPTION === 'tls') {
-        $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-    } else {
-        $mailer->SMTPSecure = false;
-        $mailer->SMTPAutoTLS = false;
-    }
-}
 
 $sent = 0;
 $failed = 0;
@@ -167,34 +128,13 @@ foreach ($lines as $line) {
         continue;
     }
 
-    try {
-        $to = (string)$job['to'];
-        $subject = (string)$job['subject'];
-        $html = (string)$job['html'];
+    $sentOk = sendViaMailgun((string)$job['to'], (string)$job['subject'], (string)$job['html']);
 
-        $sentOk = false;
-        if ($mailgunConfigured) {
-            $sentOk = sendViaMailgun($to, $subject, $html);
-        }
-
-        if (!$sentOk && $smtpConfigured && $mailer) {
-            $mailer->clearAddresses();
-            $mailer->Subject = $subject;
-            $mailer->Body = $html;
-            $mailer->addAddress($to);
-            $mailer->send();
-            $sentOk = true;
-        }
-
-        if (!$sentOk) {
-            throw new \RuntimeException('No mail transport succeeded');
-        }
-
+    if ($sentOk) {
         $sent++;
         @file_put_contents(REFERRAL_MAIL_QUEUE_SENT_FILE, $line . PHP_EOL, FILE_APPEND);
-    } catch (\Throwable $e) {
+    } else {
         $failed++;
-        logLine('Send failed to ' . $job['to'] . ': ' . $e->getMessage());
         @file_put_contents(REFERRAL_MAIL_QUEUE_FAILED_FILE, $line . PHP_EOL, FILE_APPEND);
     }
 }

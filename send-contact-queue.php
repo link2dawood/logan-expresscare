@@ -107,45 +107,9 @@ if (!file_exists(QUEUE_FILE)) {
     exit(0);
 }
 
-$mailgunConfigured = (MAILGUN_DOMAIN !== '' && MAILGUN_API_KEY !== '');
-$smtpConfigured = (SMTP_HOST !== '' && SMTP_USER !== '' && SMTP_PASS !== '');
-
-if (!$mailgunConfigured && !$smtpConfigured) {
-    logLine('Mailgun and SMTP not configured; exiting');
+if (MAILGUN_DOMAIN === '' || MAILGUN_API_KEY === '') {
+    logLine('Mailgun API not configured; exiting');
     exit(0);
-}
-
-$phpMailerBase = __DIR__ . '/PHPMailer/src/';
-$mailer = null;
-if ($smtpConfigured) {
-    if (!file_exists($phpMailerBase . 'PHPMailer.php')) {
-        logLine('PHPMailer not found; cannot use SMTP');
-        exit(1);
-    }
-    require_once $phpMailerBase . 'PHPMailer.php';
-    require_once $phpMailerBase . 'SMTP.php';
-    require_once $phpMailerBase . 'Exception.php';
-
-    $mailer = new PHPMailer\PHPMailer\PHPMailer(true);
-    $mailer->isSMTP();
-    $mailer->Host = SMTP_HOST;
-    $mailer->SMTPAuth = true;
-    $mailer->Username = SMTP_USER;
-    $mailer->Password = SMTP_PASS;
-    $mailer->Port = SMTP_PORT;
-    $mailer->Timeout = SMTP_TIMEOUT;
-    $mailer->CharSet = 'UTF-8';
-    $mailer->isHTML(true);
-    $mailer->setFrom(FROM_EMAIL, FROM_NAME);
-
-    if (SMTP_ENCRYPTION === 'ssl') {
-        $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
-    } elseif (SMTP_ENCRYPTION === 'tls') {
-        $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-    } else {
-        $mailer->SMTPSecure = false;
-        $mailer->SMTPAutoTLS = false;
-    }
 }
 
 $lines = @file(QUEUE_FILE, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -176,20 +140,8 @@ foreach ($lines as $line) {
             $to = ADMIN_EMAIL;
         }
 
-        $ok = false;
-        if ($mailgunConfigured) {
-            $ok = sendViaMailgun($to, $subject, $html);
-        }
-        if (!$ok && $smtpConfigured && $mailer) {
-            $mailer->clearAddresses();
-            $mailer->Subject = $subject;
-            $mailer->Body = $html;
-            $mailer->addAddress($to);
-            $mailer->send();
-            $ok = true;
-        }
-        if (!$ok) {
-            throw new \RuntimeException('No mail transport succeeded');
+        if (!sendViaMailgun($to, $subject, $html)) {
+            throw new \RuntimeException('Mailgun send failed');
         }
 
         $sent++;

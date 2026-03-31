@@ -110,23 +110,9 @@ if (!file_exists(QUEUE_FILE)) {
     exit(0);
 }
 
-$mailgunConfigured = (MAILGUN_DOMAIN !== '' && MAILGUN_API_KEY !== '');
-$smtpConfigured = (SMTP_HOST !== '' && SMTP_USER !== '' && SMTP_PASS !== '');
-
-if (!$mailgunConfigured && !$smtpConfigured) {
-    logLine('Mailgun and SMTP not configured; exiting');
+if (MAILGUN_DOMAIN === '' || MAILGUN_API_KEY === '') {
+    logLine('Mailgun API not configured; exiting');
     exit(0);
-}
-
-$phpMailerBase = __DIR__ . '/PHPMailer/src/';
-if ($smtpConfigured) {
-    if (!file_exists($phpMailerBase . 'PHPMailer.php')) {
-        logLine('PHPMailer not found; cannot use SMTP');
-        exit(1);
-    }
-    require_once $phpMailerBase . 'PHPMailer.php';
-    require_once $phpMailerBase . 'SMTP.php';
-    require_once $phpMailerBase . 'Exception.php';
 }
 
 $lines = @file(QUEUE_FILE, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -134,32 +120,7 @@ if (!$lines) {
     exit(0);
 }
 
-// Truncate queue early to avoid duplicates on overlapping cron runs.
 @file_put_contents(QUEUE_FILE, '');
-
-$mailer = null;
-if ($smtpConfigured) {
-    $mailer = new PHPMailer\PHPMailer\PHPMailer(true);
-    $mailer->isSMTP();
-    $mailer->Host = SMTP_HOST;
-    $mailer->SMTPAuth = true;
-    $mailer->Username = SMTP_USER;
-    $mailer->Password = SMTP_PASS;
-    $mailer->Port = SMTP_PORT;
-    $mailer->Timeout = SMTP_TIMEOUT;
-    $mailer->CharSet = 'UTF-8';
-    $mailer->isHTML(true);
-    $mailer->setFrom(FROM_EMAIL, FROM_NAME);
-
-    if (SMTP_ENCRYPTION === 'ssl') {
-        $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
-    } elseif (SMTP_ENCRYPTION === 'tls') {
-        $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-    } else {
-        $mailer->SMTPSecure = false;
-        $mailer->SMTPAutoTLS = false;
-    }
-}
 
 function buildAdminBody(array $data): string
 {
@@ -209,43 +170,13 @@ foreach ($lines as $line) {
         $adminSubject = 'New Consultation Request';
         $adminHtml = buildAdminBody($payload);
 
-        $adminSent = false;
-        if ($mailgunConfigured) {
-            $adminSent = sendViaMailgun(ADMIN_EMAIL, $adminSubject, $adminHtml);
-        }
-        if (!$adminSent && $smtpConfigured && $mailer) {
-            $mailer->clearAddresses();
-            $mailer->Subject = $adminSubject;
-            $mailer->Body = $adminHtml;
-            $mailer->addAddress(ADMIN_EMAIL);
-            $mailer->send();
-            $adminSent = true;
-        }
-        if (!$adminSent) {
-            throw new \RuntimeException('Admin email transport failed');
+        if (!sendViaMailgun(ADMIN_EMAIL, $adminSubject, $adminHtml)) {
+            throw new \RuntimeException('Admin email failed');
         }
 
-        // User confirmation email (if provided)
         $userEmail = trim((string)($payload['emailAddress'] ?? ''));
         if ($userEmail !== '' && filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-            $userSubject = 'We Received Your Request';
-            $userHtml = buildUserBody($payload);
-            $userSent = false;
-
-            if ($mailgunConfigured) {
-                $userSent = sendViaMailgun($userEmail, $userSubject, $userHtml);
-            }
-            if (!$userSent && $smtpConfigured && $mailer) {
-                $mailer->clearAddresses();
-                $mailer->Subject = $userSubject;
-                $mailer->Body = $userHtml;
-                $mailer->addAddress($userEmail);
-                $mailer->send();
-                $userSent = true;
-            }
-            if (!$userSent) {
-                throw new \RuntimeException('User email transport failed');
-            }
+            sendViaMailgun($userEmail, 'We Received Your Request', buildUserBody($payload));
         }
 
         $sent++;
