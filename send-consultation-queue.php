@@ -26,6 +26,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 
+// Optional local config (recommended if hosting doesn't support env vars cleanly)
+@include_once __DIR__ . '/mailgun-config.php';
+
 define('QUEUE_FILE', __DIR__ . '/consultation-queue.jsonl');
 define('SENT_FILE', __DIR__ . '/consultation-queue.sent.jsonl');
 define('FAILED_FILE', __DIR__ . '/consultation-queue.failed.jsonl');

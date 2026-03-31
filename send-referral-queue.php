@@ -21,6 +21,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 
+// Optional local config (recommended if hosting doesn't support env vars cleanly)
+// Put the real values in /home/<user>/public_html/mailgun-config.php (not committed).
+@include_once __DIR__ . '/mailgun-config.php';
+
 define('FROM_EMAIL', getenv('REFERRAL_FROM_EMAIL') ?: 'noreply@loganexpresscare.com');
 define('FROM_NAME', getenv('REFERRAL_FROM_NAME') ?: 'Logan Express Care');
 
