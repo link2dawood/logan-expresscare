@@ -6,48 +6,51 @@ $DEBUG_MODE = isset($_REQUEST['debug']) && $_REQUEST['debug'] === '1';
 $DEBUG_LOG_FILE = __DIR__ . '/send-mail-debug.log';
 $MAIL_LOG_FILE = __DIR__ . '/consultation-mail.log';
 
-// Mailgun configuration (loaded from mailgun-config.php or server env vars)
-$MG_DOMAIN   = getenv('MAILGUN_DOMAIN') ?: '';
-$MG_API_BASE = rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mailgun.net', '/');
-$MG_API_KEY  = getenv('MAILGUN_API_KEY') ?: '';
-
 $FROM_EMAIL  = getenv('MAILGUN_FROM_EMAIL') ?: 'noreply@loganexpresscare.com.au';
 $FROM_NAME   = getenv('MAILGUN_FROM_NAME') ?: 'Consultation Form';
 $ADMIN_EMAIL = getenv('MAILGUN_ADMIN_EMAIL') ?: 'info@loganexpresscare.com.au';
 
 function mailgunSend($to, $subject, $html)
 {
-    global $MG_DOMAIN, $MG_API_BASE, $MG_API_KEY, $FROM_NAME, $FROM_EMAIL, $MAIL_LOG_FILE;
+    global $FROM_EMAIL, $FROM_NAME, $MAIL_LOG_FILE;
 
-    if (!function_exists('curl_init') || $MG_DOMAIN === '' || $MG_API_KEY === '') {
+    $smtpHost = getenv('MAILGUN_SMTP_HOST') ?: '';
+    $smtpUser = getenv('MAILGUN_SMTP_USER') ?: '';
+    $smtpPass = getenv('MAILGUN_SMTP_PASS') ?: '';
+    $smtpPort = (int)(getenv('MAILGUN_SMTP_PORT') ?: 587);
+
+    if ($smtpHost === '' || $smtpUser === '' || $smtpPass === '') {
+        @file_put_contents($MAIL_LOG_FILE, '[' . date('c') . '] SMTP not configured' . PHP_EOL, FILE_APPEND);
         return false;
     }
 
-    $url  = $MG_API_BASE . '/v3/' . $MG_DOMAIN . '/messages';
-    $from = $FROM_NAME !== '' ? ($FROM_NAME . ' <' . $FROM_EMAIL . '>') : $FROM_EMAIL;
+    $base = __DIR__ . '/PHPMailer/src/';
+    require_once $base . 'PHPMailer.php';
+    require_once $base . 'SMTP.php';
+    require_once $base . 'Exception.php';
 
-    $ch = curl_init();
-    curl_setopt_array($ch, array(
-        CURLOPT_URL            => $url,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POST           => true,
-        CURLOPT_POSTFIELDS     => array('from' => $from, 'to' => $to, 'subject' => $subject, 'html' => $html),
-        CURLOPT_USERPWD        => 'api:' . $MG_API_KEY,
-        CURLOPT_TIMEOUT        => 15,
-    ));
-
-    $body   = curl_exec($ch);
-    $err    = curl_error($ch);
-    $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($err || $status < 200 || $status >= 300) {
-        @file_put_contents($MAIL_LOG_FILE, '[' . date('c') . '] Mailgun error status=' . $status . ' err=' . $err . ' body=' . $body . PHP_EOL, FILE_APPEND);
+    try {
+        $mailer = new PHPMailer\PHPMailer\PHPMailer(true);
+        $mailer->isSMTP();
+        $mailer->Host       = $smtpHost;
+        $mailer->SMTPAuth   = true;
+        $mailer->Username   = $smtpUser;
+        $mailer->Password   = $smtpPass;
+        $mailer->Port       = $smtpPort;
+        $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+        $mailer->CharSet    = 'UTF-8';
+        $mailer->isHTML(true);
+        $mailer->setFrom($FROM_EMAIL, $FROM_NAME);
+        $mailer->addAddress($to);
+        $mailer->Subject = $subject;
+        $mailer->Body    = $html;
+        $mailer->send();
+        @file_put_contents($MAIL_LOG_FILE, '[' . date('c') . '] Sent to ' . $to . PHP_EOL, FILE_APPEND);
+        return true;
+    } catch (\Throwable $e) {
+        @file_put_contents($MAIL_LOG_FILE, '[' . date('c') . '] SMTP error: ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
         return false;
     }
-
-    @file_put_contents($MAIL_LOG_FILE, '[' . date('c') . '] Sent to ' . $to . PHP_EOL, FILE_APPEND);
-    return true;
 }
 
 function buildConsultAdminHtml($data)

@@ -13,39 +13,48 @@ define('DB_USER', 'admin-getgo');
 define('DB_PASS', 'zain123@getgo');
 
 // Email configuration
-define('ADMIN_EMAIL',  getenv('MAILGUN_ADMIN_EMAIL') ?: 'info@loganexpresscare.com.au');
-define('FROM_EMAIL',   getenv('MAILGUN_FROM_EMAIL')  ?: 'noreply@loganexpresscare.com.au');
-define('FROM_NAME',    getenv('MAILGUN_FROM_NAME')   ?: 'Logan Express Care');
-define('MG_DOMAIN',    getenv('MAILGUN_DOMAIN')      ?: '');
-define('MG_API_BASE',  rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mailgun.net', '/'));
-define('MG_API_KEY',   getenv('MAILGUN_API_KEY')     ?: '');
+define('ADMIN_EMAIL', getenv('MAILGUN_ADMIN_EMAIL') ?: 'info@loganexpresscare.com.au');
+define('FROM_EMAIL',  getenv('MAILGUN_FROM_EMAIL')  ?: 'noreply@loganexpresscare.com.au');
+define('FROM_NAME',   getenv('MAILGUN_FROM_NAME')   ?: 'Logan Express Care');
 
 function sendViaMailgun($to, $subject, $html, $logFile = null) {
-    if (!function_exists('curl_init') || MG_DOMAIN === '' || MG_API_KEY === '') {
+    $smtpHost = getenv('MAILGUN_SMTP_HOST') ?: '';
+    $smtpUser = getenv('MAILGUN_SMTP_USER') ?: '';
+    $smtpPass = getenv('MAILGUN_SMTP_PASS') ?: '';
+    $smtpPort = (int)(getenv('MAILGUN_SMTP_PORT') ?: 587);
+
+    if ($smtpHost === '' || $smtpUser === '' || $smtpPass === '') {
         return false;
     }
-    $url  = MG_API_BASE . '/v3/' . MG_DOMAIN . '/messages';
-    $from = FROM_NAME . ' <' . FROM_EMAIL . '>';
-    $ch   = curl_init();
-    curl_setopt_array($ch, array(
-        CURLOPT_URL            => $url,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POST           => true,
-        CURLOPT_POSTFIELDS     => array('from' => $from, 'to' => $to, 'subject' => $subject, 'html' => $html),
-        CURLOPT_USERPWD        => 'api:' . MG_API_KEY,
-        CURLOPT_TIMEOUT        => 15,
-    ));
-    $body   = curl_exec($ch);
-    $err    = curl_error($ch);
-    $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-    if ($err || $status < 200 || $status >= 300) {
+
+    $base = __DIR__ . '/PHPMailer/src/';
+    require_once $base . 'PHPMailer.php';
+    require_once $base . 'SMTP.php';
+    require_once $base . 'Exception.php';
+
+    try {
+        $mailer = new PHPMailer\PHPMailer\PHPMailer(true);
+        $mailer->isSMTP();
+        $mailer->Host       = $smtpHost;
+        $mailer->SMTPAuth   = true;
+        $mailer->Username   = $smtpUser;
+        $mailer->Password   = $smtpPass;
+        $mailer->Port       = $smtpPort;
+        $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+        $mailer->CharSet    = 'UTF-8';
+        $mailer->isHTML(true);
+        $mailer->setFrom(FROM_EMAIL, FROM_NAME);
+        $mailer->addAddress($to);
+        $mailer->Subject = $subject;
+        $mailer->Body    = $html;
+        $mailer->send();
+        return true;
+    } catch (\Throwable $e) {
         if ($logFile) {
-            @file_put_contents($logFile, '[' . date('c') . '] Mailgun error status=' . $status . ' err=' . $err . PHP_EOL, FILE_APPEND);
+            @file_put_contents($logFile, '[' . date('c') . '] SMTP error: ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
         }
         return false;
     }
-    return true;
 }
 
 $CONTACT_MAIL_LOG_FILE = __DIR__ . '/contact-mail.log';

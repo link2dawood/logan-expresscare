@@ -2,58 +2,52 @@
 
 @include_once __DIR__ . '/mailgun-config.php';
 
-$mg_domain   = getenv('MAILGUN_DOMAIN')      ?: '';
-$mg_api_base = rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mailgun.net', '/');
-$mg_api_key  = getenv('MAILGUN_API_KEY')     ?: '';
-$from_email  = getenv('MAILGUN_FROM_EMAIL')  ?: 'noreply@loganexpresscare.com.au';
-$from_name   = getenv('MAILGUN_FROM_NAME')   ?: 'Logan Express Care';
+$smtp_host  = getenv('MAILGUN_SMTP_HOST') ?: '';
+$smtp_user  = getenv('MAILGUN_SMTP_USER') ?: '';
+$smtp_pass  = getenv('MAILGUN_SMTP_PASS') ?: '';
+$smtp_port  = (int)(getenv('MAILGUN_SMTP_PORT') ?: 587);
+$from_email = getenv('MAILGUN_FROM_EMAIL')  ?: 'noreply@loganexpresscare.com.au';
+$from_name  = getenv('MAILGUN_FROM_NAME')   ?: 'Logan Express Care';
 $admin_email = getenv('MAILGUN_ADMIN_EMAIL') ?: 'info@loganexpresscare.com.au';
 
 $errorMSG = "";
 
-// FIRSTNAME
 if (empty($_POST["fname"])) {
 	$errorMSG = "First Name is required. ";
 } else {
 	$fname = $_POST["fname"];
 }
 
-// LASTNAME
 if (empty($_POST["lname"])) {
 	$errorMSG = "Last Name is required. ";
 } else {
 	$lname = $_POST["lname"];
 }
 
-// PHONE
 if (empty($_POST["phone"])) {
 	$errorMSG .= "Phone is required. ";
 } else {
 	$phone = $_POST["phone"];
 }
 
-// EMAIL
 if (empty($_POST["email"])) {
 	$errorMSG .= "Email is required. ";
 } else {
 	$email = $_POST["email"];
 }
 
-// SERVICES
 if (empty($_POST["services"])) {
 	$errorMSG .= "services is required. ";
 } else {
 	$services = $_POST["services"];
 }
 
-// DATE
 if (empty($_POST["date"])) {
 	$errorMSG .= "Date is required. ";
 } else {
 	$date = $_POST["date"];
 }
 
-// MESSAGE
 if (empty($_POST["message"])) {
 	$errorMSG .= "Message is required. ";
 } else {
@@ -79,28 +73,33 @@ $html = "
 
 $success = false;
 
-if ($mg_domain !== '' && $mg_api_key !== '' && function_exists('curl_init')) {
-	$url  = $mg_api_base . '/v3/' . $mg_domain . '/messages';
-	$from = $from_name . ' <' . $from_email . '>';
-	$ch   = curl_init();
-	curl_setopt_array($ch, array(
-		CURLOPT_URL            => $url,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_POST           => true,
-		CURLOPT_POSTFIELDS     => array('from' => $from, 'to' => $admin_email, 'subject' => $subject, 'html' => $html),
-		CURLOPT_USERPWD        => 'api:' . $mg_api_key,
-		CURLOPT_TIMEOUT        => 15,
-	));
-	$body   = curl_exec($ch);
-	$err    = curl_error($ch);
-	$status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
-	curl_close($ch);
-	$success = (!$err && $status >= 200 && $status < 300);
+if ($smtp_host !== '' && $smtp_user !== '' && $smtp_pass !== '') {
+	$base = __DIR__ . '/PHPMailer/src/';
+	require_once $base . 'PHPMailer.php';
+	require_once $base . 'SMTP.php';
+	require_once $base . 'Exception.php';
+
+	try {
+		$mailer = new PHPMailer\PHPMailer\PHPMailer(true);
+		$mailer->isSMTP();
+		$mailer->Host       = $smtp_host;
+		$mailer->SMTPAuth   = true;
+		$mailer->Username   = $smtp_user;
+		$mailer->Password   = $smtp_pass;
+		$mailer->Port       = $smtp_port;
+		$mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+		$mailer->CharSet    = 'UTF-8';
+		$mailer->isHTML(true);
+		$mailer->setFrom($from_email, $from_name);
+		$mailer->addAddress($admin_email);
+		$mailer->Subject = $subject;
+		$mailer->Body    = $html;
+		$mailer->send();
+		$success = true;
+	} catch (\Throwable $e) {
+		error_log('form-appointment SMTP error: ' . $e->getMessage());
+	}
 }
 
-if ($success) {
-	echo "success";
-} else {
-	echo "Something went wrong :(";
-}
+echo $success ? "success" : "Something went wrong :(";
 ?>
