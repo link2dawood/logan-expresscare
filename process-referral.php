@@ -19,44 +19,6 @@ define('FROM_NAME',   getenv('MAILGUN_FROM_NAME')   ?: 'Logan Express Care');
 
 define('REFERRAL_MAIL_LOG_FILE', __DIR__ . '/referral-mail.log');
 
-function sendViaMailgunReferral($to, $subject, $html) {
-    $smtpHost = getenv('MAILGUN_SMTP_HOST') ?: '';
-    $smtpUser = getenv('MAILGUN_SMTP_USER') ?: '';
-    $smtpPass = getenv('MAILGUN_SMTP_PASS') ?: '';
-    $smtpPort = (int)(getenv('MAILGUN_SMTP_PORT') ?: 587);
-
-    if ($smtpHost === '' || $smtpUser === '' || $smtpPass === '') {
-        @file_put_contents(REFERRAL_MAIL_LOG_FILE, '[' . date('c') . '] SMTP not configured' . PHP_EOL, FILE_APPEND);
-        return false;
-    }
-
-    $base = __DIR__ . '/PHPMailer/src/';
-    require_once $base . 'PHPMailer.php';
-    require_once $base . 'SMTP.php';
-    require_once $base . 'Exception.php';
-
-    try {
-        $mailer = new PHPMailer\PHPMailer\PHPMailer(true);
-        $mailer->isSMTP();
-        $mailer->Host       = $smtpHost;
-        $mailer->SMTPAuth   = true;
-        $mailer->Username   = $smtpUser;
-        $mailer->Password   = $smtpPass;
-        $mailer->Port       = $smtpPort;
-        $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-        $mailer->CharSet    = 'UTF-8';
-        $mailer->isHTML(true);
-        $mailer->setFrom(FROM_EMAIL, FROM_NAME);
-        $mailer->addAddress($to);
-        $mailer->Subject = $subject;
-        $mailer->Body    = $html;
-        $mailer->send();
-        return true;
-    } catch (\Throwable $e) {
-        @file_put_contents(REFERRAL_MAIL_LOG_FILE, '[' . date('c') . '] SMTP error: ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
-        return false;
-    }
-}
 
 // Response array
 $response = array('success' => false, 'message' => '');
@@ -337,10 +299,15 @@ try {
         </body>
         </html>";
 
-    // Send emails via Mailgun directly
-    sendViaMailgunReferral(ADMIN_EMAIL, $email_subject, $email_body);
+    // Queue emails for the cron worker to send
+    $queuedAt = date('c');
+    $jobs = array(array('queued_at' => $queuedAt, 'type' => 'admin', 'to' => ADMIN_EMAIL, 'subject' => $email_subject, 'html' => $email_body, 'referral_id' => (int)$referral_id));
     foreach ($confirmation_recipients as $recipient_email) {
-        sendViaMailgunReferral($recipient_email, $confirmation_subject, $confirmation_body);
+        $jobs[] = array('queued_at' => $queuedAt, 'type' => 'confirmation', 'to' => $recipient_email, 'subject' => $confirmation_subject, 'html' => $confirmation_body, 'referral_id' => (int)$referral_id);
+    }
+    foreach ($jobs as $job) {
+        $json = json_encode($job);
+        if ($json !== false) @file_put_contents(__DIR__ . '/referral-mail-queue.jsonl', $json . PHP_EOL, FILE_APPEND | LOCK_EX);
     }
 
     $response['success'] = true;

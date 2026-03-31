@@ -25,8 +25,8 @@ ini_set('display_errors', 0);
 // Put the real values in /home/<user>/public_html/mailgun-config.php (not committed).
 @include_once __DIR__ . '/mailgun-config.php';
 
-define('FROM_EMAIL', getenv('REFERRAL_FROM_EMAIL') ?: 'noreply@loganexpresscare.com');
-define('FROM_NAME', getenv('REFERRAL_FROM_NAME') ?: 'Logan Express Care');
+define('FROM_EMAIL', getenv('MAILGUN_FROM_EMAIL') ?: 'noreply@loganexpresscare.com.au');
+define('FROM_NAME',  getenv('MAILGUN_FROM_NAME')  ?: 'Logan Express Care');
 
 define('MAILGUN_DOMAIN', getenv('MAILGUN_DOMAIN') ?: '');
 define('MAILGUN_API_BASE', rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mailgun.net', '/'));

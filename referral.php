@@ -484,16 +484,37 @@ textarea.form-control {
     .referral-form-section {
         padding: 40px 0;
     }
-    
+
     .form-section {
         padding: 20px;
     }
-    
+
     .radio-group {
         flex-direction: column;
         gap: 10px;
     }
 }
+
+.btn-default.btn-loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+.btn-default.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: btnSpin 0.8s linear infinite;
+}
+@keyframes btnSpin { to { transform: rotate(360deg); } }
 </style>
 
 <script>
@@ -503,10 +524,9 @@ document.getElementById('referralForm').addEventListener('submit', function(e) {
     const formData = new FormData(this);
     const messageDiv = document.getElementById('form-messages');
     
-    // Show loading state
     const submitBtn = this.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Submitting...';
+    submitBtn.classList.add('btn-loading');
     submitBtn.disabled = true;
     
     fetch('process-referral.php', {
@@ -532,6 +552,7 @@ document.getElementById('referralForm').addEventListener('submit', function(e) {
         messageDiv.textContent = 'There was an error submitting your referral. Please try again.';
     })
     .finally(() => {
+        submitBtn.classList.remove('btn-loading');
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
     });

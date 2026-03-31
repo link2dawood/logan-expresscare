@@ -17,45 +17,6 @@ define('ADMIN_EMAIL', getenv('MAILGUN_ADMIN_EMAIL') ?: 'info@loganexpresscare.co
 define('FROM_EMAIL',  getenv('MAILGUN_FROM_EMAIL')  ?: 'noreply@loganexpresscare.com.au');
 define('FROM_NAME',   getenv('MAILGUN_FROM_NAME')   ?: 'Logan Express Care');
 
-function sendViaMailgun($to, $subject, $html, $logFile = null) {
-    $smtpHost = getenv('MAILGUN_SMTP_HOST') ?: '';
-    $smtpUser = getenv('MAILGUN_SMTP_USER') ?: '';
-    $smtpPass = getenv('MAILGUN_SMTP_PASS') ?: '';
-    $smtpPort = (int)(getenv('MAILGUN_SMTP_PORT') ?: 587);
-
-    if ($smtpHost === '' || $smtpUser === '' || $smtpPass === '') {
-        return false;
-    }
-
-    $base = __DIR__ . '/PHPMailer/src/';
-    require_once $base . 'PHPMailer.php';
-    require_once $base . 'SMTP.php';
-    require_once $base . 'Exception.php';
-
-    try {
-        $mailer = new PHPMailer\PHPMailer\PHPMailer(true);
-        $mailer->isSMTP();
-        $mailer->Host       = $smtpHost;
-        $mailer->SMTPAuth   = true;
-        $mailer->Username   = $smtpUser;
-        $mailer->Password   = $smtpPass;
-        $mailer->Port       = $smtpPort;
-        $mailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-        $mailer->CharSet    = 'UTF-8';
-        $mailer->isHTML(true);
-        $mailer->setFrom(FROM_EMAIL, FROM_NAME);
-        $mailer->addAddress($to);
-        $mailer->Subject = $subject;
-        $mailer->Body    = $html;
-        $mailer->send();
-        return true;
-    } catch (\Throwable $e) {
-        if ($logFile) {
-            @file_put_contents($logFile, '[' . date('c') . '] SMTP error: ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
-        }
-        return false;
-    }
-}
 
 $CONTACT_MAIL_LOG_FILE = __DIR__ . '/contact-mail.log';
 
@@ -208,9 +169,16 @@ try {
     </body>
     </html>";
 
-    // Send emails via Mailgun directly
-    sendViaMailgun(ADMIN_EMAIL, $admin_subject, $admin_body, $CONTACT_MAIL_LOG_FILE);
-    sendViaMailgun($data['email'], $user_subject, $user_body, $CONTACT_MAIL_LOG_FILE);
+    // Queue emails for the cron worker to send
+    $queuedAt = date('c');
+    $jobs = array(
+        array('queued_at' => $queuedAt, 'type' => 'admin',        'to' => ADMIN_EMAIL,    'subject' => $admin_subject, 'html' => $admin_body, 'contact_id' => (int)$contact_id),
+        array('queued_at' => $queuedAt, 'type' => 'confirmation', 'to' => $data['email'], 'subject' => $user_subject,  'html' => $user_body,  'contact_id' => (int)$contact_id),
+    );
+    foreach ($jobs as $job) {
+        $json = json_encode($job);
+        if ($json !== false) @file_put_contents(__DIR__ . '/contact-mail-queue.jsonl', $json . PHP_EOL, FILE_APPEND | LOCK_EX);
+    }
 
     $response['success'] = true;
     $response['message'] = 'Thank you! Your message has been submitted successfully.';

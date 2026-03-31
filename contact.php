@@ -68,7 +68,7 @@
                 <div class="col-lg-7">
                     <!-- Book Contact Form Start -->
                     <div class="contact-form wow fadeInUp" data-wow-delay="0.2s">
-                        <form id="contactForms" action="save_contact.php" method="POST">
+                        <form id="contactForms">
                             <div class="row">                                
                                 <div class="form-group col-md-6 mb-4">
                                     <input type="text" name="fname" class="form-control" id="fname" placeholder="First Name" required>
@@ -97,7 +97,7 @@
                         
                                 <div class="col-md-12">
                                     <button type="submit" class="btn-default" id="submitBtn">
-                                        <span>Submit Message</span>
+                                        <span id="submitBtnText">Submit Message</span>
                                     </button>
                                     <div id="msgSubmit" class="mt-3"></div>
                                 </div>
@@ -195,5 +195,54 @@
         </div>
     </div>  
     <!-- Contact map Info End -->  
+
+<style>
+#submitBtn { position: relative; }
+#submitBtn.btn-loading { color: transparent !important; pointer-events: none; }
+#submitBtn.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    top: 50%; left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: contactSpin 0.8s linear infinite;
+}
+@keyframes contactSpin { to { transform: rotate(360deg); } }
+#msgSubmit.success { color: #2c5f4f; font-weight: 600; }
+#msgSubmit.error   { color: #c0392b; font-weight: 600; }
+</style>
+<script>
+document.getElementById('contactForms').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('msgSubmit');
+    btn.classList.add('btn-loading');
+    btn.disabled = true;
+    msg.textContent = '';
+    msg.className = '';
+
+    fetch('save_contact.php', {
+        method: 'POST',
+        body: new FormData(this)
+    })
+    .then(r => r.json())
+    .then(data => {
+        msg.textContent = data.message;
+        msg.className = data.success ? 'success' : 'error';
+        if (data.success) this.reset();
+    })
+    .catch(() => {
+        msg.textContent = 'Something went wrong. Please try again.';
+        msg.className = 'error';
+    })
+    .finally(() => {
+        btn.classList.remove('btn-loading');
+        btn.disabled = false;
+    });
+});
+</script>
 
    <?php include 'layouts/footer.php'; ?>

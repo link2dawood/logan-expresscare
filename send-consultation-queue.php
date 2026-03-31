@@ -38,16 +38,16 @@ define('MAILGUN_DOMAIN', getenv('MAILGUN_DOMAIN') ?: '');
 define('MAILGUN_API_BASE', rtrim(getenv('MAILGUN_API_BASE') ?: 'https://api.mailgun.net', '/'));
 define('MAILGUN_API_KEY', getenv('MAILGUN_API_KEY') ?: '');
 
-define('SMTP_HOST', getenv('CONSULT_SMTP_HOST') ?: '');
-define('SMTP_PORT', (int)(getenv('CONSULT_SMTP_PORT') ?: 587));
-define('SMTP_USER', getenv('CONSULT_SMTP_USER') ?: '');
-define('SMTP_PASS', getenv('CONSULT_SMTP_PASS') ?: '');
-define('SMTP_ENCRYPTION', getenv('CONSULT_SMTP_ENCRYPTION') ?: 'tls');
-define('SMTP_TIMEOUT', (int)(getenv('CONSULT_SMTP_TIMEOUT') ?: 10));
+define('SMTP_HOST',       getenv('MAILGUN_SMTP_HOST') ?: '');
+define('SMTP_PORT',       (int)(getenv('MAILGUN_SMTP_PORT') ?: 587));
+define('SMTP_USER',       getenv('MAILGUN_SMTP_USER') ?: '');
+define('SMTP_PASS',       getenv('MAILGUN_SMTP_PASS') ?: '');
+define('SMTP_ENCRYPTION', 'tls');
+define('SMTP_TIMEOUT',    10);
 
-define('FROM_EMAIL', getenv('CONSULT_FROM_EMAIL') ?: 'noreply@loganexpresscare.com.au');
-define('FROM_NAME', getenv('CONSULT_FROM_NAME') ?: 'Consultation Form');
-define('ADMIN_EMAIL', getenv('CONSULT_ADMIN_EMAIL') ?: 'info@loganexpresscare.com.au');
+define('FROM_EMAIL',  getenv('MAILGUN_FROM_EMAIL')  ?: 'noreply@loganexpresscare.com.au');
+define('FROM_NAME',   getenv('MAILGUN_FROM_NAME')   ?: 'Logan Express Care');
+define('ADMIN_EMAIL', getenv('MAILGUN_ADMIN_EMAIL') ?: 'info@loganexpresscare.com.au');
 
 function logLine(string $msg): void
 {
