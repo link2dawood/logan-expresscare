@@ -309,9 +309,9 @@ try {
                 
                 <p><strong>Contact Information:</strong></p>
                 <ul>
-                    <li>Phone: [Your Phone Number]</li>
+                    <li>Phone: " . (getenv('SITE_PHONE') ?: '') . "</li>
                     <li>Email: " . ADMIN_EMAIL . "</li>
-                    <li>Website: [Your Website]</li>
+                    <li>Website: <a href='" . (getenv('SITE_URL') ?: '') . "'>" . (getenv('SITE_URL') ?: '') . "</a></li>
                 </ul>
                 
                 <p>If you have any questions or need immediate assistance, please don't hesitate to contact us.</p>
